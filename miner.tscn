@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://e3lxd6o5wi6l"]
+
+[ext_resource type="Script" path="res://Miner.cs" id="1_bnyb8"]
+[ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="2_n34ny"]
+[ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="3_bu611"]
+
+[node name="Miner" type="Node3D"]
+script = ExtResource("1_bnyb8")
+endurance = 39
+
+[node name="Rigid_Body" parent="." instance=ExtResource("2_n34ny")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Collision_Body" parent="." instance=ExtResource("3_bu611")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[editable path="Rigid_Body"]

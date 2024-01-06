@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8s860fiw1i8h"]
+
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_26ksi"]
+[ext_resource type="Material" uid="uid://2wccqmpgg2lq" path="res://Resources/Art/Material/Floor/Floors.tres" id="2_t1guc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jx6io"]
+material = ExtResource("2_t1guc")
+
+[node name="Floor" type="Node3D"]
+
+[node name="Static_Body" parent="." instance=ExtResource("1_26ksi")]
+
+[node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body"]
+mesh = SubResource("BoxMesh_jx6io")
+
+[editable path="Static_Body"]
