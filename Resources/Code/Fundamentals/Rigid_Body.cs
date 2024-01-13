@@ -5,6 +5,11 @@ using System.Linq;
 
 public partial class Rigid_Body : Node3D
 {
+
+	[Export]
+	public bool _Visible = true;
+
+
     Dictionary<Node3D, Vector3> _ChildrenAndPos;
 
 	private RigidBody3D _RigidBody;
@@ -12,6 +17,7 @@ public partial class Rigid_Body : Node3D
 	public override void _Ready()
 	{
 
+		Visible = _Visible;
 
 		Array<Node> _Children = this.GetChildren();
 		_ChildrenAndPos = new Dictionary<Node3D, Vector3>();
@@ -46,8 +52,9 @@ public partial class Rigid_Body : Node3D
 				child.Key.GlobalPosition = _RigidBody.GlobalPosition+_ChildrenAndPos[child.Key];
 				
 				
-				
-				child.Key.GlobalRotation = _RigidBody.GlobalRotation;
+				var rotation = child.Key.GlobalRotation;
+				rotation.Y = _RigidBody.GlobalRotation.Y;
+				child.Key.GlobalRotation = rotation;
 			}
 			
 		}
@@ -118,6 +125,7 @@ public partial class Rigid_Body : Node3D
 	public void AddImpulse(Vector3 dir)
 	{
 		_RigidBody.ApplyImpulse(dir, Vector3.Zero);
+
 	}
 
 	public void AddForce(Vector3 dir)
@@ -125,10 +133,22 @@ public partial class Rigid_Body : Node3D
 		_RigidBody.ApplyForce(dir, Vector3.Zero);
 	}
 
+	public void SetLinearVelocity(Vector3 vel)
+	{
+        _RigidBody.LinearVelocity = vel;
+    }
+
+	public void AddAngularForce(Vector3 dir)
+	{
+        _RigidBody.ApplyTorque(dir);
+    }
+
 	public Vector3 GetPosition()
 	{
 		return _RigidBody.Position;
 	}
+
+
 
 	
 	public void SetPosition(Vector3 newPos)

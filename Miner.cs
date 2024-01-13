@@ -21,20 +21,9 @@ public partial class Miner : Node3D
     protected RandomNumberGenerator rng;
 
 
-	public async void KickStart(Node3D[,] walls,int _Width, int _Height)
+	public async void Step(Node3D[,] walls,int _Width, int _Height)
     {
-        await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
- 
-        if (Move(walls, _Width, _Height))
-        {
-            if (WeakRef(walls[_X,_Y]) != null)
-            {
-                walls[_X,_Y].QueueFree();
-                walls[_X,_Y] = null;
-            }
-
-            KickStart(walls,_Width,_Height);
-        }    
+       
     }
 
     

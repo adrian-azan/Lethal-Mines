@@ -14,8 +14,10 @@ transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
 [node name="StaticBody3D" parent="Static_Body" index="0"]
 visible = false
 
+[node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0158236, 0.00172748, -0.00232434)
 mesh = SubResource("BoxMesh_tq2hi")
 
 [editable path="Static_Body"]

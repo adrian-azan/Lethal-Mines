@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjn7smkl2qxwq"]
+[gd_scene load_steps=7 format=3 uid="uid://bjn7smkl2qxwq"]
 
 [ext_resource type="Script" path="res://Resources/Code/Fundamentals/Player.cs" id="2_5y2f8"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_vh2ay"]
+[ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="3_ad2go"]
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="3_kgynb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30kim"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nbcc7"]
+material = ExtResource("3_ad2go")
 
 [node name="Player" type="Node3D"]
 script = ExtResource("2_5y2f8")
@@ -15,9 +17,12 @@ script = ExtResource("2_5y2f8")
 
 [node name="RigidBody3D" parent="Rigid_Body" index="0"]
 transform = Transform3D(1, 1.25198e-05, -0.000253415, -1.22255e-05, 0.999999, 0.00117725, 0.00025343, -0.00117724, 0.999999, 0, 0, 0)
+visible = false
 axis_lock_angular_x = true
+axis_lock_angular_y = true
 axis_lock_angular_z = true
 inertia = Vector3(0, 1, 0)
+linear_damp = 3.0
 angular_damp = 5.0
 
 [node name="CollisionShape3D" parent="Rigid_Body/RigidBody3D" index="0"]
@@ -33,9 +38,11 @@ visible = false
 [node name="Area3D" parent="Rigid_Body/Area3D" index="0"]
 disable_mode = 1
 
-[node name="Camera3D" type="Camera3D" parent="Rigid_Body"]
-transform = Transform3D(1, -6.66016e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0.7, 0)
-visible = false
+[node name="Head" type="Node3D" parent="Rigid_Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30896, 0.0287774)
+
+[node name="Camera3D" type="Camera3D" parent="Rigid_Body/Head"]
+transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
 
 [connection signal="area_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]
 [connection signal="body_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]

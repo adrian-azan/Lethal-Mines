@@ -6,6 +6,7 @@ public partial class DiffusionGenerator : MapGenerator
 
     public int limit = 3;
     public float noise;
+    [Export]
     public int generation = 0;
     public bool building;
 

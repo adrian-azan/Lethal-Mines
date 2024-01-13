@@ -3,6 +3,9 @@ using System;
 
 public partial class Collision_Body : Node3D
 {
+	[Export]
+	public bool _Visible = true;
+
 	public Node3D _Accent;
 
 	bool _isBeingPercieved = false;
@@ -13,6 +16,9 @@ public partial class Collision_Body : Node3D
 
 	public override void _Ready()
 	{
+
+		Visible = _Visible;
+
 		_rb = Tools.FindRigidBodyFromRoot(this);
 		if (_rb == null)
 		{

@@ -47,7 +47,7 @@ public partial class MapGenerator : Node3D
 
 
                    
-                    piece.Position = Position + new Vector3(i-centerX,1,j-centerY);                
+                    piece.Position = Position + new Vector3(i-centerX,2,j-centerY);                
                     AddChild(piece);
                     _Walls[i,j] = piece;
                 }
