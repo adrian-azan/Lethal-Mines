@@ -18,6 +18,7 @@ script = ExtResource("2_5y2f8")
 [node name="RigidBody3D" parent="Rigid_Body" index="0"]
 transform = Transform3D(1, 1.25198e-05, -0.000253415, -1.22255e-05, 0.999999, 0.00117725, 0.00025343, -0.00117724, 0.999999, 0, 0, 0)
 visible = false
+collision_mask = 32768
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -44,8 +45,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30896, 0.0287774)
 [node name="Camera3D" type="Camera3D" parent="Rigid_Body/Head"]
 transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
 
-[connection signal="area_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]
-[connection signal="body_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]
+[node name="Reach" type="Node3D" parent="Rigid_Body"]
+
+[node name="Start" type="Node3D" parent="Rigid_Body/Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="End" type="Node3D" parent="Rigid_Body/Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+
+[node name="RayCast3D" type="RayCast3D" parent="Rigid_Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 5, -2.18557e-07, 0, 1, 0)
+collision_mask = 32768
+debug_shape_custom_color = Color(0.764706, 0.803922, 0, 1)
+debug_shape_thickness = 3
 
 [editable path="Rigid_Body"]
 [editable path="Rigid_Body/Area3D"]

@@ -1,10 +1,13 @@
 
 using Godot;
+using System.Diagnostics;
 
 public partial class Player : Node3D
 {
 	
 	private Node3D _Camera;
+
+	private Vector2 _rotation;
 	private RigidBody3D _rigidBody;
 	private Rigid_Body _RigidBody;
 
@@ -17,28 +20,50 @@ public partial class Player : Node3D
 	[ExportCategory("Controls")]
 	[Export]
 	private float _mouseSensitivity = .05f;
+	private bool _CanSprint;
 
 
-	private Vector2 _rotation;
-	public bool _prepared {get; private set;}
+	//Collision	
+	private RayCast3D _frontRayCast;
 
+
+	//Debuging
+	[Export]
+	public bool _Debug = false;
+	public DrawLine3D _DrawLine3D;
+	public Node3D _ReachStart;
+	public Node3D _ReachEnd;
 
 
     public override void _Ready()
 	{
-		_rigidBody = GetNode<RigidBody3D>("Rigid_Body/RigidBody3D");
-		_RigidBody = GetNode<Rigid_Body>("Rigid_Body");
-		_Camera = GetNode<Node3D>("Rigid_Body/Head");
-		
-		_prepared = true;
+		_Camera = GetNode<Node3D>(NodePathConstants.PLAYER_CAMERA);
+
 		_rotation = new Vector2();
+		_rigidBody = GetNode<RigidBody3D>(NodePathConstants.PLAYER_RIGIDBODY);
+		_frontRayCast = GetNode<RayCast3D>(NodePathConstants.PLAYER_RAYCAST);
+
+
+		_CanSprint = true;		
+
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+
+
+		if (_Debug)
+		{
+			_ReachEnd = GetNode<Node3D>("Rigid_Body/Reach/End");
+			_ReachStart = GetNode<Node3D>("Rigid_Body/Reach/Start");
+         
+			_DrawLine3D = new DrawLine3D();
+			AddChild(_DrawLine3D);
+		}
 	}
 
   public override void _PhysicsProcess(double delta)
 {
-	Vector3 velocity = new Vector3(0, 0, 0);
+
+	Vector3 velocity;
 	Vector3 direction = new Vector3(0, 0, 0);
 	
 		if (Input.IsActionPressed("MoveForward"))
@@ -62,10 +87,16 @@ public partial class Player : Node3D
 		velocity = direction * _acceleration;	
 
         
-		if ( _prepared && Input.IsActionJustReleased("Sprint"))
+		if ( _CanSprint && Input.IsActionJustReleased("Sprint"))
 		{
 			velocity *= 3.0f; 
 			Dash();
+		}
+
+			
+		if (Input.IsActionPressed("QUIT"))
+		{
+			GetTree().Quit();
 		}
 
 
@@ -79,17 +110,23 @@ public partial class Player : Node3D
 		_rigidBody.RotateObjectLocal(Vector3.Up,Mathf.DegToRad(_rotation.X));
 		_Camera.RotateObjectLocal(Vector3.Right,Mathf.DegToRad(_rotation.Y));
 
+		//Clamp up and down looking angle
 		var _CameraRotation = _Camera.RotationDegrees;
 		_CameraRotation.X = Mathf.Clamp(_Camera.RotationDegrees.X, -80, 80);
 		_Camera.RotationDegrees = _CameraRotation;
 	
 	
-	
-		if (Input.IsActionPressed("QUIT"))
+
+		if (_frontRayCast.IsColliding())
 		{
-			GetTree().Quit();
-		}
 			
+			var target  = _frontRayCast.GetCollider() as StaticBody3D;
+			if (target != null)
+			{ 
+				var root = Tools.GetRoot(target); 
+				root.QueueFree();
+			}
+		}
 }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -117,6 +154,11 @@ public partial class Player : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (_Debug)
+		{
+			//Will draw ray infront of player
+			_DrawLine3D.DrawLine(_ReachStart.GlobalPosition,_ReachEnd.GlobalPosition, new Color(1f,0,0),1);
+		}
 	}
 
 	
@@ -124,9 +166,9 @@ public partial class Player : Node3D
 	public async void Dash()
 	{
 		_speed *= 2;
-		_prepared = false;
+		_CanSprint = false;
 		await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);		
-		_prepared = true;
+		_CanSprint = true;
 		_speed /= 2;
 	}
 
