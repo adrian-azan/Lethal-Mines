@@ -117,7 +117,7 @@ public partial class Player : Node3D
 	
 	
 
-		if (_frontRayCast.IsColliding())
+		if (Input.IsActionJustPressed("Action") && _frontRayCast.IsColliding())
 		{
 			
 			var target  = _frontRayCast.GetCollider() as StaticBody3D;
