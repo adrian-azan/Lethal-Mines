@@ -15,6 +15,10 @@ run/main_scene="res://Resources/Scenes/Root.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DrawLine3d="*res://DrawLine3D.cs"
+
 [dotnet]
 
 project/assembly_name="Lethal Mines"
