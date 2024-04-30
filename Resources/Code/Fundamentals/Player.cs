@@ -11,8 +11,20 @@ public partial class Player : Node3D
 	[ExportCategory("Physics")]
 	[Export(PropertyHint.Range, "0,80,2,hide_slider")]
 	private float _acceleration = 50f;
+	
 	[Export]
-	private float _speed = 4f;
+	private float _maxSpeed = 4f;
+	[Export]
+	private float _baseSpeed = 2f;
+
+	[Export]
+	private float _dashSpeed = 3f;
+
+	[Export]
+	private float _dashDuration = 2f;
+	public bool _dashReady {get; private set;}
+
+
 
 	[ExportCategory("Controls")]
 	[Export]
@@ -20,7 +32,7 @@ public partial class Player : Node3D
 
 
 	private Vector2 _rotation;
-	public bool _prepared {get; private set;}
+
 
 
 
@@ -30,7 +42,7 @@ public partial class Player : Node3D
 		_RigidBody = GetNode<Rigid_Body>("Rigid_Body");
 		_Camera = GetNode<Node3D>("Rigid_Body/Head");
 		
-		_prepared = true;
+		_dashReady = true;
 		_rotation = new Vector2();
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -62,16 +74,16 @@ public partial class Player : Node3D
 		velocity = direction * _acceleration;	
 
         
-		if ( _prepared && Input.IsActionJustReleased("Sprint"))
+		if ( _dashReady && Input.IsActionJustReleased("Sprint"))
 		{
-			velocity *= 3.0f; 
+			velocity *= _dashSpeed;
 			Dash();
 		}
 
 
 		//Linear Movements
 		_rigidBody.ApplyCentralForce(velocity);
-		_rigidBody.LinearVelocity = _rigidBody.LinearVelocity.LimitLength(_speed);
+		_rigidBody.LinearVelocity = _rigidBody.LinearVelocity.LimitLength(_maxSpeed);
 		
 
 
@@ -123,11 +135,11 @@ public partial class Player : Node3D
 	
 	public async void Dash()
 	{
-		_speed *= 2;
-		_prepared = false;
-		await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);		
-		_prepared = true;
-		_speed /= 2;
+		_maxSpeed = _dashSpeed;
+		_dashReady = false;
+		await ToSignal(GetTree().CreateTimer(_dashDuration), SceneTreeTimer.SignalName.Timeout);		
+		_dashReady = true;
+		_maxSpeed = _baseSpeed;
 	}
 
 }

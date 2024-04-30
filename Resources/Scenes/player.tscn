@@ -12,6 +12,10 @@ material = ExtResource("3_ad2go")
 
 [node name="Player" type="Node3D"]
 script = ExtResource("2_5y2f8")
+_maxSpeed = 6.0
+_baseSpeed = 6.0
+_dashSpeed = 9.0
+_dashDuration = 3.0
 
 [node name="Rigid_Body" parent="." instance=ExtResource("3_kgynb")]
 
