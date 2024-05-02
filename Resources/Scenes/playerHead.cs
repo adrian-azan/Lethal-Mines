@@ -1,10 +1,13 @@
 using Godot;
 using System;
 
-public partial class playerHead : Node3D
+public partial class PlayerHead : Node3D
 {
 
 	AnimationPlayer _animationPlayer;
+
+	[Export(PropertyHint.Range, "0,1,0.05")]
+	private float _bobbingWeight = 1.0f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -17,4 +20,11 @@ public partial class playerHead : Node3D
 	public override void _Process(double delta)
 	{
 	}
+
+
+	public void SetSpeed(float speed)
+	{
+
+        _animationPlayer.SpeedScale = speed*_bobbingWeight;
+    }
 }

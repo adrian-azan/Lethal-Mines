@@ -14,7 +14,7 @@ public partial class DiffusionGenerator : MapGenerator
     {
         base._Ready();
         building = true;
-        noise = .3f;
+        noise = .7f;
 
         Seed();    
         BuildWorld();

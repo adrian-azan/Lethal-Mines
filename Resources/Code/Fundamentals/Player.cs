@@ -1,10 +1,11 @@
 
 using Godot;
+using System.Diagnostics;
 
 public partial class Player : Node3D
 {
 	
-	private Node3D _Camera;
+	private PlayerHead _Camera;
 	private RigidBody3D _rigidBody;
 	private Rigid_Body _RigidBody;
 
@@ -12,17 +13,19 @@ public partial class Player : Node3D
 	[Export(PropertyHint.Range, "0,80,2,hide_slider")]
 	private float _acceleration = 50f;
 	
-	[Export]
 	private float _maxSpeed = 4f;
+
 	[Export]
 	private float _baseSpeed = 2f;
+
+
+
 
 	[Export]
 	private float _dashSpeed = 3f;
 
-	[Export]
-	private float _dashDuration = 2f;
-	public bool _dashReady {get; private set;}
+	private float _stamina = 20f;
+	private bool _exhausted = false;
 
 
 
@@ -40,9 +43,8 @@ public partial class Player : Node3D
 	{
 		_rigidBody = GetNode<RigidBody3D>("Rigid_Body/RigidBody3D");
 		_RigidBody = GetNode<Rigid_Body>("Rigid_Body");
-		_Camera = GetNode<Node3D>("Rigid_Body/Head");
+		_Camera = GetNode<Node3D>("Rigid_Body/Head") as PlayerHead;
 		
-		_dashReady = true;
 		_rotation = new Vector2();
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -74,10 +76,17 @@ public partial class Player : Node3D
 		velocity = direction * _acceleration;	
 
         
-		if ( _dashReady && Input.IsActionJustReleased("Sprint"))
+		if ( _exhausted == false && _stamina > 0 && Input.IsActionPressed("Sprint"))
 		{
 			velocity *= _dashSpeed;
-			Dash();
+			_stamina -= 20.0f * (float)delta;
+			_maxSpeed = _dashSpeed;
+			_Camera.SetSpeed(20);
+		}
+		else
+		{
+			_Camera.SetSpeed(0);
+			_maxSpeed = _baseSpeed;
 		}
 
 
@@ -129,17 +138,22 @@ public partial class Player : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-	}
+		if (_stamina <= 0)
+		{
+            _exhausted = true;
+        }
+        else if(_stamina >= 20)
+		{
+            _exhausted = false;
+        }
 
-	
-	
-	public async void Dash()
-	{
-		_maxSpeed = _dashSpeed;
-		_dashReady = false;
-		await ToSignal(GetTree().CreateTimer(_dashDuration), SceneTreeTimer.SignalName.Timeout);		
-		_dashReady = true;
-		_maxSpeed = _baseSpeed;
-	}
+		if(_stamina < 20)
+		{
+            _stamina += 5.0f*(float)delta;
+			
+        }
+		
+		GD.Print(_stamina);
 
+	}
 }

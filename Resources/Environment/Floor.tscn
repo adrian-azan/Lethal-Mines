@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8s860fiw1i8h"]
 
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_26ksi"]
-[ext_resource type="Material" uid="uid://2wccqmpgg2lq" path="res://Resources/Art/Material/Floor/Floors.tres" id="2_t1guc"]
+[ext_resource type="Material" uid="uid://ci4kdc3752qek" path="res://Resources/Art/Material/Rigid_Body.tres" id="2_cpkkc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jx6io"]
-material = ExtResource("2_t1guc")
+material = ExtResource("2_cpkkc")
 
 [node name="Floor" type="Node3D"]
 
