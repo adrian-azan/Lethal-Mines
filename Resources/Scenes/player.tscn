@@ -51,8 +51,5 @@ _bobbingWeight = 0.2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 
-[connection signal="area_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]
-[connection signal="body_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]
-
 [editable path="Rigid_Body"]
 [editable path="Rigid_Body/Area3D"]

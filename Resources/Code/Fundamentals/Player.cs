@@ -106,15 +106,8 @@ public partial class Player : Node3D
 		{
 			GetTree().Quit();
 		}
-
-		if (Input.IsActionJustPressed("Jump"))
-		{
-            var pos = _RigidBody.GetPosition();
-			pos.Y += 40;
-			_RigidBody.SetPosition(pos);
-        }
-			
-}
+				
+	}
 
     public override void _UnhandledInput(InputEvent @event)
     {
