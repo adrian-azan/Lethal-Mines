@@ -8,34 +8,28 @@ public partial class Player : Node3D
 	private PlayerHead _Camera;
 	private RigidBody3D _rigidBody;
 	private Rigid_Body _RigidBody;
+	private StaminaBar _staminaBar;
+	private Vector2 _rotation;
 
-	[ExportCategory("Physics")]
-	[Export(PropertyHint.Range, "0,80,2,hide_slider")]
-	private float _acceleration = 50f;
-	
+
 	private float _maxSpeed = 4f;
 
 	[Export]
-	private float _baseSpeed = 2f;
-
-
-
+	private float _baseSpeed;
 
 	[Export]
-	private float _dashSpeed = 3f;
+	private float _dashSpeed;
 
-	private float _stamina = 20f;
+	private float _stamina = 50f;
+	private float _staminaDrain = 60f;
+	private float _staminaRecovery = 20f;
+
 	private bool _exhausted = false;
-
 
 
 	[ExportCategory("Controls")]
 	[Export]
 	private float _mouseSensitivity = .05f;
-
-
-	private Vector2 _rotation;
-
 
 
 
@@ -44,15 +38,16 @@ public partial class Player : Node3D
 		_rigidBody = GetNode<RigidBody3D>("Rigid_Body/RigidBody3D");
 		_RigidBody = GetNode<Rigid_Body>("Rigid_Body");
 		_Camera = GetNode<Node3D>("Rigid_Body/Head") as PlayerHead;
+		_staminaBar = GetNode<StaminaBar>("UI/StaminaBar");
+
 		
 		_rotation = new Vector2();
-
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
   public override void _PhysicsProcess(double delta)
 {
-	Vector3 velocity = new Vector3(0, 0, 0);
+	Vector3 velocity;
 	Vector3 direction = new Vector3(0, 0, 0);
 	
 		if (Input.IsActionPressed("MoveForward"))
@@ -73,27 +68,28 @@ public partial class Player : Node3D
 		}
 
 		direction = (_rigidBody.Basis * direction).Normalized();
-		velocity = direction * _acceleration;	
+		velocity = direction;	
 
         
 		if ( _exhausted == false && _stamina > 0 && Input.IsActionPressed("Sprint"))
 		{
 			velocity *= _dashSpeed;
-			_stamina -= 20.0f * (float)delta;
-			_maxSpeed = _dashSpeed;
+			_stamina -= _staminaDrain * (float)delta;
 			_Camera.SetSpeed(20);
 		}
 		else
 		{
 			_Camera.SetSpeed(0);
-			_maxSpeed = _baseSpeed;
+			velocity *= _baseSpeed;
 		}
 
-
-		//Linear Movements
-		_rigidBody.ApplyCentralForce(velocity);
+	
+		_rigidBody.ApplyCentralForce(velocity);	//Linear Movements
 		_rigidBody.LinearVelocity = _rigidBody.LinearVelocity.LimitLength(_maxSpeed);
-		
+		_rigidBody.ApplyCentralForce(new Vector3(0,-80,0)); // Gravity
+
+
+	
 
 
 		//Rotational Movements		
@@ -110,6 +106,13 @@ public partial class Player : Node3D
 		{
 			GetTree().Quit();
 		}
+
+		if (Input.IsActionJustPressed("Jump"))
+		{
+            var pos = _RigidBody.GetPosition();
+			pos.Y += 40;
+			_RigidBody.SetPosition(pos);
+        }
 			
 }
 
@@ -147,13 +150,12 @@ public partial class Player : Node3D
             _exhausted = false;
         }
 
-		if(_stamina < 20)
+		if(_stamina < 100)
 		{
-            _stamina += 5.0f*(float)delta;
+            _stamina += _staminaRecovery*(float)delta;
 			
         }
-		
-		GD.Print(_stamina);
 
+		_staminaBar.Drain(100-_stamina);
 	}
 }
