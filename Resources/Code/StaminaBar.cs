@@ -6,9 +6,9 @@ public partial class StaminaBar : Control
     private ColorRect _background;
 
     public override void _Ready()
-	{
-		_background = GetNode<ColorRect>("Bar");
-	}
+    {
+	    _background = GetNode<ColorRect>("Bar");
+    }
 
     public void Drain(float percentage)
     {

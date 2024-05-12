@@ -1,11 +1,10 @@
 
 using Godot;
-using System.Diagnostics;
 
 public partial class Player : Node3D
 {
 	
-	private PlayerHead _Camera;
+	private PlayerHead _camera;
 	private RigidBody3D _rigidBody;
 	private Rigid_Body _RigidBody;
 	private StaminaBar _staminaBar;
@@ -37,7 +36,7 @@ public partial class Player : Node3D
 	{
 		_rigidBody = GetNode<RigidBody3D>("Rigid_Body/RigidBody3D");
 		_RigidBody = GetNode<Rigid_Body>("Rigid_Body");
-		_Camera = GetNode<Node3D>("Rigid_Body/Head") as PlayerHead;
+		_camera = GetNode<Node3D>("Rigid_Body/Head") as PlayerHead;
 		_staminaBar = GetNode<StaminaBar>("UI/StaminaBar");
 
 		
@@ -75,11 +74,11 @@ public partial class Player : Node3D
 		{
 			velocity *= _dashSpeed;
 			_stamina -= _staminaDrain * (float)delta;
-			_Camera.SetSpeed(20);
+			_camera.SetSpeed(20);
 		}
 		else
 		{
-			_Camera.SetSpeed(0);
+			_camera.SetSpeed(0);
 			velocity *= _baseSpeed;
 		}
 
@@ -94,11 +93,11 @@ public partial class Player : Node3D
 
 		//Rotational Movements		
 		_rigidBody.RotateObjectLocal(Vector3.Up,Mathf.DegToRad(_rotation.X));
-		_Camera.RotateObjectLocal(Vector3.Right,Mathf.DegToRad(_rotation.Y));
+		_camera.RotateObjectLocal(Vector3.Right,Mathf.DegToRad(_rotation.Y));
 
-		var _CameraRotation = _Camera.RotationDegrees;
-		_CameraRotation.X = Mathf.Clamp(_Camera.RotationDegrees.X, -80, 80);
-		_Camera.RotationDegrees = _CameraRotation;
+		var _CameraRotation = _camera.RotationDegrees;
+		_CameraRotation.X = Mathf.Clamp(_camera.RotationDegrees.X, -80, 80);
+		_camera.RotationDegrees = _CameraRotation;
 	
 	
 	

@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="3_ad2go"]
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="3_kgynb"]
 [ext_resource type="PackedScene" uid="uid://dhwoabfpua33t" path="res://Resources/Scenes/PlayerHead.tscn" id="5_5dbwn"]
-[ext_resource type="PackedScene" uid="uid://y31t5d75viyo" path="res://Resources/Art/UI/StaminaBar.tscn" id="6_meluy"]
+[ext_resource type="PackedScene" uid="uid://y31t5d75viyo" path="res://Resources/Scenes/UI/StaminaBar.tscn" id="6_meluy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30kim"]
 

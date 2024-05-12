@@ -3,7 +3,6 @@ using System;
 
 public partial class PlayerHead : Node3D
 {
-
 	AnimationPlayer _animationPlayer;
 
 	[Export(PropertyHint.Range, "0,1,0.05")]
@@ -13,7 +12,7 @@ public partial class PlayerHead : Node3D
 	public override void _Ready()
 	{
 		_animationPlayer = GetNode<AnimationPlayer>("Camera3D/AnimationPlayer");
-        _animationPlayer.Play("player_headBob");
+		_animationPlayer.Play("player_headBob");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +23,6 @@ public partial class PlayerHead : Node3D
 
 	public void SetSpeed(float speed)
 	{
-
         _animationPlayer.SpeedScale = speed*_bobbingWeight;
     }
 }
