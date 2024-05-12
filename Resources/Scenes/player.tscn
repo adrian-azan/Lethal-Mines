@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjn7smkl2qxwq"]
+[gd_scene load_steps=9 format=3 uid="uid://bjn7smkl2qxwq"]
 
 [ext_resource type="Script" path="res://Resources/Code/Fundamentals/Player.cs" id="2_5y2f8"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_vh2ay"]
 [ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="3_ad2go"]
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="3_kgynb"]
+[ext_resource type="PackedScene" uid="uid://dhwoabfpua33t" path="res://Resources/Scenes/PlayerHead.tscn" id="5_5dbwn"]
+[ext_resource type="PackedScene" uid="uid://y31t5d75viyo" path="res://Resources/Scenes/UI/StaminaBar.tscn" id="6_meluy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30kim"]
 
@@ -12,6 +14,8 @@ material = ExtResource("3_ad2go")
 
 [node name="Player" type="Node3D"]
 script = ExtResource("2_5y2f8")
+_baseSpeed = 120.0
+_dashSpeed = 250.0
 
 [node name="Rigid_Body" parent="." instance=ExtResource("3_kgynb")]
 
@@ -21,7 +25,7 @@ visible = false
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-inertia = Vector3(0, 1, 0)
+inertia = Vector3(0, 3, 0)
 linear_damp = 3.0
 angular_damp = 5.0
 
@@ -38,14 +42,14 @@ visible = false
 [node name="Area3D" parent="Rigid_Body/Area3D" index="0"]
 disable_mode = 1
 
-[node name="Head" type="Node3D" parent="Rigid_Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30896, 0.0287774)
+[node name="Head" parent="Rigid_Body" instance=ExtResource("5_5dbwn")]
+_bobbingWeight = 0.2
 
-[node name="Camera3D" type="Camera3D" parent="Rigid_Body/Head"]
-transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
+[node name="UI" type="Node" parent="."]
 
-[connection signal="area_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]
-[connection signal="body_entered" from="Rigid_Body/Area3D/Area3D" to="." method="Pickup"]
+[node name="StaminaBar" parent="UI" instance=ExtResource("6_meluy")]
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
 
 [editable path="Rigid_Body"]
 [editable path="Rigid_Body/Area3D"]

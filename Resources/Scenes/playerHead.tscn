@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhwoabfpua33t"]
+
+[ext_resource type="Script" path="res://Resources/Scenes/PlayerHead.cs" id="1_8k2py"]
+
+[sub_resource type="Animation" id="Animation_jyphd"]
+resource_name = "player_headBob"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.196146),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xp2px"]
+_data = {
+"player_headBob": SubResource("Animation_jyphd")
+}
+
+[node name="Head" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30896, 0.0287774)
+script = ExtResource("1_8k2py")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0.0298552, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_xp2px")
+}
