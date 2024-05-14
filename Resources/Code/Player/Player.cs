@@ -1,10 +1,11 @@
 
 using Godot;
+using System;
 
 public partial class Player : Node3D
 {
 	
-	private PlayerHead _camera;
+	private PlayerCamera _camera;
 	private RigidBody3D _rigidBody;
 	private Rigid_Body _RigidBody;
 	private StaminaBar _staminaBar;
@@ -23,7 +24,6 @@ public partial class Player : Node3D
 	private float _staminaDrain = 60f;
 	private float _staminaRecovery = 20f;
 
-	private bool _exhausted = false;
 
 
 	[ExportCategory("Controls")]
@@ -36,7 +36,7 @@ public partial class Player : Node3D
 	{
 		_rigidBody = GetNode<RigidBody3D>("Rigid_Body/RigidBody3D");
 		_RigidBody = GetNode<Rigid_Body>("Rigid_Body");
-		_camera = GetNode<Node3D>("Rigid_Body/Head") as PlayerHead;
+		_camera = GetNode<PlayerCamera>("Rigid_Body/PlayerCamera");
 		_staminaBar = GetNode<StaminaBar>("UI/StaminaBar");
 
 		
@@ -70,10 +70,10 @@ public partial class Player : Node3D
 		velocity = direction;	
 
         
-		if ( _exhausted == false && _stamina > 0 && Input.IsActionPressed("Sprint"))
+		if ( _staminaBar._exhausted == false && _stamina > 0 && Input.IsActionPressed("Sprint"))
 		{
 			velocity *= _dashSpeed;
-			_stamina -= _staminaDrain * (float)delta;
+			_staminaBar.Drain((float)delta);
 			_camera.SetSpeed(20);
 		}
 		else
@@ -98,7 +98,6 @@ public partial class Player : Node3D
 		var _CameraRotation = _camera.RotationDegrees;
 		_CameraRotation.X = Mathf.Clamp(_camera.RotationDegrees.X, -80, 80);
 		_camera.RotationDegrees = _CameraRotation;
-	
 	
 	
 		if (Input.IsActionPressed("QUIT"))
@@ -133,21 +132,6 @@ public partial class Player : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (_stamina <= 0)
-		{
-            _exhausted = true;
-        }
-        else if(_stamina >= 20)
-		{
-            _exhausted = false;
-        }
-
-		if(_stamina < 100)
-		{
-            _stamina += _staminaRecovery*(float)delta;
-			
-        }
-
-		_staminaBar.Drain(100-_stamina);
+		_staminaBar.Process((float)delta);
 	}
 }

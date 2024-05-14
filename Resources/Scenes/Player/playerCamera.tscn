@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhwoabfpua33t"]
+[gd_scene load_steps=4 format=3 uid="uid://cyn5itqvtfsqp"]
 
-[ext_resource type="Script" path="res://Resources/Scenes/PlayerHead.cs" id="1_8k2py"]
+[ext_resource type="Script" path="res://Resources/Code/Player/PlayerCamera.cs" id="1_wv6nu"]
 
 [sub_resource type="Animation" id="Animation_jyphd"]
 resource_name = "player_headBob"
@@ -23,12 +23,12 @@ _data = {
 "player_headBob": SubResource("Animation_jyphd")
 }
 
-[node name="Head" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30896, 0.0287774)
-script = ExtResource("1_8k2py")
+[node name="PlayerCamera" type="Node3D"]
+script = ExtResource("1_wv6nu")
+_bobbingWeight = 0.35
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0.0298552, 0)
+transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
 libraries = {

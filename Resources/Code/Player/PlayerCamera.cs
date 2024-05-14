@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class PlayerHead : Node3D
+public partial class PlayerCamera : Node3D
 {
-	AnimationPlayer _animationPlayer;
+    AnimationPlayer _animationPlayer;
 
 	[Export(PropertyHint.Range, "0,1,0.05")]
 	private float _bobbingWeight = 1.0f;
