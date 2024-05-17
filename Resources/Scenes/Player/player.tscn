@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://bjn7smkl2qxwq"]
 
-[ext_resource type="Script" path="res://Resources/Code/Fundamentals/Player.cs" id="2_5y2f8"]
+[ext_resource type="Script" path="res://Resources/Code/Player/Player.cs" id="1_3k2b2"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_vh2ay"]
 [ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="3_ad2go"]
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="3_kgynb"]
-[ext_resource type="PackedScene" uid="uid://dhwoabfpua33t" path="res://Resources/Scenes/PlayerHead.tscn" id="5_5dbwn"]
+[ext_resource type="PackedScene" uid="uid://cyn5itqvtfsqp" path="res://Resources/Scenes/Player/playerCamera.tscn" id="5_tmc68"]
 [ext_resource type="PackedScene" uid="uid://y31t5d75viyo" path="res://Resources/Scenes/UI/StaminaBar.tscn" id="6_meluy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30kim"]
@@ -13,7 +13,7 @@
 material = ExtResource("3_ad2go")
 
 [node name="Player" type="Node3D"]
-script = ExtResource("2_5y2f8")
+script = ExtResource("1_3k2b2")
 _baseSpeed = 120.0
 _dashSpeed = 250.0
 
@@ -42,8 +42,8 @@ visible = false
 [node name="Area3D" parent="Rigid_Body/Area3D" index="0"]
 disable_mode = 1
 
-[node name="Head" parent="Rigid_Body" instance=ExtResource("5_5dbwn")]
-_bobbingWeight = 0.2
+[node name="PlayerCamera" parent="Rigid_Body" instance=ExtResource("5_tmc68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="UI" type="Node" parent="."]
 

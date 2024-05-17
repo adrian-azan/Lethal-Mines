@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://e3lxd6o5wi6l"]
 
-[ext_resource type="Script" path="res://Miner.cs" id="1_bnyb8"]
+[ext_resource type="Script" path="res://Resources/Code/Tools/Map Generation/Miner.cs" id="1_bnyb8"]
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="2_n34ny"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="3_bu611"]
 

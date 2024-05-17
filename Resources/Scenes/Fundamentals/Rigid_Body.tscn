@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpo5is4364vux"]
 
-[ext_resource type="Script" path="res://Resources/Code/Fundamentals/Rigid_Body.cs" id="1_h2lrm"]
+[ext_resource type="Script" path="res://Resources/Code/Physics/Rigid_Body.cs" id="1_h2lrm"]
 [ext_resource type="Material" uid="uid://ci4kdc3752qek" path="res://Resources/Art/Material/Rigid_Body.tres" id="2_xomy5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j7i1p"]

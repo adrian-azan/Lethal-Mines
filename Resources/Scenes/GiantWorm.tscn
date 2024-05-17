@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cyiak24k5eujq"]
 
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="1_ebd8y"]
-[ext_resource type="Script" path="res://Resources/Scenes/GiantWorm.cs" id="1_uvsus"]
+[ext_resource type="Script" path="res://Resources/Code/GiantWorm.cs" id="1_uvsus"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_lx1t4"]
 [ext_resource type="Material" uid="uid://ci4kdc3752qek" path="res://Resources/Art/Material/Rigid_Body.tres" id="3_wr0c2"]
 [ext_resource type="PackedScene" uid="uid://c0ukjx30ewq8m" path="res://Resources/Art/Models/GiantWorm.gltf" id="4_0gqki"]
