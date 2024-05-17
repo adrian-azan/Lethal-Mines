@@ -1,19 +1,17 @@
 using Godot;
-using System;
 
 public partial class StaminaBar : Control
 {
     private ColorRect _background;
-    
-    private float _stamina = 50f;
-	private float _staminaDrain = 60f;
-	private float _staminaRecovery = 20f;
-    public bool _exhausted = false;
 
+    private float _stamina = 50f;
+    private float _staminaDrain = 60f;
+    private float _staminaRecovery = 20f;
+    public bool _exhausted = false;
 
     public override void _Ready()
     {
-	    _background = GetNode<ColorRect>("Bar");
+        _background = GetNode<ColorRect>("Bar");
     }
 
     public void UpdateBar(float percentage)
@@ -27,20 +25,20 @@ public partial class StaminaBar : Control
     public void Process(float felta)
     {
         if (_stamina <= 0)
-		{
+        {
             _exhausted = true;
         }
-        else if(_stamina >= 20)
-		{
+        else if (_stamina >= 20)
+        {
             _exhausted = false;
         }
 
-		if(_stamina < 100)
-		{
-            _stamina += _staminaRecovery*felta;
+        if (_stamina < 100)
+        {
+            _stamina += _staminaRecovery * felta;
         }
 
-		UpdateBar(100-_stamina);
+        UpdateBar(100 - _stamina);
     }
 
     public void Drain(float felta)
