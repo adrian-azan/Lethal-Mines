@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctjl5n3icavcv"]
+[gd_scene load_steps=5 format=3 uid="uid://ctjl5n3icavcv"]
 
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_42sfn"]
+[ext_resource type="Script" path="res://Resources/Scenes/Environment/Block.cs" id="1_db0ei"]
 [ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="2_ikd8r"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tq2hi"]
@@ -8,6 +9,7 @@ material = ExtResource("2_ikd8r")
 
 [node name="Wall" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_db0ei")
 
 [node name="Static_Body" parent="." instance=ExtResource("1_42sfn")]
 

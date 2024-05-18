@@ -24,6 +24,10 @@ public partial class Player : Node3D
     [Export]
     private float _mouseSensitivity = .05f;
 
+    private Area3D _reach;
+    private DrawLine3D _reachVisual;
+    private RayCast3D _rayCast;
+
     public override void _Ready()
     {
         _rigidBody = GetNode<RigidBody3D>("Rigid_Body/RigidBody3D");
@@ -33,6 +37,12 @@ public partial class Player : Node3D
 
         _rotation = new Vector2();
         Input.MouseMode = Input.MouseModeEnum.Captured;
+
+        _reach = GetNode<Area3D>("Rigid_Body/RigidBody3D/Reach");
+        _reachVisual = GetNode<DrawLine3D>("/root/DrawLine");
+        _rayCast = GetNode<RayCast3D>("Rigid_Body/RigidBody3D/RayCast3D");
+
+        //AddChild(_reach);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -111,5 +121,31 @@ public partial class Player : Node3D
     public override void _Process(double delta)
     {
         _staminaBar.Process((float)delta);
+
+        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(5, 0, 0), new Color(1, 0, 0));
+        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(-5, 0, 0), new Color(0, 1, 0));
+        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(0, 0, 5), new Color(0, 0, 1));
+        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(0, 0, -5), new Color(1, 0, 1));
+
+        _reachVisual.DrawLine(_RigidBody.GetPosition(), _reach.GlobalPosition, new Color(0, 0, 0));
+
+        if (_rayCast.IsColliding())
+        {
+            var other = Tools.GetRoot(_rayCast.GetCollider() as Node3D) as Block;
+
+            GD.Print("RayCast {}", other.ToString());
+
+            other.TakeDamage(5, (float)delta);
+        }
+    }
+
+    public void BeingPercieved(Node3D other)
+    {
+        var target = Tools.GetRoot(other) as Block;
+
+        if (target is Block)
+        {
+            GD.Print("PERCIEVED {}", other.ToString());
+        }
     }
 }

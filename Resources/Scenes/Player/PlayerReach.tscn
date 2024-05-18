@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6sr2ojn35uu3"]
+
+[ext_resource type="Script" path="res://Resources/Scenes/Player/PlayerReach.cs" id="1_1ewth"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cdj4k"]
+
+[node name="PlayerReach" type="Node3D"]
+script = ExtResource("1_1ewth")
+
+[node name="End" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="End"]
+shape = SubResource("BoxShape3D_cdj4k")
+
+[node name="RayCast3D" type="RayCast3D" parent="End"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+target_position = Vector3(0, 0, -3)
+debug_shape_custom_color = Color(0, 0.898039, 0, 1)
+
+[connection signal="body_entered" from="End" to="." method="_on_end_body_entered"]
