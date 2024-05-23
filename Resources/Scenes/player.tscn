@@ -76,5 +76,17 @@ _bobbingWeight = 0.2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 
+[node name="Start" type="Node3D" parent="Rigid_Body/Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="End" type="Node3D" parent="Rigid_Body/Reach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+
+[node name="RayCast3D" type="RayCast3D" parent="Rigid_Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 5, -2.18557e-07, 0, 1, 0)
+collision_mask = 32768
+debug_shape_custom_color = Color(0.764706, 0.803922, 0, 1)
+debug_shape_thickness = 3
+
 [editable path="Rigid_Body"]
 [editable path="Rigid_Body/Area3D"]

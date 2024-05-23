@@ -1,5 +1,6 @@
 
 using Godot;
+using System.Diagnostics;
 
 public partial class Player : Node3D
 {
@@ -29,6 +30,7 @@ public partial class Player : Node3D
 	[ExportCategory("Controls")]
 	[Export]
 	private float _mouseSensitivity = .05f;
+	private bool _CanSprint;
 
 
 
@@ -42,6 +44,16 @@ public partial class Player : Node3D
 		
 		_rotation = new Vector2();
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+
+
+		if (_Debug)
+		{
+			_ReachEnd = GetNode<Node3D>("Rigid_Body/Reach/End");
+			_ReachStart = GetNode<Node3D>("Rigid_Body/Reach/Start");
+         
+			_DrawLine3D = new DrawLine3D();
+			AddChild(_DrawLine3D);
+		}
 	}
 
   public override void _PhysicsProcess(double delta)
@@ -100,10 +112,16 @@ public partial class Player : Node3D
 		_camera.RotationDegrees = _CameraRotation;
 	
 	
-	
-		if (Input.IsActionPressed("QUIT"))
+
+		if (Input.IsActionJustPressed("Action") && _frontRayCast.IsColliding())
 		{
-			GetTree().Quit();
+			
+			var target  = _frontRayCast.GetCollider() as StaticBody3D;
+			if (target != null)
+			{ 
+				var root = Tools.GetRoot(target); 
+				root.QueueFree();
+			}
 		}
 				
 	}
