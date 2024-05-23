@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://bmacvtrl80ga2"]
+
+[ext_resource type="Script" path="res://Resources/Code/Drop.cs" id="1_6fvbr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f3v3s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_btoxh"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_n4x1q"]
+
+[sub_resource type="Animation" id="Animation_0n01n"]
+resource_name = "Pop"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.2, 1, 0, 1, 0, 1, 1, 0, -1.3, 0)
+
+[sub_resource type="Animation" id="Animation_4gjsh"]
+resource_name = "Hover"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -1.3, 0, 2.5, 1, 0, -1.1, 0, 5, 1, 0, -1.3, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h8xyt"]
+_data = {
+"Hover": SubResource("Animation_4gjsh"),
+"Pop": SubResource("Animation_0n01n")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bn8yp"]
+animation = &"Hover"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ulbl"]
+animation = &"Pop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_27n65"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xsdl"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sd18g"]
+states/Hover/node = SubResource("AnimationNodeAnimation_bn8yp")
+states/Hover/position = Vector2(579, 106)
+states/Pop/node = SubResource("AnimationNodeAnimation_4ulbl")
+states/Pop/position = Vector2(437, 45)
+states/Start/position = Vector2(247, 128)
+transitions = ["Start", "Pop", SubResource("AnimationNodeStateMachineTransition_27n65"), "Pop", "Hover", SubResource("AnimationNodeStateMachineTransition_3xsdl")]
+
+[node name="Drop" type="Node3D"]
+script = ExtResource("1_6fvbr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_f3v3s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_btoxh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144501, -1.19209e-05, -0.0595558)
+mesh = SubResource("PlaceholderMesh_n4x1q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../StaticBody3D")
+libraries = {
+"": SubResource("AnimationLibrary_h8xyt")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../StaticBody3D")
+tree_root = SubResource("AnimationNodeStateMachine_sd18g")
+anim_player = NodePath("../AnimationPlayer")
