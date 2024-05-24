@@ -133,9 +133,10 @@ public partial class Player : Node3D
         {
             var other = Tools.GetRoot(_rayCast.GetCollider() as Node3D) as Block;
 
-            GD.Print("RayCast {}", other.ToString());
-
-            other.TakeDamage(5, (float)delta);
+            if (other is Block)
+            {
+                other.TakeDamage(50, (float)delta);
+            }
         }
     }
 
@@ -145,7 +146,6 @@ public partial class Player : Node3D
 
         if (target is Block)
         {
-            GD.Print("PERCIEVED {}", other.ToString());
         }
     }
 }

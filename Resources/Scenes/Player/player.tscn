@@ -25,6 +25,7 @@ _dashSpeed = 250.0
 
 [node name="RigidBody3D" parent="Rigid_Body" index="0"]
 transform = Transform3D(1, 1.25198e-05, -0.000253415, -1.22255e-05, 0.999999, 0.00117725, 0.00025343, -0.00117724, 0.999999, 0, 0, 0)
+collision_mask = 192
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -51,6 +52,7 @@ mesh = SubResource("BoxMesh_f2cgx")
 [node name="RayCast3D" type="RayCast3D" parent="Rigid_Body/RigidBody3D" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 target_position = Vector3(0, 0, -3)
+collision_mask = 128
 debug_shape_custom_color = Color(0, 0.882353, 0, 1)
 
 [node name="Area3D" parent="Rigid_Body" instance=ExtResource("2_vh2ay")]

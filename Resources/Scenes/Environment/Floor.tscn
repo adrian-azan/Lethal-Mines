@@ -10,6 +10,10 @@ material = ExtResource("2_cpkkc")
 
 [node name="Static_Body" parent="." instance=ExtResource("1_26ksi")]
 
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+collision_layer = 64
+collision_mask = 0
+
 [node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
 visible = false
 
