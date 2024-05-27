@@ -94,6 +94,15 @@ public partial class Player : Node3D
         _CameraRotation.X = Mathf.Clamp(_camera.RotationDegrees.X, -80, 80);
         _camera.RotationDegrees = _CameraRotation;
 
+        if (Input.IsActionPressed("Dig"))
+        {
+            _rayCast.Enabled = true;
+        }
+        else
+        {
+            _rayCast.Enabled = false;
+        }
+
         if (Input.IsActionPressed("QUIT"))
         {
             GetTree().Quit();
