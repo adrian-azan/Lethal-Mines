@@ -14,4 +14,13 @@ public partial class Drop : Node3D
         _mesh.Mesh = mesh.Mesh;
         _mesh.Mesh.SurfaceSetMaterial(0, mesh.Mesh.SurfaceGetMaterial(0));
     }
+
+    public void Grabbed(Node3D other)
+    {
+        Player test = Tools.GetRoot<Player>(other) as Player;
+        if (test is Player)
+        {
+            QueueFree();
+        }
+    }
 }

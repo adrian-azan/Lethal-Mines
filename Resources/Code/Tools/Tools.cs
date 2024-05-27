@@ -1,9 +1,8 @@
 using Godot;
 using System;
 
-public static class Tools 
+public static class Tools
 {
-
     public static Rigid_Body FindRigidBody(Node Source)
     {
         var children = Source.GetChildren();
@@ -27,7 +26,6 @@ public static class Tools
         return FindRigidBody(Source.Owner == null ? Source : Source.Owner);
     }
 
-
     public static Node GetRoot(Node Source)
     {
         if (Source.Owner == null)
@@ -39,15 +37,11 @@ public static class Tools
     {
         if (Source.Owner == null || Source is T)
             return Source;
-        return GetRoot(Source.Owner);
+        return GetRoot<T>(Source.Owner);
     }
-
-
-
 
     public static float DegToRad(float degrees)
     {
         return degrees * Mathf.Pi / 180;
     }
-
 }

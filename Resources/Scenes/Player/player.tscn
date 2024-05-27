@@ -37,7 +37,6 @@ angular_damp = 5.0
 shape = SubResource("CapsuleShape3D_30kim")
 
 [node name="MeshInstance3D" parent="Rigid_Body/RigidBody3D" index="1"]
-visible = false
 mesh = SubResource("CapsuleMesh_nbcc7")
 
 [node name="Reach" type="Area3D" parent="Rigid_Body/RigidBody3D" index="2"]

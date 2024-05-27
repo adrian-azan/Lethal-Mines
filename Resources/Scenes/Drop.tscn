@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://deyjmvkrvo4t8"]
+[gd_scene load_steps=12 format=3 uid="uid://deyjmvkrvo4t8"]
 
 [ext_resource type="Script" path="res://Resources/Code/Drop.cs" id="1_6fvbr"]
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_wrqjc"]
@@ -25,26 +25,26 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Static_Body:rotation")
+tracks/0/path = NodePath("Static_Body:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Static_Body:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(5),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, -1.3, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Static_Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4yg48"]
@@ -73,11 +73,13 @@ states/Pop/node = SubResource("AnimationNodeAnimation_17wcf")
 states/Pop/position = Vector2(374, 64)
 transitions = ["Start", "Pop", SubResource("AnimationNodeStateMachineTransition_ytupu"), "Pop", "Float", SubResource("AnimationNodeStateMachineTransition_uydhs")]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xi6ft"]
+
 [node name="Drop" type="Node3D"]
 script = ExtResource("1_6fvbr")
 
 [node name="Static_Body" parent="." instance=ExtResource("2_wrqjc")]
-transform = Transform3D(0.829116, 0, 0.559077, 0, 1, 0, -0.559077, 0, 0.829116, 0, -1.3, 0)
+transform = Transform3D(-0.842792, 0, -0.538239, 0, 1, 0, 0.538239, 0, -0.842792, 0, -1.3, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -87,3 +89,13 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_whi8g")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.618876, 0, 0.785488, 0, 1, 0, -0.785488, 0, 0.618876, 0, -1.3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_xi6ft")
+
+[connection signal="body_entered" from="Area3D" to="." method="Grabbed"]
+
+[editable path="Static_Body"]
