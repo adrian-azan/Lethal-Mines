@@ -94,6 +94,15 @@ public partial class Player : Node3D
         _CameraRotation.X = Mathf.Clamp(_camera.RotationDegrees.X, -80, 80);
         _camera.RotationDegrees = _CameraRotation;
 
+        if (Input.IsActionPressed("Dig"))
+        {
+            _rayCast.Enabled = true;
+        }
+        else
+        {
+            _rayCast.Enabled = false;
+        }
+
         if (Input.IsActionPressed("QUIT"))
         {
             GetTree().Quit();
@@ -133,9 +142,10 @@ public partial class Player : Node3D
         {
             var other = Tools.GetRoot(_rayCast.GetCollider() as Node3D) as Block;
 
-            GD.Print("RayCast {}", other.ToString());
-
-            other.TakeDamage(5, (float)delta);
+            if (other is Block)
+            {
+                other.TakeDamage(50, (float)delta);
+            }
         }
     }
 
@@ -145,7 +155,6 @@ public partial class Player : Node3D
 
         if (target is Block)
         {
-            GD.Print("PERCIEVED {}", other.ToString());
         }
     }
 }

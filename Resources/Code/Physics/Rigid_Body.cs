@@ -1,15 +1,31 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Linq;
 
 public partial class Rigid_Body : Node3D
 {
+    private partial class Details : GodotObject
+    {
+        public Vector3 Position;
+        public Vector3 Scale;
+
+        public Details(Vector3 pos, Vector3 scale)
+        {
+            Position = pos;
+            Scale = scale;
+        }
+
+        public Details()
+        {
+            Position = Vector3.Zero;
+            Scale = Vector3.Zero;
+        }
+    }
+
     [Export]
-    public bool _Visible = true;
+    private bool _Visible = true;
 
-    private Dictionary<Node3D, Vector3> _ChildrenAndPos;
-
+    private Dictionary<Node3D, Details> _ChildrenAndPos;
     private RigidBody3D _RigidBody;
     private Collision_Body _Area;
 
@@ -18,24 +34,22 @@ public partial class Rigid_Body : Node3D
         Visible = _Visible;
 
         Array<Node> _Children = this.GetChildren();
-        _ChildrenAndPos = new Dictionary<Node3D, Vector3>();
+        _ChildrenAndPos = new Dictionary<Node3D, Details>();
 
+        /*Rigid_Body is in charge of moving all children
+        based on movements from RigidBody3D.
+        This is to avoid having all children under RigidBody3D
+        And to give more control over the children.*/
         foreach (Node3D child in _Children)
         {
             if (child is not RigidBody3D)
-            {
-                _ChildrenAndPos.Add(child, child.Position);
-            }
+                _ChildrenAndPos.Add(child, new Details(child.Position, child.Scale));
 
             if (child is RigidBody3D)
-            {
                 _RigidBody = child as RigidBody3D;
-            }
 
             if (child is Collision_Body)
-            {
                 _Area = child as Collision_Body;
-            }
         }
     }
 
@@ -45,44 +59,48 @@ public partial class Rigid_Body : Node3D
         {
             if (child.Key != _RigidBody)
             {
-                child.Key.GlobalPosition = _RigidBody.GlobalPosition + _ChildrenAndPos[child.Key];
+                child.Key.GlobalPosition = _RigidBody.GlobalPosition + _ChildrenAndPos[child.Key].Position;
 
-                var rotation = child.Key.GlobalRotation;
+                Vector3 rotation = child.Key.GlobalRotation;
                 rotation.Y = _RigidBody.GlobalRotation.Y;
                 child.Key.GlobalRotation = rotation;
+
+                //When GlobalRotation is set, scale is reset to 1,1,1
+                //Here we are saving that intial scale
+                child.Key.Scale = _ChildrenAndPos[child.Key].Scale;
             }
         }
     }
 
     public void AddChild(Node3D child)
     {
-        AddChild(child, Vector3.Zero);
+        AddChild(child, Vector3.Zero, Vector3.One);
     }
 
-    public void AddChild(Node3D child, Vector3 localPos)
+    public void AddChild(Node3D child, Vector3 localPos, Vector3 localScale)
     {
-        var rb = Tools.FindRigidBodyFromRoot(child);
+        Rigid_Body rb = Tools.FindRigidBodyFromRoot(child);
 
         child.Position = Vector3.Zero;
         rb.SetPosition(Vector3.Zero);
 
         try
         {
-            _ChildrenAndPos.Add(child as Node3D, localPos);
+            _ChildrenAndPos.Add(child as Node3D, new Details(localPos, localScale));
         }
         catch (ArgumentException ae)
         {
             GD.Print("Child already added");
         }
-        //rb.CollisionLayer (0);
-        //rb.CollisionMask(0);
     }
 
     public void RemoveChild(Node3D child)
     {
-        GD.Print(_ChildrenAndPos.Remove(child));
-        var rb = Tools.FindRigidBodyFromRoot(child);
-        rb.Enable();
+        _ChildrenAndPos.Remove(child);
+
+        //TODO: Revaluate if this is needed 1/22/24
+        //var rb = Tools.FindRigidBodyFromRoot(child);
+        //rb.Enable();
     }
 
     public uint ChildrenSize()
@@ -129,14 +147,14 @@ public partial class Rigid_Body : Node3D
         _RigidBody.LinearVelocity = vel;
     }
 
-    public void AddAngularForce(Vector3 dir)
+    public void ApplyTorque(Vector3 dir)
     {
         _RigidBody.ApplyTorque(dir);
     }
 
     public Vector3 GetPosition()
     {
-        return _RigidBody.GlobalPosition;
+        return _RigidBody.Position;
     }
 
     public void SetPosition(Vector3 newPos)
@@ -144,7 +162,7 @@ public partial class Rigid_Body : Node3D
         _RigidBody.Position = newPos;
     }
 
-    public string ToString()
+    public override string ToString()
     {
         return _RigidBody.LinearVelocity.ToString();
     }
