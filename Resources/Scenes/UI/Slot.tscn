@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmdush6yl7adw"]
+
+[ext_resource type="Script" path="res://Resources/Code/UI/Slot.cs" id="1_5mku4"]
+[ext_resource type="Texture2D" uid="uid://p6w10sxrrl7i" path="res://Resources/Art/UI/Slot.png" id="1_m2gda"]
+
+[node name="Slot" type="Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5mku4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("1_m2gda")

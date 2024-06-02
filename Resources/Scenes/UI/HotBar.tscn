@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://chbsi2s83bree"]
+
+[ext_resource type="PackedScene" uid="uid://cmdush6yl7adw" path="res://Resources/Scenes/UI/Slot.tscn" id="1_4hjuc"]
+
+[node name="HotBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+offset_right = 12.0
+columns = 4
+
+[node name="Slot" parent="GridContainer" instance=ExtResource("1_4hjuc")]
+layout_mode = 2
+
+[node name="Slot2" parent="GridContainer" instance=ExtResource("1_4hjuc")]
+layout_direction = 2
+layout_mode = 2
+
+[node name="Slot3" parent="GridContainer" instance=ExtResource("1_4hjuc")]
+layout_mode = 2
+
+[node name="Slot4" parent="GridContainer" instance=ExtResource("1_4hjuc")]
+layout_mode = 2

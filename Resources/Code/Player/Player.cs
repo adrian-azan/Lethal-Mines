@@ -6,6 +6,7 @@ public partial class Player : Node3D
     private RigidBody3D _rigidBody;
     private Rigid_Body _RigidBody;
     private StaminaBar _staminaBar;
+    private HotBar _hotBar;
     private Vector2 _rotation;
 
     private float _maxSpeed = 4f;
@@ -34,6 +35,7 @@ public partial class Player : Node3D
         _RigidBody = GetNode<Rigid_Body>("Rigid_Body");
         _camera = GetNode<PlayerCamera>("Rigid_Body/PlayerCamera");
         _staminaBar = GetNode<StaminaBar>("UI/StaminaBar");
+        _hotBar = GetNode<HotBar>("UI/HotBar");
 
         _rotation = new Vector2();
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -106,6 +108,16 @@ public partial class Player : Node3D
         if (Input.IsActionPressed("QUIT"))
         {
             GetTree().Quit();
+        }
+
+        if (Input.IsActionJustReleased("HotBarUp"))
+        {
+            _hotBar++;
+        }
+
+        if (Input.IsActionJustReleased("HotBarDown"))
+        {
+            _hotBar--;
         }
     }
 

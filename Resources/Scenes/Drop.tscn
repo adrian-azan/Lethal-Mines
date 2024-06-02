@@ -3,21 +3,6 @@
 [ext_resource type="Script" path="res://Resources/Code/Drop.cs" id="1_6fvbr"]
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_wrqjc"]
 
-[sub_resource type="Animation" id="Animation_0h47e"]
-resource_name = "Pop"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Static_Body:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.8, 0), Vector3(0, -1.3, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_iad4g"]
 resource_name = "Float"
 length = 5.0
@@ -45,6 +30,21 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0h47e"]
+resource_name = "Pop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Static_Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.8, 0), Vector3(0, -1.3, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4yg48"]

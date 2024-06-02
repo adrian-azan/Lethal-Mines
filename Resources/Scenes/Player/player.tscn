@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjn7smkl2qxwq"]
+[gd_scene load_steps=13 format=3 uid="uid://bjn7smkl2qxwq"]
 
 [ext_resource type="Script" path="res://Resources/Code/Player/Player.cs" id="1_3k2b2"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_vh2ay"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="3_kgynb"]
 [ext_resource type="PackedScene" uid="uid://cyn5itqvtfsqp" path="res://Resources/Scenes/Player/playerCamera.tscn" id="5_tmc68"]
 [ext_resource type="PackedScene" uid="uid://y31t5d75viyo" path="res://Resources/Scenes/UI/StaminaBar.tscn" id="6_meluy"]
+[ext_resource type="PackedScene" uid="uid://chbsi2s83bree" path="res://Resources/Scenes/UI/HotBar.tscn" id="7_5xddh"]
+[ext_resource type="Script" path="res://Resources/Code/UI/HotBar.cs" id="8_bktr4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30kim"]
 
@@ -25,6 +27,7 @@ _dashSpeed = 250.0
 
 [node name="RigidBody3D" parent="Rigid_Body" index="0"]
 transform = Transform3D(1, 1.25198e-05, -0.000253415, -1.22255e-05, 0.999999, 0.00117725, 0.00025343, -0.00117724, 0.999999, 0, 0, 0)
+visible = false
 collision_mask = 192
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -70,6 +73,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="StaminaBar" parent="UI" instance=ExtResource("6_meluy")]
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+
+[node name="HotBar" parent="UI" instance=ExtResource("7_5xddh")]
+offset_left = 474.0
+offset_top = 542.0
+offset_right = 474.0
+offset_bottom = 542.0
+script = ExtResource("8_bktr4")
 
 [connection signal="body_entered" from="Rigid_Body/RigidBody3D/Reach" to="." method="BeingPercieved"]
 
