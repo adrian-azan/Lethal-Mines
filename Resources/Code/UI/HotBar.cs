@@ -2,24 +2,31 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections;
+using System.Linq;
 
 public partial class HotBar : Control
 {
     private int _selected;
     private int _size;
 
-    private Array<Node> _slots;
+    private Array<Slot> _slots;
 
     public override void _Ready()
     {
         var grid = GetChild(0);
 
-        _slots = grid.GetChildren();
+        _slots = Variant.From(grid.GetChildren()).AsGodotArray<Slot>();
 
         _selected = 0;
         _size = 4;
 
-        (_slots[_selected] as Slot).Highlight();
+        _slots[_selected].Highlight();
+
+        //Example of having an item in a slot. should be removed when implementing actual items
+        _slots[0]._item = ResourceLoader.Load<PackedScene>("res://Resources/Scenes/Items/Pickaxe.tscn");
+        var item = _slots[0]._item.Instantiate<Item>();
+        AddChild(item);
+        _slots[0]._content.Texture = item._icon.Texture;
     }
 
     public static HotBar operator ++(HotBar target)
