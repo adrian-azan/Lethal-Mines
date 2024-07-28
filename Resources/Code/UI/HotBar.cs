@@ -23,10 +23,19 @@ public partial class HotBar : Control
         _slots[_selected].Highlight();
 
         //Example of having an item in a slot. should be removed when implementing actual items
-        _slots[0]._item = ResourceLoader.Load<PackedScene>("res://Resources/Scenes/Items/Pickaxe.tscn");
-        var item = _slots[0]._item.Instantiate<Item>();
+        _slots[0]._item = new Pickaxe();
+        _slots[0]._item._packedScene = ResourceLoader.Load<PackedScene>("res://Resources/Scenes/Items/Pickaxe.tscn");
+        var item = _slots[0]._item._packedScene.Instantiate<Pickaxe>();
         AddChild(item);
         _slots[0]._content.Texture = item._icon.Texture;
+    }
+
+    public void Use(Player player)
+    {
+        if (_slots[_selected]._item == null)
+            return;
+
+        (_slots[_selected]._item as Item).Use(player);
     }
 
     public static HotBar operator ++(HotBar target)

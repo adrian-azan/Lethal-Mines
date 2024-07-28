@@ -96,15 +96,6 @@ public partial class Player : Node3D
         _CameraRotation.X = Mathf.Clamp(_camera.RotationDegrees.X, -80, 80);
         _camera.RotationDegrees = _CameraRotation;
 
-        if (Input.IsActionPressed("Dig"))
-        {
-            _rayCast.Enabled = true;
-        }
-        else
-        {
-            _rayCast.Enabled = false;
-        }
-
         if (Input.IsActionPressed("QUIT"))
         {
             GetTree().Quit();
@@ -118,6 +109,11 @@ public partial class Player : Node3D
         if (Input.IsActionJustReleased("HotBarDown"))
         {
             _hotBar--;
+        }
+
+        if (Input.IsActionPressed("Dig"))
+        {
+            _hotBar.Use(this);
         }
     }
 
@@ -152,21 +148,17 @@ public partial class Player : Node3D
 
         if (_rayCast.IsColliding())
         {
-            var other = Tools.GetRoot(_rayCast.GetCollider() as Node3D) as Block;
-
-            if (other is Block)
+            //Eventually this should be for interactable objects, not just crafting tables
+            var other = Tools.GetRoot<CraftingTable>(_rayCast.GetCollider() as Node3D) as CraftingTable;
+            if (other is CraftingTable && Input.IsActionJustPressed("Interact"))
             {
-                other.TakeDamage(50, (float)delta);
+                other.Use();
             }
         }
     }
 
-    public void BeingPercieved(Node3D other)
+    public RayCast3D RayCast()
     {
-        var target = Tools.GetRoot(other) as Block;
-
-        if (target is Block)
-        {
-        }
+        return _rayCast;
     }
 }

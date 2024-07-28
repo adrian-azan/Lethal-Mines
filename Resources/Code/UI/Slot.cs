@@ -3,7 +3,7 @@ using System;
 
 public partial class Slot : Control
 {
-    public PackedScene _item;
+    public Item _item;
 
     private Sprite2D _border;
     public Sprite2D _content;
