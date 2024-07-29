@@ -8,7 +8,6 @@
 material = ExtResource("2_7uh5r")
 
 [node name="CraftingTable" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 3.56, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_g1axi")
 
 [node name="Static_Body" parent="." instance=ExtResource("1_j3llp")]

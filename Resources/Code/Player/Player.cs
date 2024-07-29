@@ -103,12 +103,12 @@ public partial class Player : Node3D
 
         if (Input.IsActionJustReleased("HotBarUp"))
         {
-            _hotBar++;
+            _hotBar--;
         }
 
         if (Input.IsActionJustReleased("HotBarDown"))
         {
-            _hotBar--;
+            _hotBar++;
         }
 
         if (Input.IsActionPressed("Dig"))

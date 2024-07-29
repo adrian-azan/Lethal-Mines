@@ -25,7 +25,5 @@ public partial class Pickaxe : Item
                 other.TakeDamage(50);
             }
         }
-
-        GD.Print("PICKING");
     }
 }
