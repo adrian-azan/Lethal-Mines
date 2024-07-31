@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1pbpgp2k2138"]
 
-[ext_resource type="Script" path="res://Resources/Scenes/Player/PlayerMouse.cs" id="1_txe5t"]
+[ext_resource type="Script" path="res://Resources/Code/Player/PlayerMouse.cs" id="1_txe5t"]
 
 [node name="PlayerMouse" type="Control"]
 layout_mode = 3
