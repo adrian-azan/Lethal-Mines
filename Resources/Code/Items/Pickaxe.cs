@@ -3,13 +3,14 @@ using System;
 
 public partial class Pickaxe : Item
 {
-    public override void _Ready()
+    public override void Load()
     {
         _name = "Pickaxe";
         _description = "Whack dirt";
 
         _icon = new Sprite2D();
         _icon.Texture = ResourceLoader.Load("res://Resources/Art/UI/pickaxe.png") as Texture2D;
+        _packedScene = ResourceLoader.Load<PackedScene>("res://Resources/Scenes/Items/Pickaxe.tscn");
     }
 
     public override void Use(Player player)

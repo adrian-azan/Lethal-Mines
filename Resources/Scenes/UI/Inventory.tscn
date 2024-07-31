@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxcdegy40i5b0"]
+
+[ext_resource type="PackedScene" uid="uid://cmdush6yl7adw" path="res://Resources/Scenes/UI/Slot.tscn" id="1_1d8ay"]
+[ext_resource type="Script" path="res://Resources/Code/UI/Inventory.cs" id="1_mhl1e"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_mhl1e")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 153.0
+offset_right = 439.0
+offset_bottom = 483.0
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="Slot" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2
+
+[node name="Slot2" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2
+
+[node name="Slot3" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2
+
+[node name="Slot4" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2
+
+[node name="Slot5" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2
+
+[node name="Slot6" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2
+
+[node name="Slot7" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2
+
+[node name="Slot8" parent="GridContainer" instance=ExtResource("1_1d8ay")]
+layout_mode = 2

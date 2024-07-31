@@ -13,21 +13,14 @@ public partial class HotBar : Control
 
     public override void _Ready()
     {
-        var grid = GetChild(0);
-
+        var grid = GetNode<GridContainer>("GridContainer");
         _slots = Variant.From(grid.GetChildren()).AsGodotArray<Slot>();
 
         _selected = 0;
-        _size = 4;
+        _size = _slots.Count;
 
         _slots[_selected].Highlight();
-
-        //Example of having an item in a slot. should be removed when implementing actual items
-        _slots[0]._item = new Pickaxe();
-        _slots[0]._item._packedScene = ResourceLoader.Load<PackedScene>("res://Resources/Scenes/Items/Pickaxe.tscn");
-        var item = _slots[0]._item._packedScene.Instantiate<Pickaxe>();
-        AddChild(item);
-        _slots[0]._content.Texture = item._icon.Texture;
+        _slots[_selected].AddItem(new Pickaxe());
     }
 
     public void Use(Player player)
@@ -35,7 +28,7 @@ public partial class HotBar : Control
         if (_slots[_selected]._item == null)
             return;
 
-        (_slots[_selected]._item as Item).Use(player);
+        _slots[_selected]._item.Use(player);
     }
 
     public static HotBar operator ++(HotBar target)
