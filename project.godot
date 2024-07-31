@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 DrawLine="*res://Resources/Code/Tools/DrawLine3D.cs"
-PlayerSignals="*res://Resources/Code/Tools/PlayerSignals.cs"
 
 [dotnet]
 

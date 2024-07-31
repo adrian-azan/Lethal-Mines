@@ -3,6 +3,8 @@ using Godot;
 public partial class Player : Node3D
 {
     private PlayerCamera _camera;
+    private PlayerMouse _mouse;
+
     private RigidBody3D _rigidBody;
     private Rigid_Body _RigidBody;
     private StaminaBar _staminaBar;
@@ -38,6 +40,7 @@ public partial class Player : Node3D
         _staminaBar = GetNode<StaminaBar>("UI/StaminaBar");
         _hotBar = GetNode<HotBar>("UI/HotBar");
         _inventory = GetNode<Inventory>("UI/Inventory");
+        _mouse = GetNode<PlayerMouse>("UI/PlayerMouse");
 
         _rotation = new Vector2();
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -63,8 +66,10 @@ public partial class Player : Node3D
         if (Input.IsActionPressed("Dig"))
             _hotBar.Use(this);
 
-        if (Input.IsActionJustPressed("Inventory"))
+        if (Input.IsActionJustPressed("Inventory") && _mouse._item == null)
+        {
             _inventory.Visible = !_inventory.Visible;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
