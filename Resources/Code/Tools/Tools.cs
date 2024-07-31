@@ -35,6 +35,9 @@ public static class Tools
 
     public static Node GetRoot<T>(Node Source)
     {
+        if (Source == null)
+            return null;
+
         if (Source.Owner == null || Source is T)
             return Source;
         return GetRoot<T>(Source.Owner);

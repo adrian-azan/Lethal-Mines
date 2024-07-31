@@ -18,8 +18,10 @@ public partial class Block : Node3D
         _mesh = GetNode<MeshInstance3D>(PATH_MESH);
     }
 
-    public void TakeDamage(float damage, float felta)
+    public void TakeDamage(float damage)
     {
+        float felta = (float)GetPhysicsProcessDeltaTime();
+
         if (_health > 25)
         {
             _health -= Mathf.Clamp(damage - _defense, 0, 9999) * felta;

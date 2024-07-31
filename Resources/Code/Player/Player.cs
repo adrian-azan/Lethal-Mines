@@ -3,9 +3,13 @@ using Godot;
 public partial class Player : Node3D
 {
     private PlayerCamera _camera;
+    private PlayerMouse _mouse;
+
     private RigidBody3D _rigidBody;
     private Rigid_Body _RigidBody;
     private StaminaBar _staminaBar;
+    private HotBar _hotBar;
+    private Inventory _inventory;
     private Vector2 _rotation;
 
     private float _maxSpeed = 4f;
@@ -34,6 +38,9 @@ public partial class Player : Node3D
         _RigidBody = GetNode<Rigid_Body>("Rigid_Body");
         _camera = GetNode<PlayerCamera>("Rigid_Body/PlayerCamera");
         _staminaBar = GetNode<StaminaBar>("UI/StaminaBar");
+        _hotBar = GetNode<HotBar>("UI/HotBar");
+        _inventory = GetNode<Inventory>("UI/Inventory");
+        _mouse = GetNode<PlayerMouse>("UI/PlayerMouse");
 
         _rotation = new Vector2();
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -45,8 +52,45 @@ public partial class Player : Node3D
         //AddChild(_reach);
     }
 
+    public void _ProcessInput()
+    {
+        if (Input.IsActionPressed("QUIT"))
+            GetTree().Quit();
+
+        if (Input.IsActionJustReleased("HotBarUp"))
+            _hotBar--;
+
+        if (Input.IsActionJustReleased("HotBarDown"))
+            _hotBar++;
+
+        if (Input.IsActionPressed("Dig") && _inventory.Visible == false)
+            _hotBar.Use(this);
+
+        if (Input.IsActionJustPressed("Inventory") && _mouse._item == null)
+        {
+            _inventory.Visible = !_inventory.Visible;
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
+        if (_inventory.Visible)
+            _PhysicsProcessInventory(delta);
+        else
+            _PhysicsProcessNormal(delta);
+
+        _ProcessInput();
+    }
+
+    public void _PhysicsProcessInventory(double delta)
+    {
+        Input.MouseMode = Input.MouseModeEnum.Confined;
+    }
+
+    public void _PhysicsProcessNormal(double delta)
+    {
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+
         Vector3 velocity;
         Vector3 direction = new Vector3(0, 0, 0);
 
@@ -93,20 +137,6 @@ public partial class Player : Node3D
         var _CameraRotation = _camera.RotationDegrees;
         _CameraRotation.X = Mathf.Clamp(_camera.RotationDegrees.X, -80, 80);
         _camera.RotationDegrees = _CameraRotation;
-
-        if (Input.IsActionPressed("Dig"))
-        {
-            _rayCast.Enabled = true;
-        }
-        else
-        {
-            _rayCast.Enabled = false;
-        }
-
-        if (Input.IsActionPressed("QUIT"))
-        {
-            GetTree().Quit();
-        }
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -140,21 +170,17 @@ public partial class Player : Node3D
 
         if (_rayCast.IsColliding())
         {
-            var other = Tools.GetRoot(_rayCast.GetCollider() as Node3D) as Block;
-
-            if (other is Block)
+            //Eventually this should be for interactable objects, not just crafting tables
+            var other = Tools.GetRoot<CraftingTable>(_rayCast.GetCollider() as Node3D) as CraftingTable;
+            if (other is CraftingTable && Input.IsActionJustPressed("Interact"))
             {
-                other.TakeDamage(50, (float)delta);
+                other.Use();
             }
         }
     }
 
-    public void BeingPercieved(Node3D other)
+    public RayCast3D RayCast()
     {
-        var target = Tools.GetRoot(other) as Block;
-
-        if (target is Block)
-        {
-        }
+        return _rayCast;
     }
 }

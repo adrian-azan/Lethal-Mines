@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c6sr2ojn35uu3"]
 
-[ext_resource type="Script" path="res://Resources/Scenes/Player/PlayerReach.cs" id="1_1ewth"]
+[ext_resource type="Script" path="res://Resources/Code/Player/PlayerReach.cs" id="1_1ewth"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cdj4k"]
 

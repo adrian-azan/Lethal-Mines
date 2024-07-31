@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cklvwclni5d3q"]
+
+[node name="Item" type="Node3D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
