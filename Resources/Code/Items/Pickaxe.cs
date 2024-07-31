@@ -3,7 +3,7 @@ using System;
 
 public partial class Pickaxe : Item
 {
-    public override void Load()
+    public Pickaxe()
     {
         _name = "Pickaxe";
         _description = "Whack dirt";

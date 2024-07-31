@@ -10,6 +10,4 @@ public abstract partial class Item : Node3D
     public String _description;
 
     public abstract void Use(Player player);
-
-    public abstract void Load();
 }

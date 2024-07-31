@@ -41,7 +41,6 @@ public partial class Slot : Control
     public void AddItem(Item newItem)
     {
         _item = newItem;
-        _item.Load();
         _content.Texture = _item._icon.Texture;
 
         AddSibling(_item._packedScene.Instantiate());
