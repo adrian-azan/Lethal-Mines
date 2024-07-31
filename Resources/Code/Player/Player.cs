@@ -63,7 +63,7 @@ public partial class Player : Node3D
         if (Input.IsActionJustReleased("HotBarDown"))
             _hotBar++;
 
-        if (Input.IsActionPressed("Dig"))
+        if (Input.IsActionPressed("Dig") && _inventory.Visible == false)
             _hotBar.Use(this);
 
         if (Input.IsActionJustPressed("Inventory") && _mouse._item == null)
