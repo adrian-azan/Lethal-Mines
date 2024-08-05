@@ -22,3 +22,5 @@ transform = Transform3D(7.205, 0, 0, 0, 1, 0, 0, 0, 6.4, -0.991619, 14.3329, 20.
 
 [node name="Player" parent="." instance=ExtResource("2_nj8hb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.595, 0)
+
+[node name="Timer" type="Timer" parent="."]

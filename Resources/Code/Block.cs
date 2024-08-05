@@ -10,7 +10,6 @@ public partial class Block : Node3D
     private MeshInstance3D _mesh;
 
     private const String PATH_MESH = "Static_Body/MeshInstance3D";
-    private const String PATH_DROP = "res://Resources/Scenes/Drop.tscn";
 
     public override void _Ready()
     {
@@ -31,19 +30,14 @@ public partial class Block : Node3D
         }
         else
         {
-            QueueFree(); //Delete the block now that it has no health
-
-            var drop = GD.Load<PackedScene>(PATH_DROP).Instantiate() as Drop;
-
-            drop.Transform = Transform;     //Set drop to position of block
-            drop.SetMesh(_mesh);            //Make drop look like block
-
+            var drop = GD.Load<PackedScene>(ScenePaths.DROP).Instantiate() as Drop;
             GetTree().Root.AddChild(drop);  //Add drop to root scene
-        }
-    }
 
-    public override String ToString()
-    {
-        return $"Block: {_health}";
+            drop.SetObject(this);
+            drop.Position = (GetNode("Static_Body/StaticBody3D") as StaticBody3D).Position;
+
+            //Blocks Static_body is no longer needed
+            GetNode<StaticBody3D>("Static_Body/StaticBody3D").QueueFree();
+        }
     }
 }

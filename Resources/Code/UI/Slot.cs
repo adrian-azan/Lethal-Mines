@@ -38,12 +38,11 @@ public partial class Slot : Control
         }
     }
 
-    public void AddItem(Item newItem)
+    public void AddItem(string newItem)
     {
-        _item = newItem;
+        _item = (ResourceLoader.Load(newItem) as PackedScene).Instantiate() as Item;
         _content.Texture = _item._icon.Texture;
-
-        AddSibling(_item._packedScene.Instantiate());
+        AddSibling(_item);
     }
 
     public void DeHighlight()

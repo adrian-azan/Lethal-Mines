@@ -70,6 +70,11 @@ public partial class Player : Node3D
         {
             _inventory.Visible = !_inventory.Visible;
         }
+
+        if (Input.IsActionJustPressed("Throw"))
+        {
+            _hotBar.Drop();
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -182,5 +187,25 @@ public partial class Player : Node3D
     public RayCast3D RayCast()
     {
         return _rayCast;
+    }
+
+    public void AddRigidBodyChild(Node3D newChild)
+    {
+        _RigidBody.AddChild(newChild);
+    }
+
+    public void AddRigidBodyChild(Node3D newChild, Vector3 pos, Vector3 scale)
+    {
+        _RigidBody.AddChild(newChild, pos, scale);
+    }
+
+    public Vector3 GetPosition()
+    {
+        return _RigidBody.GetPosition();
+    }
+
+    public Vector3 GetRotation()
+    {
+        return _RigidBody.GetRotation();
     }
 }

@@ -14,12 +14,12 @@ script = ExtResource("1_db0ei")
 [node name="Static_Body" parent="." instance=ExtResource("1_42sfn")]
 
 [node name="StaticBody3D" parent="Static_Body" index="0"]
-visible = false
 collision_layer = 128
 collision_mask = 0
 
 [node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body"]
 mesh = SubResource("BoxMesh_tq2hi")
