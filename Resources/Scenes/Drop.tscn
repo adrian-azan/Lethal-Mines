@@ -30,7 +30,7 @@ transform = Transform3D(0.27153, 0, 0, 0, 0.461598, 0, 0, 0, 0.448852, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_6acl3")
 surface_material_override/0 = ExtResource("3_4hpla")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="CoolDownTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Static_Body/StaticBody3D/Area3D" to="." method="Grabbed"]
 

@@ -1,17 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctjl5n3icavcv"]
 
-[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_42sfn"]
-[ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_db0ei"]
-[ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="2_ikd8r"]
+[ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_b0k2o"]
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_7x281"]
+[ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="3_i2uc2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tq2hi"]
-material = ExtResource("2_ikd8r")
+material = ExtResource("3_i2uc2")
 
 [node name="Wall" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("1_db0ei")
+script = ExtResource("1_b0k2o")
 
-[node name="Static_Body" parent="." instance=ExtResource("1_42sfn")]
+[node name="Static_Body" parent="." instance=ExtResource("2_7x281")]
 
 [node name="StaticBody3D" parent="Static_Body" index="0"]
 collision_layer = 128
