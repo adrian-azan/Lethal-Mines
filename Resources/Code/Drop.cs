@@ -16,17 +16,15 @@ public partial class Drop : Node3D
 
         //Move drop to location of the new object;
         GetNode<StaticBody3D>("Static_Body/StaticBody3D").GlobalPosition = newObject.GlobalPosition;
-
         _theDrop = newObject;
 
-        var timer = GetNode<Godot.Timer>("Timer");
+        var timer = GetNode<Godot.Timer>("CoolDownTimer");
 
         timer.Timeout += CoolDown;
         timer.Start(2);
         timer.Autostart = false;
 
         _area = GetNode<Area3D>("Static_Body/StaticBody3D/Area3D");
-        _area.Monitoring = false;
     }
 
     public void SetMesh(MeshInstance3D mesh)
@@ -43,7 +41,8 @@ public partial class Drop : Node3D
         Player test = Tools.GetRoot<Player>(other) as Player;
         if (test is Player)
         {
-            QueueFree();
+            if (test._inventory.AddItem(_theDrop.SceneFilePath.Replace("Objects", "UI_Data")))
+                QueueFree();
         }
     }
 

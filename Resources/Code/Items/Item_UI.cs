@@ -8,15 +8,15 @@ public partial class Item_UI : Node2D
     public Sprite2D _sprite;
     public RichTextLabel _amount;
 
+    [Export]
     public string _name;
+
+    [Export]
     public string _description;
 
     public override void _Ready()
     {
-        _name = "NA";
-        _description = "NA";
-
-        _stackable = false;
+        _stackable = GetMeta("stackable").As<bool>();
         _sprite = GetNode<Sprite2D>("Icon");
         _amount = GetNode<RichTextLabel>("Amount");
     }
@@ -33,6 +33,8 @@ public partial class Item_UI : Node2D
     {
         int amount = item._amount.GetMeta("amount").AsInt32();
         item._amount.SetMeta("amount", amount + 1);
+
+        item._amount.Text = item._amount.GetMeta("amount").AsString();
 
         return item;
     }

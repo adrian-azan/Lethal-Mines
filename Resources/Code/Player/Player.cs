@@ -9,7 +9,7 @@ public partial class Player : Node3D
     private Rigid_Body _RigidBody;
     private StaminaBar _staminaBar;
     private HotBar _hotBar;
-    private Inventory _inventory;
+    public Inventory _inventory;
     private Vector2 _rotation;
 
     private float _maxSpeed = 4f;
@@ -64,7 +64,7 @@ public partial class Player : Node3D
             _hotBar++;
 
         if (Input.IsActionPressed("Dig") && _inventory.Visible == false)
-            _hotBar.Use(this);
+            _inventory.Use(this);
 
         if (Input.IsActionJustPressed("Inventory") && _mouse._item == null)
         {
@@ -74,6 +74,11 @@ public partial class Player : Node3D
         if (Input.IsActionJustPressed("Throw"))
         {
             _hotBar.Drop();
+        }
+
+        if (Input.IsActionJustPressed("CreateItem"))
+        {
+            _inventory.AddItem("res://Resources/Scenes/Items/UI_Data/Pickaxe.tscn");
         }
     }
 
