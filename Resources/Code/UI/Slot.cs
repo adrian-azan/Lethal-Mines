@@ -3,9 +3,8 @@ using System;
 
 public partial class Slot : Control
 {
-    public Item _item;
+    public Item_UI _item;
     private Sprite2D _border;
-    public Sprite2D _content;
 
     private PlayerMouse _playerMouse;
 
@@ -13,7 +12,6 @@ public partial class Slot : Control
     {
         _item = null;
         _border = GetNode<Sprite2D>("Border");
-        _content = GetNode<Sprite2D>("Content");
 
         var player = Tools.GetRoot<Player>(this) as Player;
         _playerMouse = player.GetNode("UI/PlayerMouse") as PlayerMouse;
@@ -22,9 +20,10 @@ public partial class Slot : Control
     public override void _Process(double delta)
     {
         if (_item != null)
-            _content.Texture = _item._icon.Texture;
-        else
-            _content.Texture = null;
+        {
+            _item.Show();
+            _item.Position = new Vector2(50, 50);
+        }
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -33,16 +32,30 @@ public partial class Slot : Control
         {
             if (eventMouseButton.ButtonMask == MouseButtonMask.Left)
             {
-                _playerMouse.Swap(ref _item);
+                _playerMouse.Swap(this);
             }
         }
     }
 
     public void AddItem(string newItem)
     {
-        _item = (ResourceLoader.Load(newItem) as PackedScene).Instantiate() as Item;
-        _content.Texture = _item._icon.Texture;
-        AddSibling(_item);
+        if (_item != null && _item._stackable)
+        {
+            _item++;
+        }
+        else
+        {
+            _item?.QueueFree();
+            _item = (ResourceLoader.Load(newItem) as PackedScene).Instantiate() as Item_UI;
+
+            if (_item == null)
+                GD.PushError("Failed to Instantiate: " + newItem);
+            else
+            {
+                _item.Position = new Vector2(50, 50);
+                AddChild(_item);
+            }
+        }
     }
 
     public void DeHighlight()
@@ -53,5 +66,10 @@ public partial class Slot : Control
     public void Highlight()
     {
         _border.Texture = ResourceLoader.Load("res://Resources/Art/UI/Slot-Highlighted.png") as Texture2D;
+    }
+
+    public bool IsEmpty()
+    {
+        return _item == null;
     }
 }

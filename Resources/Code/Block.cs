@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
-public partial class Block : Node3D
+public partial class Block : Item
 {
     private float _health = 100f;
     private float _defense = 1f; //this shuld mabe be an enum
@@ -15,6 +16,11 @@ public partial class Block : Node3D
     {
         _originalScale = Scale;
         _mesh = GetNode<MeshInstance3D>(PATH_MESH);
+        _packedScene = GD.Load<PackedScene>(Paths.Items.Objects.WALL);
+    }
+
+    public override void Use(Player player)
+    {
     }
 
     public void TakeDamage(float damage)
@@ -30,13 +36,12 @@ public partial class Block : Node3D
         }
         else
         {
-            var drop = GD.Load<PackedScene>(ScenePaths.DROP).Instantiate() as Drop;
+            var drop = GD.Load<PackedScene>(Paths.Scenes.DROP).Instantiate() as Drop;
             GetTree().Root.AddChild(drop);  //Add drop to root scene
 
             drop.SetObject(this);
-            drop.Position = (GetNode("Static_Body/StaticBody3D") as StaticBody3D).Position;
 
-            //Blocks Static_body is no longer needed
+            //Blocks StaticBody3D is no longer needed
             GetNode<StaticBody3D>("Static_Body/StaticBody3D").QueueFree();
         }
     }

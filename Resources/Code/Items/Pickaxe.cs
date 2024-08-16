@@ -5,12 +5,7 @@ public partial class Pickaxe : Item
 {
     public Pickaxe()
     {
-        _name = "Pickaxe";
-        _description = "Whack dirt";
-
-        _icon = new Sprite2D();
-        _icon.Texture = ResourceLoader.Load("res://Resources/Art/UI/pickaxe.png") as Texture2D;
-        _packedScene = ResourceLoader.Load<PackedScene>("res://Resources/Scenes/Items/Pickaxe.tscn");
+        _packedScene = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.PICKAXE);
     }
 
     public override void Use(Player player)

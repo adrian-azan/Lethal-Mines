@@ -1,8 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System;
-using System.Collections;
-using System.Linq;
 
 public partial class HotBar : Control
 {
@@ -24,43 +21,34 @@ public partial class HotBar : Control
 
     public override void _Process(double delta)
     {
-        if (_slots[_selected]._item != null)
-        {
-            //_slots[_selected]._item.Position = (Tools.GetRoot<Player>(this) as Player).GetGlobalTransform().Origin + Vector3.Forward;
-        }
-
-        if (Input.IsActionJustPressed("CreateItem") && _slots[_selected]._item == null)
-        {
-            _slots[_selected].AddItem(ScenePaths.PICKAXE);
-        }
     }
 
-    public void Use(Player player)
+    public string Use()
     {
         if (_slots[_selected]._item == null)
-            return;
+            return "";
 
-        _slots[_selected]._item.Use(player);
+        return _slots[_selected]._item.SceneFilePath;
     }
 
     public void Drop()
     {
-        if (_slots[_selected]._item == null)
-            return;
+        //if (_slots[_selected]._item == null)
+        //    return;
 
-        var drop = GD.Load<PackedScene>(ScenePaths.DROP).Instantiate() as Drop;
-        GetTree().Root.AddChild(drop);
+        //var drop = GD.Load<PackedScene>(Paths.Scenes.DROP).Instantiate() as Drop;
+        //GetTree().Root.AddChild(drop);
 
-        drop.SetObject(_slots[_selected]._item);
+        //drop.SetObject(_slots[_selected]._item);
 
-        var player = Tools.GetRoot<Player>(this) as Player;
-        var pos = player.GetPosition();
-        pos.Y = .5f;
+        //var player = Tools.GetRoot<Player>(this) as Player;
+        //var pos = player.GetPosition();
+        //pos.Y = .5f;
 
-        drop.Position = pos;
-        drop.Rotation = player.GetRotation();
+        //drop.Position = pos;
+        //drop.Rotation = player.GetRotation();
 
-        _slots[_selected]._item = null;
+        //_slots[_selected]._item = null;
     }
 
     public static HotBar operator ++(HotBar target)
