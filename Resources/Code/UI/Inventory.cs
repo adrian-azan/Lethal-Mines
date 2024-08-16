@@ -26,6 +26,8 @@ public partial class Inventory : Control
 
         foreach (var slot in _backpack)
         {
+            //TODO: Whole inventory/Hotbar should be searched for any stackable items
+            //Keep track of first empty slot and put item there if no relavant slots
             if (slot.IsEmpty() || (itemName.Contains(slot._item._name) && slot._item._stackable))
             {
                 slot.AddItem(newItem);

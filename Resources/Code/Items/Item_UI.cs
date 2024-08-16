@@ -39,6 +39,9 @@ public partial class Item_UI : Node2D
         return item;
     }
 
+    //TODO: Possibly override the comparison operator
+    //
+
     public void Use(Player player)
     {
     }

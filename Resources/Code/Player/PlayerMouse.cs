@@ -20,6 +20,7 @@ public partial class PlayerMouse : Node2D
         }
     }
 
+    //TODO: Should check if item is stackable and equal
     public void Swap(Slot incomingSlot)
     {
         //Reparent
