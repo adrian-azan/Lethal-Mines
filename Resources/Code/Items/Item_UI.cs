@@ -45,4 +45,9 @@ public partial class Item_UI : Node2D
     public void Use(Player player)
     {
     }
+
+    public string GetName()
+    {
+        return _name == null ? "" : _name;
+    }
 }
