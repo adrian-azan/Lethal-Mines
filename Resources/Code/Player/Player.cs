@@ -78,7 +78,7 @@ public partial class Player : Node3D
 
         if (Input.IsActionJustPressed("CreateItem"))
         {
-            _inventory.AddItem("res://Resources/Scenes/Items/UI_Data/Pickaxe.tscn");
+            _inventory.AddItem("res://Resources/Scenes/Items/UI_Data/CraftingTable.tscn");
         }
     }
 
@@ -184,7 +184,7 @@ public partial class Player : Node3D
             var other = Tools.GetRoot<CraftingTable>(_rayCast.GetCollider() as Node3D) as CraftingTable;
             if (other is CraftingTable && Input.IsActionJustPressed("Interact"))
             {
-                other.Use();
+                other.Use(this);
             }
         }
     }

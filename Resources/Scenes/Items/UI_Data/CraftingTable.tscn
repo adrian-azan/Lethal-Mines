@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://57la3fau6kfh"]
+
+[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_1mjcu"]
+[ext_resource type="Texture2D" uid="uid://1g3wkldqc8vd" path="res://Resources/Art/UI/CraftingTable.png" id="2_8xqwc"]
+
+[node name="CraftingTable" instance=ExtResource("1_1mjcu")]
+scale = Vector2(0.11, 0.11)
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("2_8xqwc")

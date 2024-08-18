@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class CraftingTable : Node3D
+public partial class CraftingTable : Item
 {
-    public void Use()
+    public override void Use(Player player)
     {
         GD.Print("Using Crafting Table");
     }

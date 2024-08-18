@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Resources/Code/Items/CraftingTable.cs" id="1_68l84"]
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_2o6sh"]
-[ext_resource type="Material" uid="uid://df4v8p1ebrlw" path="res://Resources/Art/Material/CraftingTable.tres" id="3_2j8v0"]
+[ext_resource type="Material" path="res://Resources/Art/Material/CraftingTable/CraftingTable.tres" id="3_n1i8j"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hnxk"]
-material = ExtResource("3_2j8v0")
+material = ExtResource("3_n1i8j")
 
 [node name="CraftingTable" type="Node3D"]
 script = ExtResource("1_68l84")
@@ -15,6 +15,9 @@ script = ExtResource("1_68l84")
 [node name="StaticBody3D" parent="Static_Body" index="0"]
 collision_layer = 128
 collision_mask = 0
+
+[node name="CollisionShape3D" parent="Static_Body/StaticBody3D" index="0"]
+visible = false
 
 [node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
 mesh = SubResource("BoxMesh_6hnxk")
