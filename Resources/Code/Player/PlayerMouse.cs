@@ -1,31 +1,36 @@
 using Godot;
 using System;
+using System.Linq;
 
-public partial class PlayerMouse : Control
+public partial class PlayerMouse : Node2D
 {
-    public Item _item;
-    public Sprite2D _content;
+    public Item_UI _item;
 
     public override void _Ready()
     {
-        _content = GetNode<Sprite2D>("Content");
+        _item = GetNode<Item_UI>("Item-UI");
     }
 
     public override void _Process(double delta)
     {
         if (_item != null)
         {
-            _content.Texture = _item._icon.Texture;
-            _content.Position = GetGlobalMousePosition();
+            Position = GetGlobalMousePosition();
+            _item.Position = Vector2.Zero;
         }
-        else
-            _content.Texture = null;
     }
 
-    public void Swap(ref Item incomingItem)
+    //TODO: Should check if item is stackable and equal
+    public void Swap(Slot incomingSlot)
     {
-        var temp = incomingItem;
-        incomingItem = _item;
+        //Reparent
+        var incomingItem = incomingSlot._item;
+        incomingItem?.Reparent(this);
+        _item?.Reparent(incomingSlot);
+
+        //change addresses
+        var temp = incomingSlot._item;
+        incomingSlot._item = _item;
         _item = temp;
     }
 }

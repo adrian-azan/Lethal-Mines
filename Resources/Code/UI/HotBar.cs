@@ -1,8 +1,5 @@
 using Godot;
 using Godot.Collections;
-using System;
-using System.Collections;
-using System.Linq;
 
 public partial class HotBar : Control
 {
@@ -20,20 +17,46 @@ public partial class HotBar : Control
         _size = _slots.Count;
 
         _slots[_selected].Highlight();
-        _slots[_selected].AddItem(new Pickaxe());
     }
 
-    public void Use(Player player)
+    public override void _Process(double delta)
+    {
+    }
+
+    public string Use()
     {
         if (_slots[_selected]._item == null)
-            return;
+            return "";
 
-        _slots[_selected]._item.Use(player);
+        return _slots[_selected]._item.SceneFilePath;
+    }
+
+    public void Drop()
+    {
+        //if (_slots[_selected]._item == null)
+        //    return;
+
+        //var drop = GD.Load<PackedScene>(Paths.Scenes.DROP).Instantiate() as Drop;
+        //GetTree().Root.AddChild(drop);
+
+        //drop.SetObject(_slots[_selected]._item);
+
+        //var player = Tools.GetRoot<Player>(this) as Player;
+        //var pos = player.GetPosition();
+        //pos.Y = .5f;
+
+        //drop.Position = pos;
+        //drop.Rotation = player.GetRotation();
+
+        //_slots[_selected]._item = null;
     }
 
     public static HotBar operator ++(HotBar target)
     {
         (target._slots[target._selected] as Slot).DeHighlight();
+
+        if ((target._slots[target._selected] as Slot)._item != null)
+            (target._slots[target._selected] as Slot)._item.Visible = false;
 
         target._selected += 1;
 
@@ -43,6 +66,8 @@ public partial class HotBar : Control
         }
 
         (target._slots[target._selected] as Slot).Highlight();
+        if ((target._slots[target._selected] as Slot)._item != null)
+            (target._slots[target._selected] as Slot)._item.Visible = true;
 
         return target;
     }
@@ -50,6 +75,9 @@ public partial class HotBar : Control
     public static HotBar operator --(HotBar target)
     {
         (target._slots[target._selected] as Slot).DeHighlight();
+
+        if ((target._slots[target._selected] as Slot)._item != null)
+            (target._slots[target._selected] as Slot)._item.Visible = false;
 
         target._selected -= 1;
 
@@ -59,6 +87,9 @@ public partial class HotBar : Control
         }
 
         (target._slots[target._selected] as Slot).Highlight();
+
+        if ((target._slots[target._selected] as Slot)._item != null)
+            (target._slots[target._selected] as Slot)._item.Visible = true;
 
         return target;
     }

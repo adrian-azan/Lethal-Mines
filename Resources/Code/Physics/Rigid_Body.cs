@@ -59,7 +59,11 @@ public partial class Rigid_Body : Node3D
         {
             if (child.Key != _RigidBody)
             {
-                child.Key.GlobalPosition = _RigidBody.GlobalPosition + _ChildrenAndPos[child.Key].Position;
+                var radius = _ChildrenAndPos[child.Key].Position;
+
+                child.Key.GlobalPosition = _RigidBody.GlobalPosition + new Vector3(Mathf.Sin(_RigidBody.GlobalRotation.Y) * radius.Z, radius.Y, Mathf.Cos(_RigidBody.GlobalRotation.Y) * radius.Z);
+
+                //                child.Key.GlobalPosition += new Vector3(Mathf.Sin(_RigidBody.GlobalRotation.Y) * radius.X, 0, Mathf.Cos(_RigidBody.GlobalRotation.Y) * radius.X);
 
                 Vector3 rotation = child.Key.GlobalRotation;
                 rotation.Y = _RigidBody.GlobalRotation.Y;
@@ -82,7 +86,8 @@ public partial class Rigid_Body : Node3D
         Rigid_Body rb = Tools.FindRigidBodyFromRoot(child);
 
         child.Position = Vector3.Zero;
-        rb.SetPosition(Vector3.Zero);
+
+        //rb.SetPosition(Vector3.Zero);
 
         try
         {
@@ -160,6 +165,11 @@ public partial class Rigid_Body : Node3D
     public void SetPosition(Vector3 newPos)
     {
         _RigidBody.Position = newPos;
+    }
+
+    public Vector3 GetRotation()
+    {
+        return _RigidBody.Rotation;
     }
 
     public override string ToString()

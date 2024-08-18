@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8046a2ho2vwa"]
+
+[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_hbrqm"]
+[ext_resource type="Texture2D" uid="uid://dlh3e13orayfi" path="res://Resources/Art/UI/pickaxe.png" id="2_rywed"]
+
+[node name="Pickaxe" instance=ExtResource("1_hbrqm")]
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("2_rywed")

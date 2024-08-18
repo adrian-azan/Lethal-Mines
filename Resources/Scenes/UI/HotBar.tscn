@@ -1,15 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://chbsi2s83bree"]
+[gd_scene load_steps=3 format=3 uid="uid://chbsi2s83bree"]
 
 [ext_resource type="PackedScene" uid="uid://cmdush6yl7adw" path="res://Resources/Scenes/UI/Slot.tscn" id="1_4hjuc"]
+[ext_resource type="Script" path="res://Resources/Code/UI/HotBar.cs" id="1_nrts2"]
 
 [node name="HotBar" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.359
+anchor_bottom = 0.162
+offset_right = 0.431976
+offset_bottom = 0.0240021
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_nrts2")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1

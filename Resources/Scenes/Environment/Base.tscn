@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8s860fiw1i8h" path="res://Resources/Scenes/Environment/Floor.tscn" id="1_kwgi0"]
 [ext_resource type="PackedScene" uid="uid://do58anighce0r" path="res://Resources/Scenes/Environment/Permanent Wall.tscn" id="2_gcg3a"]
-[ext_resource type="PackedScene" uid="uid://chguvvbp75260" path="res://Resources/Scenes/Items/CraftingTable.tscn" id="3_pwbbu"]
+[ext_resource type="PackedScene" uid="uid://chguvvbp75260" path="res://Resources/Scenes/Items/Objects/CraftingTable.tscn" id="3_pwbbu"]
 [ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="4_uq4ei"]
 
 [node name="Base" type="Node3D"]

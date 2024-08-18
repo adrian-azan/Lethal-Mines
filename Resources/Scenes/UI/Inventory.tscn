@@ -5,20 +5,24 @@
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.285
+anchor_bottom = 0.517
+offset_right = -0.320038
+offset_bottom = -0.0160217
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_mhl1e")
 
 [node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 109.0
-offset_top = 153.0
-offset_right = 439.0
-offset_bottom = 483.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.991
+anchor_bottom = 0.991
+offset_left = -5.0
+offset_top = 2.0
+offset_right = -232.416
+offset_bottom = -156.485
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 columns = 3

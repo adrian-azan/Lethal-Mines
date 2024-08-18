@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8s860fiw1i8h" path="res://Resources/Scenes/Environment/Floor.tscn" id="1_8sp8t"]
 [ext_resource type="Script" path="res://Resources/Code/Tools/Map Generation/DiffusionGenerator.cs" id="1_o24v2"]
-[ext_resource type="PackedScene" uid="uid://ctjl5n3icavcv" path="res://Resources/Scenes/Environment/Walls.tscn" id="2_k7tl3"]
+[ext_resource type="PackedScene" uid="uid://ctjl5n3icavcv" path="res://Resources/Scenes/Items/Objects/Walls.tscn" id="2_k7tl3"]
 [ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="2_nj8hb"]
 
 [node name="Root" type="Node3D"]
@@ -22,3 +22,5 @@ transform = Transform3D(7.205, 0, 0, 0, 1, 0, 0, 0, 6.4, -0.991619, 14.3329, 20.
 
 [node name="Player" parent="." instance=ExtResource("2_nj8hb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.595, 0)
+
+[node name="Timer" type="Timer" parent="."]

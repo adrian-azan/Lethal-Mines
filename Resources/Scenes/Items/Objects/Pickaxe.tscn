@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhed7hxpi28bh"]
+
+[ext_resource type="PackedScene" uid="uid://cklvwclni5d3q" path="res://Resources/Scenes/Items/Objects/Item.tscn" id="1_jpscc"]
+[ext_resource type="Script" path="res://Resources/Code/Items/Pickaxe.cs" id="2_mvw10"]
+[ext_resource type="Texture2D" uid="uid://dlh3e13orayfi" path="res://Resources/Art/UI/pickaxe.png" id="2_rywed"]
+[ext_resource type="PackedScene" uid="uid://dyivemjy1foei" path="res://Resources/Art/Models/Pickaxe/pickaxe.gltf" id="4_b60r8"]
+
+[node name="Pickaxe" instance=ExtResource("1_jpscc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000214279, -1.19209e-07, -0.00365618)
+script = ExtResource("2_mvw10")
+
+[node name="pickaxe" parent="." index="0" instance=ExtResource("4_b60r8")]
+
+[node name="Icon" parent="." index="1"]
+texture = ExtResource("2_rywed")
+
+[node name="Amount" parent="Icon" index="0"]
+position = Vector2(14.27, 11.43)
+scale = Vector2(0.6, 0.6)
+
+[editable path="pickaxe"]

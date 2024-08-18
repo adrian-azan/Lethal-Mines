@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public static class NodePathConstants
+public static class NodePaths
 {
     //###############
     //#   PLAYER    #

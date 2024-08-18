@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
-public partial class Block : Node3D
+public partial class Block : Item
 {
     private float _health = 100f;
     private float _defense = 1f; //this shuld mabe be an enum
@@ -10,12 +11,16 @@ public partial class Block : Node3D
     private MeshInstance3D _mesh;
 
     private const String PATH_MESH = "Static_Body/MeshInstance3D";
-    private const String PATH_DROP = "res://Resources/Scenes/Drop.tscn";
 
     public override void _Ready()
     {
         _originalScale = Scale;
         _mesh = GetNode<MeshInstance3D>(PATH_MESH);
+        _packedScene = GD.Load<PackedScene>(Paths.Items.Objects.WALL);
+    }
+
+    public override void Use(Player player)
+    {
     }
 
     public void TakeDamage(float damage)
@@ -31,19 +36,13 @@ public partial class Block : Node3D
         }
         else
         {
-            QueueFree(); //Delete the block now that it has no health
-
-            var drop = GD.Load<PackedScene>(PATH_DROP).Instantiate() as Drop;
-
-            drop.Transform = Transform;     //Set drop to position of block
-            drop.SetMesh(_mesh);            //Make drop look like block
-
+            var drop = GD.Load<PackedScene>(Paths.Scenes.DROP).Instantiate() as Drop;
             GetTree().Root.AddChild(drop);  //Add drop to root scene
-        }
-    }
 
-    public override String ToString()
-    {
-        return $"Block: {_health}";
+            drop.SetObject(this);
+
+            //Blocks StaticBody3D is no longer needed
+            GetNode<StaticBody3D>("Static_Body/StaticBody3D").QueueFree();
+        }
     }
 }
