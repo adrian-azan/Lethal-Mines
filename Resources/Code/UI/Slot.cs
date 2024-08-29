@@ -13,7 +13,7 @@ public partial class Slot : Control
         _item = null;
         _border = GetNode<Sprite2D>("Border");
 
-        var player = Tools.GetRoot<Player>(this) as Player;
+        var player = GetTree().Root.GetNode("Root/Player");
         _playerMouse = player.GetNode("UI/PlayerMouse") as PlayerMouse;
     }
 

@@ -5,6 +5,8 @@ public partial class Player : Node3D
     private PlayerCamera _camera;
     private PlayerMouse _mouse;
 
+    public PlayerState _State;
+
     private RigidBody3D _rigidBody;
     private Rigid_Body _RigidBody;
     private StaminaBar _staminaBar;
@@ -28,9 +30,14 @@ public partial class Player : Node3D
     [Export]
     private float _mouseSensitivity = .05f;
 
-    private Area3D _reach;
     private DrawLine3D _reachVisual;
     private RayCast3D _rayCast;
+
+    //TODO: make a more permanent value
+    // private Node3D tempTest;
+    private WorldGrid _gridMap;
+
+    private IStation _inUseStation;
 
     public override void _Ready()
     {
@@ -40,16 +47,17 @@ public partial class Player : Node3D
         _staminaBar = GetNode<StaminaBar>("UI/StaminaBar");
         _hotBar = GetNode<HotBar>("UI/HotBar");
         _inventory = GetNode<Inventory>("UI/Inventory");
+
         _mouse = GetNode<PlayerMouse>("UI/PlayerMouse");
 
         _rotation = new Vector2();
         Input.MouseMode = Input.MouseModeEnum.Captured;
 
-        _reach = GetNode<Area3D>("Rigid_Body/RigidBody3D/Reach");
-        _reachVisual = GetNode<DrawLine3D>("/root/DrawLine");
-        _rayCast = GetNode<RayCast3D>("Rigid_Body/RigidBody3D/RayCast3D");
+        // _reachVisual = GetNode<DrawLine3D>("/root/DrawLine");
+        _rayCast = GetNode<RayCast3D>("Rigid_Body/PlayerCamera/RayCast3D");
 
-        //AddChild(_reach);
+        //  tempTest = GetParent().GetNode("ToBePlacedBlock") as Node3D;
+        _gridMap = GetParent().GetNode("GridMap") as WorldGrid;
     }
 
     public void _ProcessInput()
@@ -66,26 +74,34 @@ public partial class Player : Node3D
         if (Input.IsActionPressed("Dig") && _inventory.Visible == false)
             _inventory.Use(this);
 
-        if (Input.IsActionJustPressed("Inventory") && _mouse._item == null)
+        if (Input.IsActionJustPressed("Inventory") && (_State == PlayerState.Inventory || _State == PlayerState.Normal) && _mouse._item == null)
         {
             _inventory.Visible = !_inventory.Visible;
+            _State = _State == PlayerState.Inventory ? PlayerState.Normal : PlayerState.Inventory;
+        }
+
+        if (Input.IsActionJustPressed("Inventory") && _State == PlayerState.Furnace)
+        {
+            _inventory.Visible = !_inventory.Visible;
+            _State = PlayerState.Normal;
+            _inUseStation.DisplayUI(false);
+            _inUseStation = null;
         }
 
         if (Input.IsActionJustPressed("Throw"))
         {
             _hotBar.Drop();
         }
-
-        if (Input.IsActionJustPressed("CreateItem"))
-        {
-            _inventory.AddItem("res://Resources/Scenes/Items/UI_Data/CraftingTable.tscn");
-        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (_inventory.Visible)
+        if (_State == PlayerState.Inventory)
             _PhysicsProcessInventory(delta);
+        else if (_State == PlayerState.Furnace)
+        {
+            _PhysicsProcessInventory(delta);
+        }
         else
             _PhysicsProcessNormal(delta);
 
@@ -171,21 +187,28 @@ public partial class Player : Node3D
     {
         _staminaBar.Process((float)delta);
 
-        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(5, 0, 0), new Color(1, 0, 0));
-        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(-5, 0, 0), new Color(0, 1, 0));
-        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(0, 0, 5), new Color(0, 0, 1));
-        _reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(0, 0, -5), new Color(1, 0, 1));
+        //_reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(5, 0, 0), new Color(1, 0, 0));
+        //_reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(-5, 0, 0), new Color(0, 1, 0));
+        //_reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(0, 0, 5), new Color(0, 0, 1));
+        //_reachVisual.DrawRay(_RigidBody.GetPosition(), new Vector3(0, 0, -5), new Color(1, 0, 1));
 
-        _reachVisual.DrawLine(_RigidBody.GetPosition(), _reach.GlobalPosition, new Color(0, 0, 0));
-
-        if (_rayCast.IsColliding())
+        if (_rayCast?.IsColliding() == true)
         {
+            //  GD.PushWarning(_rayCast.GetCollisionPoint());
+            //   tempTest.Visible = true;
+            //  tempTest.GlobalPosition = _gridMap.GetPosFromLocal(_rayCast.GetCollisionPoint());
+
             //Eventually this should be for interactable objects, not just crafting tables
-            var other = Tools.GetRoot<CraftingTable>(_rayCast.GetCollider() as Node3D) as CraftingTable;
-            if (other is CraftingTable && Input.IsActionJustPressed("Interact"))
+            var other = Tools.GetRoot<IStation>(_rayCast.GetCollider() as Node3D) as IStation;
+            if (other is IStation && Input.IsActionJustPressed("Interact"))
             {
                 other.Use(this);
+                _inUseStation = other;
             }
+        }
+        else
+        {
+            //     tempTest.Visible = false;
         }
     }
 
@@ -212,5 +235,15 @@ public partial class Player : Node3D
     public Vector3 GetRotation()
     {
         return _RigidBody.GetRotation();
+    }
+
+    public Vector3 GetLookingPosition()
+    {
+        if (_rayCast.IsColliding())
+        {
+            return _gridMap.GetPosFromLocal(_rayCast.GetCollisionPoint());
+        }
+
+        return -Vector3.Inf;
     }
 }
