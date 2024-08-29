@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyoktxi6oq7a0"]
+
+[ext_resource type="PackedScene" uid="uid://chguvvbp75260" path="res://Resources/Scenes/Items/Objects/CraftingTable.tscn" id="1_4uk5n"]
+[ext_resource type="PackedScene" uid="uid://c8s860fiw1i8h" path="res://Resources/Scenes/Environment/Floor.tscn" id="2_85y1l"]
+[ext_resource type="PackedScene" uid="uid://do58anighce0r" path="res://Resources/Scenes/Environment/Permanent Wall.tscn" id="3_yn50j"]
+[ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="4_50xu7"]
+
+[node name="Base" type="Node3D"]
+
+[node name="CraftingTable" parent="." instance=ExtResource("1_4uk5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03998, 4.76837e-07, 2.01749)
+
+[node name="Floor" parent="." instance=ExtResource("2_85y1l")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 6, 0, -1.07722, 0)
+
+[node name="Wall5" parent="." instance=ExtResource("3_yn50j")]
+transform = Transform3D(6.05064, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0.593355, -3.5081)
+
+[node name="Wall6" parent="." instance=ExtResource("3_yn50j")]
+transform = Transform3D(6.02146, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0.659932, 3.54525)
+
+[node name="Wall7" parent="." instance=ExtResource("3_yn50j")]
+transform = Transform3D(0.997815, 0, 0, 0, 2.99344, 0, 0, 0, 6.00578, -3.48031, 0.601684, 0)
+
+[node name="Wall8" parent="." instance=ExtResource("3_yn50j")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 6.4368, 3.49617, 0.571973, 0)
+
+[node name="Player" parent="." instance=ExtResource("4_50xu7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010047, 2.47219, -0.0140102)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0104195, 0.999946, 0, -0.999946, -0.0104195, 0, 21.6902, 0)
+light_color = Color(0.92549, 0.686275, 0.313726, 1)
