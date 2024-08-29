@@ -1,16 +1,3 @@
 [gd_scene format=3 uid="uid://cklvwclni5d3q"]
 
 [node name="Item" type="Node3D"]
-
-[node name="Icon" type="Sprite2D" parent="."]
-
-[node name="Amount" type="Node2D" parent="Icon"]
-position = Vector2(6.625, 5.145)
-scale = Vector2(0.185, 0.185)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Icon/Amount"]
-offset_right = 10.0
-offset_bottom = 24.0
-theme_override_font_sizes/normal_font_size = 15
-text = "1"
-metadata/amount = 0

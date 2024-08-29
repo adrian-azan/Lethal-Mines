@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfo8dgxwgmcg5"]
+
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_v5aef"]
+[ext_resource type="Material" uid="uid://c1wirwqphy1w" path="res://Resources/Art/Material/GOOD.tres" id="2_ysjwg"]
+
+[node name="ToBePlacedBlock" type="Node3D"]
+
+[node name="Static_Body" parent="." instance=ExtResource("1_v5aef")]
+
+[node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
+surface_material_override/0 = ExtResource("2_ysjwg")
+
+[editable path="Static_Body"]

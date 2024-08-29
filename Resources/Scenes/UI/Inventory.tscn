@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Resources/Code/UI/Inventory.cs" id="1_mhl1e"]
 
 [node name="Inventory" type="Control"]
+visible = false
 layout_mode = 3
 anchor_right = 0.285
 anchor_bottom = 0.517
