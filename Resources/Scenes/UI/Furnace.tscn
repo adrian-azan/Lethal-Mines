@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch075fnis5255"]
+
+[ext_resource type="PackedScene" uid="uid://cmdush6yl7adw" path="res://Resources/Scenes/UI/Slot.tscn" id="1_nlal0"]
+[ext_resource type="Script" path="res://Resources/Code/UI/FurnaceUI.cs" id="1_pct10"]
+[ext_resource type="Texture2D" uid="uid://bgi54l3uro21l" path="res://Resources/Art/UI/Background.png" id="1_t04id"]
+[ext_resource type="Texture2D" uid="uid://dn3h58bdq8u7q" path="res://Resources/Art/UI/Slot-Highlighted.png" id="2_w835e"]
+
+[node name="Furnace" type="Control"]
+z_index = -100
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pct10")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(161.25, 145)
+scale = Vector2(4.86719, 4.46875)
+texture = ExtResource("1_t04id")
+
+[node name="Input" parent="." instance=ExtResource("1_nlal0")]
+offset_left = 31.0
+offset_top = 14.0
+offset_right = 131.0
+offset_bottom = 114.0
+
+[node name="Border" parent="Input" index="0"]
+texture = ExtResource("2_w835e")
+
+[node name="Fuel" parent="." instance=ExtResource("1_nlal0")]
+offset_left = 33.0
+offset_top = 173.0
+offset_right = 133.0
+offset_bottom = 273.0
+
+[node name="Border" parent="Fuel" index="0"]
+texture = ExtResource("2_w835e")
+
+[node name="Output" parent="." instance=ExtResource("1_nlal0")]
+layout_mode = 2
+offset_left = 187.0
+offset_top = 94.0
+offset_right = 287.0
+offset_bottom = 194.0
+
+[editable path="Input"]
+[editable path="Fuel"]
