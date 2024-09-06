@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Resources/Code/Tools/Map Generation/DiffusionGenerator.cs" id="1_o24v2"]
 [ext_resource type="PackedScene" uid="uid://ctjl5n3icavcv" path="res://Resources/Scenes/Items/Objects/Walls.tscn" id="2_k7tl3"]
 [ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="2_nj8hb"]
-[ext_resource type="Script" path="res://Resources/Scenes/WorldGrid.cs" id="5_idaqk"]
+[ext_resource type="Script" path="res://Resources/Code/WorldGrid.cs" id="5_idaqk"]
 [ext_resource type="PackedScene" uid="uid://cfo8dgxwgmcg5" path="res://Resources/Scenes/ToBePlacedBlock.tscn" id="7_b7c32"]
 
 [node name="Root" type="Node3D"]

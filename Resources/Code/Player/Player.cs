@@ -122,19 +122,19 @@ public partial class Player : Node3D
 
         if (Input.IsActionPressed("MoveForward"))
         {
-            direction.Z -= 1.0f; // Move forward
+            direction.Z -= 1.0f;
         }
         if (Input.IsActionPressed("MoveBackward"))
         {
-            direction.Z += 1.0f; // Move backward
+            direction.Z += 1.0f;
         }
         if (Input.IsActionPressed("MoveRight"))
         {
-            direction.X += 1.0f; // Move left
+            direction.X += 1.0f;
         }
         if (Input.IsActionPressed("MoveLeft"))
         {
-            direction.X -= 1.0f; // Move right
+            direction.X -= 1.0f;
         }
 
         direction = (_rigidBody.Basis * direction).Normalized();
@@ -194,21 +194,12 @@ public partial class Player : Node3D
 
         if (_rayCast?.IsColliding() == true)
         {
-            //  GD.PushWarning(_rayCast.GetCollisionPoint());
-            //   tempTest.Visible = true;
-            //  tempTest.GlobalPosition = _gridMap.GetPosFromLocal(_rayCast.GetCollisionPoint());
-
-            //Eventually this should be for interactable objects, not just crafting tables
-            var other = Tools.GetRoot<IStation>(_rayCast.GetCollider() as Node3D) as IStation;
-            if (other is IStation && Input.IsActionJustPressed("Interact"))
+            var selectedStation = Tools.GetRoot<IStation>(_rayCast.GetCollider() as Node3D) as IStation;
+            if (selectedStation is IStation && Input.IsActionJustPressed("Interact"))
             {
-                other.Use(this);
-                _inUseStation = other;
+                selectedStation.Use(this);
+                _inUseStation = selectedStation;
             }
-        }
-        else
-        {
-            //     tempTest.Visible = false;
         }
     }
 
