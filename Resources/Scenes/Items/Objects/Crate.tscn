@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqlvdlc7dj0nh"]
+
+[ext_resource type="PackedScene" uid="uid://cklvwclni5d3q" path="res://Resources/Scenes/Items/Objects/Item.tscn" id="1_qvf51"]
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_x2m8t"]
+[ext_resource type="Material" uid="uid://co2xq50t4rj20" path="res://Resources/Art/Material/Crate.tres" id="3_5iyhk"]
+
+[node name="Crate" instance=ExtResource("1_qvf51")]
+
+[node name="Static_Body" parent="." index="0" instance=ExtResource("2_x2m8t")]
+
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+collision_layer = 256
+collision_mask = 0
+
+[node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
+surface_material_override/0 = ExtResource("3_5iyhk")
+
+[editable path="Static_Body"]

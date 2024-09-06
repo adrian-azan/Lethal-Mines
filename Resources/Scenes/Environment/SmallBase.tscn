@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://q6gascgbfsdw"]
+
+[ext_resource type="PackedScene" uid="uid://c8s860fiw1i8h" path="res://Resources/Scenes/Environment/Floor.tscn" id="1_gjle1"]
+[ext_resource type="PackedScene" uid="uid://do58anighce0r" path="res://Resources/Scenes/Environment/Permanent Wall.tscn" id="2_8juml"]
+[ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="3_awoq8"]
+[ext_resource type="PackedScene" uid="uid://s5hnax76e5jv" path="res://Resources/Scenes/Items/Objects/Furnace.tscn" id="4_32fg3"]
+[ext_resource type="PackedScene" uid="uid://chguvvbp75260" path="res://Resources/Scenes/Items/Objects/CraftingTable.tscn" id="5_wn53x"]
+[ext_resource type="PackedScene" uid="uid://cqlvdlc7dj0nh" path="res://Resources/Scenes/Items/Objects/Crate.tscn" id="6_sqctx"]
+
+[node name="Root" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Floor" parent="Environment" instance=ExtResource("1_gjle1")]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, -2, 0)
+
+[node name="Node3D" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.97664)
+
+[node name="Permanent Wall" parent="Environment/Node3D" instance=ExtResource("2_8juml")]
+
+[node name="Permanent Wall2" parent="Environment/Node3D" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Permanent Wall3" parent="Environment/Node3D" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="Node3D2" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Permanent Wall" parent="Environment/Node3D2" instance=ExtResource("2_8juml")]
+
+[node name="Permanent Wall2" parent="Environment/Node3D2" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Permanent Wall3" parent="Environment/Node3D2" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Node3D3" type="Node3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.51131, 0, 0)
+
+[node name="Permanent Wall" parent="Environment/Node3D3" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -2.33902e-08, 0, 0.535106)
+
+[node name="Permanent Wall2" parent="Environment/Node3D3" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 1, 0, 0.535106)
+
+[node name="Permanent Wall3" parent="Environment/Node3D3" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -1, 0, 1.0128)
+
+[node name="Node3D4" type="Node3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.53278, 2.38419e-07, -0.00210583)
+
+[node name="Permanent Wall" parent="Environment/Node3D4" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 2.28174e-08, 0, -0.506956)
+
+[node name="Permanent Wall2" parent="Environment/Node3D4" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 1, 0, -0.506956)
+
+[node name="Permanent Wall3" parent="Environment/Node3D4" instance=ExtResource("2_8juml")]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 0.0119901, 0.999928, 0, -0.999928, 0.0119901, 0, 2.766, 0)
+light_color = Color(0.831076, 0.691557, 0.153502, 1)
+light_energy = 10.0
+
+[node name="Player" parent="." instance=ExtResource("3_awoq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65087, 0.607977)
+
+[node name="Furnace" parent="." instance=ExtResource("4_32fg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36709, -1, -0.349853)
+
+[node name="Furnace2" parent="." instance=ExtResource("4_32fg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3443, -1, -0.349853)
+
+[node name="CraftingTable" parent="." instance=ExtResource("5_wn53x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -1.99069)
+
+[node name="Crate" parent="." instance=ExtResource("6_sqctx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28463, 2.19786, -0.30161)

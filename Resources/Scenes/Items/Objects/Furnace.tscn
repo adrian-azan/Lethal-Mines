@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://s5hnax76e5jv"]
+
+[ext_resource type="PackedScene" uid="uid://cklvwclni5d3q" path="res://Resources/Scenes/Items/Objects/Item.tscn" id="1_61p02"]
+[ext_resource type="Script" path="res://Resources/Code/Craftables/Stations/Furnace.cs" id="2_jo1v8"]
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_xlhty"]
+[ext_resource type="Material" path="res://Resources/Art/Material/Furnace.tres" id="3_jmdbr"]
+[ext_resource type="PackedScene" uid="uid://ch075fnis5255" path="res://Resources/Scenes/UI/Furnace.tscn" id="5_q2yyn"]
+
+[node name="Furnace" instance=ExtResource("1_61p02")]
+script = ExtResource("2_jo1v8")
+
+[node name="Static_Body" parent="." index="0" instance=ExtResource("2_xlhty")]
+
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+collision_layer = 256
+
+[node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
+surface_material_override/0 = ExtResource("3_jmdbr")
+
+[node name="Furnace" parent="." index="1" instance=ExtResource("5_q2yyn")]
+visible = false
+offset_left = 570.0
+offset_top = 174.0
+offset_right = 570.0
+offset_bottom = 174.0
+
+[editable path="Static_Body"]
