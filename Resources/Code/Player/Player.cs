@@ -58,6 +58,8 @@ public partial class Player : Node3D
 
         //  tempTest = GetParent().GetNode("ToBePlacedBlock") as Node3D;
         _gridMap = GetParent().GetNode("GridMap") as WorldGrid;
+
+        _inventory.AddItem(Paths.Items.UI_Data.PICKAXE);
     }
 
     public void _ProcessInput()

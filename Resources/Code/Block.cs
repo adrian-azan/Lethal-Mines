@@ -12,11 +12,14 @@ public partial class Block : Item
 
     private const String PATH_MESH = "Static_Body/MeshInstance3D";
 
+    [Export]
+    private String _blockType;
+
     public override void _Ready()
     {
         _originalScale = Scale;
         _mesh = GetNode<MeshInstance3D>(PATH_MESH);
-        _packedScene = GD.Load<PackedScene>(Paths.Items.Objects.WALL);
+        _packedScene = GD.Load<PackedScene>(Paths.Items.Objects.COAL);
     }
 
     public override void Use(Player player)
