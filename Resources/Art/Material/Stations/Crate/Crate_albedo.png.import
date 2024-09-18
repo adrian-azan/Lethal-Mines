@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo4y6r26emr5c"
-path.s3tc="res://.godot/imported/Furnace_orm.png-f48860c6f0dc7f8ce3b7262c1864ee5a.s3tc.ctex"
+uid="uid://imodnnd8qttg"
+path.s3tc="res://.godot/imported/Crate_albedo.png-5fae925a1b2fb9a053662fd2bc059e3b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Art/Material/Furnace_orm.png"
-dest_files=["res://.godot/imported/Furnace_orm.png-f48860c6f0dc7f8ce3b7262c1864ee5a.s3tc.ctex"]
+source_file="res://Resources/Art/Material/Stations/Crate/Crate_albedo.png"
+dest_files=["res://.godot/imported/Crate_albedo.png-5fae925a1b2fb9a053662fd2bc059e3b.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddosmqpc8sysp"
-path.s3tc="res://.godot/imported/Crate_heightmap.png-e33e0ceb049842cd9bc8ac32785f8f08.s3tc.ctex"
+uid="uid://c3bh06m54l1mh"
+path.s3tc="res://.godot/imported/CraftingTable_heightmap.png-b68ccd5167c9dae4ff05b38921aff03d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Art/Material/Crate_heightmap.png"
-dest_files=["res://.godot/imported/Crate_heightmap.png-e33e0ceb049842cd9bc8ac32785f8f08.s3tc.ctex"]
+source_file="res://Resources/Art/Material/Stations/CraftingTable/CraftingTable_heightmap.png"
+dest_files=["res://.godot/imported/CraftingTable_heightmap.png-b68ccd5167c9dae4ff05b38921aff03d.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=7
-roughness/src_normal="res://Resources/Art/Material/Crate_normal.png"
+roughness/src_normal="res://Resources/Art/Material/CraftingTable/CraftingTable_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

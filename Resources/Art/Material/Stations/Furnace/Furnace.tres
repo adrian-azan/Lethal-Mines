@@ -1,9 +1,10 @@
 [gd_resource type="ORMMaterial3D" load_steps=6 format=3]
-[ext_resource path="Furnace_albedo.png" type="Texture" id=1]
-[ext_resource path="Furnace_orm.png" type="Texture" id=2]
-[ext_resource path="Furnace_normal.png" type="Texture" id=3]
-[ext_resource path="Furnace_heightmap.png" type="Texture" id=4]
-[ext_resource path="Furnace_emission.png" type="Texture" id=5]
+
+[ext_resource type="Texture" path="./Furnace_albedo.png" id="1"]
+[ext_resource type="Texture" path="./Furnace_orm.png" id="2"]
+[ext_resource type="Texture" path="./Furnace_normal.png" id="3"]
+[ext_resource type="Texture" path="./Furnace_heightmap.png" id="4"]
+[ext_resource type="Texture" path="./Furnace_emission.png" id="5"]
 [resource]
 albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource( 1 )

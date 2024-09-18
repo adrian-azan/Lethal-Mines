@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpvme6i5ob1o4"
-path.s3tc="res://.godot/imported/CraftingTable_orm.png-1db033614cece8f58cbf6a88cfc9983a.s3tc.ctex"
+uid="uid://dbc61njygo5l2"
+path.s3tc="res://.godot/imported/Crate_normal.png-7c7609a4174434e1e99480afa03f5cc9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Art/Material/CraftingTable/CraftingTable_orm.png"
-dest_files=["res://.godot/imported/CraftingTable_orm.png-1db033614cece8f58cbf6a88cfc9983a.s3tc.ctex"]
+source_file="res://Resources/Art/Material/Stations/Crate/Crate_normal.png"
+dest_files=["res://.godot/imported/Crate_normal.png-7c7609a4174434e1e99480afa03f5cc9.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
-roughness/src_normal="res://Resources/Art/Material/CraftingTable/CraftingTable_normal.png"
+roughness/mode=1
+roughness/src_normal="res://Resources/Art/Material/Crate_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
