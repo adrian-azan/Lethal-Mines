@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlobu3s0v0pwb"]
+
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_bgap5"]
+[ext_resource type="Material" uid="uid://df4v8p1ebrlw" path="res://Resources/Art/Material/Unknown.tres" id="2_m3jsu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_673pm"]
+material = ExtResource("2_m3jsu")
+
+[node name="Block" type="Node3D"]
+
+[node name="Static_Body" parent="." instance=ExtResource("1_bgap5")]
+
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+collision_layer = 64
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+mesh = SubResource("BoxMesh_673pm")
+
+[editable path="Static_Body"]

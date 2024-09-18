@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctjl5n3icavcv"]
+
+[ext_resource type="PackedScene" uid="uid://dlobu3s0v0pwb" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_pko75"]
+[ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Blocks/Stone/Stone.tres" id="2_fkv55"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t8fdy"]
+material = ExtResource("2_fkv55")
+
+[node name="Stone" instance=ExtResource("1_pko75")]
+transform = Transform3D(0.995589, 0, 0, 0, 0.995589, 0, 0, 0, 0.995589, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="Static_Body" index="1"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_t8fdy")

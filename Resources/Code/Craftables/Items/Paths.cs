@@ -14,14 +14,16 @@ public static class Paths
         {
             public const string PICKAXE = "res://Resources/Scenes/Items/UI_Data/Pickaxe.tscn";
 
-            public const string WALL = "res://Resources/Scenes/Items/UI_Data/Walls.tscn";
+            public const string STONE = "res://Resources/Scenes/Items/UI_Data/Stone.tscn";
         }
 
         public static class Objects
         {
             public const string PICKAXE = "res://Resources/Scenes/Items/Objects/Pickaxe.tscn";
 
-            public const string WALL = "res://Resources/Scenes/Items/Objects/Walls.tscn";
+            public const string STONE = "res://Resources/Scenes/Items/Objects/Blocks/Stone.tscn";
+
+            public const string COAL = "res://Resources/Scenes/Items/Objects/Blocks/Coal.tscn";
         }
     }
 }

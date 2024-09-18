@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://vx4by0kbyj50"]
+
+[ext_resource type="PackedScene" uid="uid://dlobu3s0v0pwb" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_vdga7"]
+[ext_resource type="Material" uid="uid://b0ds62si3kqbq" path="res://Resources/Art/Material/Blocks/Coal/Coal.tres" id="2_6uicc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_abklu"]
+material = ExtResource("2_6uicc")
+
+[node name="Coal" instance=ExtResource("1_vdga7")]
+
+[node name="MeshInstance3D" parent="Static_Body" index="1"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0.01)
+mesh = SubResource("BoxMesh_abklu")
