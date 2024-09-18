@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cklvwclni5d3q" path="res://Resources/Scenes/Items/Objects/Item.tscn" id="1_61p02"]
 [ext_resource type="Script" path="res://Resources/Code/Craftables/Stations/Furnace.cs" id="2_jo1v8"]
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_xlhty"]
-[ext_resource type="Material" path="res://Resources/Art/Material/Furnace.tres" id="3_jmdbr"]
+[ext_resource type="Material" path="res://Resources/Art/Material/Stations/Furnace/Furnace.tres" id="3_jmdbr"]
 [ext_resource type="PackedScene" uid="uid://ch075fnis5255" path="res://Resources/Scenes/UI/Furnace.tscn" id="5_q2yyn"]
 
 [node name="Furnace" instance=ExtResource("1_61p02")]
