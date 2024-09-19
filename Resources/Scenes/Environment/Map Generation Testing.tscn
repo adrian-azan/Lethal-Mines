@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Resources/Code/Tools/Map Generation/DiffusionGenerator.cs" id="1_mol05"]
 [ext_resource type="PackedScene" uid="uid://ctjl5n3icavcv" path="res://Resources/Scenes/Items/Objects/Blocks/Stone.tscn" id="2_jhcoh"]
 [ext_resource type="PackedScene" uid="uid://c8s860fiw1i8h" path="res://Resources/Scenes/Environment/Floor.tscn" id="3_6etku"]
-[ext_resource type="PackedScene" uid="uid://vx4by0kbyj50" path="res://Resources/Scenes/Items/Objects/Blocks/Coal.tscn" id="3_p60jo"]
+[ext_resource type="PackedScene" uid="uid://kwtyyxrysppm" path="res://Resources/Scenes/Items/Objects/Blocks/Clay.tscn" id="3_bllvi"]
 [ext_resource type="PackedScene" uid="uid://cts8peqtgp0ts" path="res://Resources/Scenes/Items/Objects/Blocks/Dirt.tscn" id="4_r4rbb"]
 [ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="5_a2whb"]
 
@@ -12,9 +12,9 @@ script = ExtResource("1_mol05")
 generation = 1
 _Width = 150
 _Height = 150
-wall = ExtResource("2_jhcoh")
-coal = ExtResource("3_p60jo")
-dirt = ExtResource("4_r4rbb")
+_layerOne = ExtResource("4_r4rbb")
+_layerTwo = ExtResource("3_bllvi")
+_layerThree = ExtResource("2_jhcoh")
 
 [node name="Floor" parent="." instance=ExtResource("3_6etku")]
 transform = Transform3D(150, 0, 0, 0, 1, 0, 0, 0, 150, 0, 0, 0)

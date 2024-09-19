@@ -13,13 +13,13 @@ public partial class MapGenerator : Node3D
 
     [ExportGroup("Blocks")]
     [Export]
-    public PackedScene wall;
+    public PackedScene _layerOne;
 
     [Export]
-    public PackedScene coal;
+    public PackedScene _layerTwo;
 
     [Export]
-    public PackedScene dirt;
+    public PackedScene _layerThree;
 
     [Export]
     public PackedScene floor;
@@ -48,11 +48,11 @@ public partial class MapGenerator : Node3D
                 {
                     Node3D piece = null;
                     if (distanceFromCenter(i, j) < 30)
-                        piece = dirt.Instantiate<Node3D>();
+                        piece = _layerOne.Instantiate<Node3D>();
                     else if (distanceFromCenter(i, j) < 60)
-                        piece = wall.Instantiate<Node3D>();
+                        piece = _layerTwo.Instantiate<Node3D>();
                     else
-                        piece = coal.Instantiate<Node3D>();
+                        piece = _layerThree.Instantiate<Node3D>();
 
                     piece.Position = Position + new Vector3(i - centerX, 2, j - centerY);
                     AddChild(piece);

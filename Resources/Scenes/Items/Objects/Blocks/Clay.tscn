@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://kwtyyxrysppm"]
+
+[ext_resource type="PackedScene" uid="uid://dlobu3s0v0pwb" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_p7h32"]
+[ext_resource type="Material" path="res://Resources/Art/Material/Blocks/Clay/Clay.tres" id="2_0k1ia"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_naheu"]
+material = ExtResource("2_0k1ia")
+
+[node name="Clay" instance=ExtResource("1_p7h32")]
+
+[node name="MeshInstance3D" parent="Static_Body" index="1"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -0.00193083, 0.003438, -0.000649929)
+mesh = SubResource("BoxMesh_naheu")
+
+[editable path="Static_Body"]
