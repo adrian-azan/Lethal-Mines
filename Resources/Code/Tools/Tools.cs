@@ -47,4 +47,15 @@ public static class Tools
     {
         return degrees * Mathf.Pi / 180;
     }
+
+    public static float distanceFromCenter(int x, int y, int width, int height)
+    {
+        var centerX = width / 2;
+        var centerY = height / 2;
+
+        var distanceX = Mathf.Abs(centerX - x);
+        var distanceY = Mathf.Abs(centerY - y);
+
+        return Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
+    }
 }

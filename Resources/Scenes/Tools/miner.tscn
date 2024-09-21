@@ -7,6 +7,8 @@
 [node name="Miner" type="Node3D"]
 script = ExtResource("1_bnyb8")
 endurance = 39
+maxEndurance = null
+_Size = null
 
 [node name="Rigid_Body" parent="." instance=ExtResource("2_n34ny")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

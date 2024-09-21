@@ -11,15 +11,13 @@ public partial class MapGenerator : Node3D
     [Export]
     public int _Height;
 
-    [ExportGroup("Blocks")]
-    [Export]
     public PackedScene _layerOne;
 
-    [Export]
     public PackedScene _layerTwo;
 
-    [Export]
     public PackedScene _layerThree;
+
+    public PackedScene _coal;
 
     [Export]
     public PackedScene floor;
@@ -34,6 +32,12 @@ public partial class MapGenerator : Node3D
         rng = new RandomNumberGenerator();
         _Map = new int[_Width, _Height];
         _Walls = new Node3D[_Width, _Height];
+
+        _layerOne = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.STONE);
+        _layerTwo = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.CLAY);
+        _layerThree = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.DIRT);
+
+        _coal = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COAL);
     }
 
     public void FinalizeWorld()
@@ -44,15 +48,23 @@ public partial class MapGenerator : Node3D
         {
             for (int j = 0; j < _Height; j++)
             {
-                if (_Map[i, j] != 0)
+                if (_Map[i, j] != 0 && _Map[i, j] != 2)
                 {
                     Node3D piece = null;
-                    if (distanceFromCenter(i, j) < 30)
+                    if (Tools.distanceFromCenter(i, j, _Width, _Height) < 30)
                         piece = _layerOne.Instantiate<Node3D>();
-                    else if (distanceFromCenter(i, j) < 60)
+                    else if (Tools.distanceFromCenter(i, j, _Width, _Height) < 60)
                         piece = _layerTwo.Instantiate<Node3D>();
                     else
                         piece = _layerThree.Instantiate<Node3D>();
+
+                    piece.Position = Position + new Vector3(i - centerX, 2, j - centerY);
+                    AddChild(piece);
+                    _Walls[i, j] = piece;
+                }
+                else if (_Map[i, j] == 2)
+                {
+                    Node3D piece = _coal.Instantiate<Node3D>();
 
                     piece.Position = Position + new Vector3(i - centerX, 2, j - centerY);
                     AddChild(piece);
@@ -64,16 +76,5 @@ public partial class MapGenerator : Node3D
         var mainFloor = floor.Instantiate<Node3D>();
         mainFloor.Scale = new Vector3(_Width, 1, _Height);
         AddChild(mainFloor);
-    }
-
-    private float distanceFromCenter(int x, int y)
-    {
-        var centerX = _Width / 2;
-        var centerY = _Height / 2;
-
-        var distanceX = Mathf.Abs(centerX - x);
-        var distanceY = Mathf.Abs(centerY - y);
-
-        return Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
     }
 }
