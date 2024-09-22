@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlobu3s0v0pwb"]
+[gd_scene load_steps=7 format=3 uid="uid://dlobu3s0v0pwb"]
 
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_bgap5"]
+[ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_tqsle"]
 [ext_resource type="Material" uid="uid://df4v8p1ebrlw" path="res://Resources/Art/Material/Unknown.tres" id="2_m3jsu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_673pm"]
@@ -11,6 +12,7 @@ material = ExtResource("2_m3jsu")
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4pdq"]
 
 [node name="Block" type="Node3D"]
+script = ExtResource("1_tqsle")
 
 [node name="Static_Body" parent="." instance=ExtResource("1_bgap5")]
 
