@@ -10,7 +10,6 @@
 script = ExtResource("1_gv1wm")
 _Width = 100
 _Height = 100
-floor = ExtResource("4_ani1q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0104195, 0.999946, 0, -0.999946, -0.0104195, 0, 21.6902, 0)
@@ -20,7 +19,7 @@ light_color = Color(0.92549, 0.686275, 0.313726, 1)
 transform = Transform3D(7.205, 0, 0, 0, 1, 0, 0, 0, 6.4, -0.991619, 14.3329, 20.9094)
 
 [node name="Player" parent="." instance=ExtResource("5_8y28v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.595, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.754735, 18.2477, 20.6867)
 
 [node name="Timer" type="Timer" parent="."]
 

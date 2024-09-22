@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3g5e0rvxbthv"]
+[gd_scene load_steps=3 format=3 uid="uid://c3g5e0rvxbthv"]
 
 [ext_resource type="Script" path="res://Resources/Code/Tools/Map Generation/DiffusionGenerator.cs" id="1_mol05"]
 [ext_resource type="PackedScene" uid="uid://c8s860fiw1i8h" path="res://Resources/Scenes/Environment/Floor.tscn" id="3_6etku"]
-[ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="5_a2whb"]
 
 [node name="Root" type="Node3D"]
 script = ExtResource("1_mol05")
@@ -12,19 +11,3 @@ _Height = 150
 
 [node name="Floor" parent="." instance=ExtResource("3_6etku")]
 transform = Transform3D(150, 0, 0, 0, 1, 0, 0, 0, 150, 0, 0, 0)
-
-[node name="Floor2" parent="." instance=ExtResource("3_6etku")]
-transform = Transform3D(150, 0, 0, 0, 1, 0, 0, 0, 150, 0, 79.6768, 0)
-
-[node name="MeshInstance3D" parent="Floor2/Static_Body" index="1"]
-visible = false
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0104195, 0.999946, 0, -0.999946, -0.0104195, 0, 21.6902, 0)
-light_color = Color(0.92549, 0.686275, 0.313726, 1)
-
-[node name="Player" parent="." instance=ExtResource("5_a2whb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 86.8488, 0)
-
-[editable path="Floor2"]
-[editable path="Floor2/Static_Body"]
