@@ -17,8 +17,9 @@ public partial class Block : Item
 
     public override void _Ready()
     {
-        _originalScale = Scale;
         _mesh = GetNode<MeshInstance3D>(PATH_MESH);
+        _originalScale = _mesh.Scale;
+
         _packedScene = GD.Load<PackedScene>(Paths.Items.Objects.COAL);
     }
 
@@ -35,7 +36,7 @@ public partial class Block : Item
             _health -= Mathf.Clamp(damage - _defense, 0, 9999) * felta;
 
             var scalePercentage = _health / 100;
-            _mesh.Scale = Vector3.One * scalePercentage;
+            _mesh.Scale = _originalScale * scalePercentage;
         }
         else
         {
