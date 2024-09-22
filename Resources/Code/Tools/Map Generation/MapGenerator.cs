@@ -19,7 +19,6 @@ public partial class MapGenerator : Node3D
 
     public PackedScene _coal;
 
-    [Export]
     public PackedScene floor;
 
     protected RandomNumberGenerator rng;
@@ -47,6 +46,8 @@ public partial class MapGenerator : Node3D
         _layerThree = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.DIRT);
 
         _coal = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COAL);
+
+        floor = ResourceLoader.Load<PackedScene>(Paths.Environment.FLOOR);
     }
 
     public void FinalizeWorld()

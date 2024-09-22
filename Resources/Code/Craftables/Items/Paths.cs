@@ -29,4 +29,9 @@ public static class Paths
             public const string DIRT = "res://Resources/Scenes/Items/Objects/Blocks/Dirt.tscn";
         }
     }
+
+    public static class Environment
+    {
+        public const string FLOOR = "res://Resources/Scenes/Environment/Floor.tscn";
+    }
 }
