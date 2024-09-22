@@ -1,4 +1,5 @@
 using Godot;
+using Godot.NativeInterop;
 using System;
 
 public partial class DiffusionGenerator : MapGenerator
@@ -11,6 +12,12 @@ public partial class DiffusionGenerator : MapGenerator
 
     public bool building;
 
+    [Export]
+    public bool FlipY;
+
+    [Export]
+    public bool FlipX;
+
     public override void _Ready()
     {
         base._Ready();
@@ -19,7 +26,14 @@ public partial class DiffusionGenerator : MapGenerator
 
         Seed();
         BuildWorld();
+        SeedBlocks();
         SeedResources();
+
+        if (FlipY)
+            FlipOnYAxis();
+        if (FlipX)
+            FlipOnXAxis();
+
         FinalizeWorld();
     }
 
@@ -54,8 +68,27 @@ public partial class DiffusionGenerator : MapGenerator
 
             do
             {
-                _Map[Mathf.Clamp(coalMiner._X, 0, _Width - 1), Mathf.Clamp(coalMiner._Y, 0, _Height - 1)] = 2;
+                _Map[Mathf.Clamp(coalMiner._X, 0, _Width - 1), Mathf.Clamp(coalMiner._Y, 0, _Height - 1)] = (int)BlockType.Coal;
             } while (coalMiner.Work(_Width, _Height));
+        }
+    }
+
+    public void SeedBlocks()
+    {
+        for (int i = 0; i < _Width; i++)
+        {
+            for (int j = 0; j < _Height; j++)
+            {
+                if (_Map[i, j] != (int)BlockType.Air)
+                {
+                    if (Tools.distanceFromCenter(i, j, _Width * 2, _Height * 2) < _Width * .4f)
+                        _Map[i, j] = (int)BlockType.Stone;
+                    else if (Tools.distanceFromCenter(i, j, _Width * 2, _Height * 2) < _Width * .7f)
+                        _Map[i, j] = (int)BlockType.Clay;
+                    else
+                        _Map[i, j] = (int)BlockType.Dirt;
+                }
+            }
         }
     }
 
