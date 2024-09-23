@@ -19,6 +19,12 @@ public partial class Item_UI : Node2D
         _stackable = GetMeta("stackable").As<bool>();
         _sprite = GetNode<Sprite2D>("Icon");
         _amount = GetNode<RichTextLabel>("Amount");
+        _amount.SetMeta("amount", 1);
+
+        if (!_stackable)
+            _amount.Visible = false;
+
+        _name = GetName();
     }
 
     public override void _Process(double delta)
@@ -48,6 +54,6 @@ public partial class Item_UI : Node2D
 
     public string GetName()
     {
-        return _name == null ? "" : _name;
+        return _name == null ? "" : Name;
     }
 }
