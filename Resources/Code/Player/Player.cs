@@ -225,6 +225,11 @@ public partial class Player : Node3D
         return _RigidBody.GetPosition();
     }
 
+    public Vector3 GetGlobalPosition()
+    {
+        return _RigidBody.GetGlobalPosition();
+    }
+
     public Vector3 GetRotation()
     {
         return _RigidBody.GetRotation();
