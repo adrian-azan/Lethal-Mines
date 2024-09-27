@@ -5,7 +5,7 @@
 
 [node name="Stone" instance=ExtResource("1_xpvj7")]
 _name = "Wall"
-metadata/stackable = true
+_stackable = true
 
 [node name="Icon" parent="." index="0"]
 scale = Vector2(0.11, 0.11)

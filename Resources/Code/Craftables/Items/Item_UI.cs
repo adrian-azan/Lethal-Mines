@@ -4,7 +4,6 @@ using System.Data.Common;
 
 public partial class Item_UI : Node2D
 {
-    public bool _stackable;
     public Sprite2D _sprite;
     public RichTextLabel _amount;
 
@@ -14,9 +13,11 @@ public partial class Item_UI : Node2D
     [Export]
     public string _description;
 
+    [Export]
+    public bool _stackable;
+
     public override void _Ready()
     {
-        _stackable = GetMeta("stackable").As<bool>();
         _sprite = GetNode<Sprite2D>("Icon");
         _amount = GetNode<RichTextLabel>("Amount");
         _amount.SetMeta("amount", 1);

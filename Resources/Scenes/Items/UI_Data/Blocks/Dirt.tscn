@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c5c43aqyew5cy" path="res://Resources/Art/Material/Blocks/Dirt/Dirt_UI.png" id="2_f2ain"]
 
 [node name="Dirt" instance=ExtResource("1_050dy")]
-metadata/stackable = true
+_stackable = true
 
 [node name="Icon" parent="." index="0"]
 scale = Vector2(0.1, 0.1)
