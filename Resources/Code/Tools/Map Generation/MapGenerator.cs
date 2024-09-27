@@ -11,15 +11,15 @@ public partial class MapGenerator : Node3D
     [Export]
     public int _Height;
 
-    public PackedScene _layerOne;
+    private PackedScene _layerOne;
 
-    public PackedScene _layerTwo;
+    private PackedScene _layerTwo;
 
-    public PackedScene _layerThree;
+    private PackedScene _layerThree;
 
-    public PackedScene _coal;
+    private PackedScene _coal;
 
-    public PackedScene floor;
+    private PackedScene floor;
 
     protected RandomNumberGenerator rng;
 
@@ -40,14 +40,13 @@ public partial class MapGenerator : Node3D
         rng = new RandomNumberGenerator();
         _Map = new int[_Width, _Height];
         _Walls = new Node3D[_Width, _Height];
+        floor = ResourceLoader.Load<PackedScene>(Paths.Environment.FLOOR);
 
         _layerOne = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.STONE);
         _layerTwo = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.CLAY);
         _layerThree = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.DIRT);
 
         _coal = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COAL);
-
-        floor = ResourceLoader.Load<PackedScene>(Paths.Environment.FLOOR);
     }
 
     public void FinalizeWorld()

@@ -1,9 +1,23 @@
 using Godot;
-using Godot.NativeInterop;
 using System;
+using System.Collections.Generic;
 
 public partial class DiffusionGenerator : MapGenerator
 {
+    protected class ResourceDetails
+    {
+        public BlockType resource;
+        public float resourceRarity;    //A percentage of how much if this resource should exist
+        public int veinSize;         //Max size of how many resources should be in a vein
+
+        public ResourceDetails(BlockType typeOfResource, float frequency, int size)
+        {
+            resource = typeOfResource;
+            resourceRarity = frequency;
+            veinSize = size;
+        }
+    }
+
     public int limit = 3;
     public float noise;
 
@@ -18,13 +32,18 @@ public partial class DiffusionGenerator : MapGenerator
     [Export]
     public bool FlipX;
 
+    private List<ResourceDetails> _resources;
+
     public override void _Ready()
     {
         base._Ready();
         building = true;
         noise = .7f;
 
-        Seed();
+        _resources = new List<ResourceDetails>();
+        _resources.Add(new ResourceDetails(BlockType.Coal, .05f, 5));
+
+        SeedNoise();
         BuildWorld();
         SeedBlocks();
         SeedResources();
@@ -37,7 +56,7 @@ public partial class DiffusionGenerator : MapGenerator
         FinalizeWorld();
     }
 
-    public void Seed()
+    public void SeedNoise()
     {
         for (int i = 1; i < _Height - 1; i++)
         {
@@ -59,17 +78,21 @@ public partial class DiffusionGenerator : MapGenerator
 
     public void SeedResources()
     {
-        ResourceSeeder coalMiner = new ResourceSeeder(0, 0, 10, 10);
-
-        for (int i = 0; i < 80; i++)
+        foreach (ResourceDetails currentResource in _resources)
         {
-            coalMiner.SetPos(rng.RandiRange(15, 130), rng.RandiRange(15, 130));
-            coalMiner.Energize();
+            int totalResourcesToSeed = (int)(_Width * _Height * currentResource.resourceRarity) / currentResource.veinSize;
+            ResourceSeeder seeder = new ResourceSeeder(0, 0, currentResource.veinSize);
 
-            do
+            for (int i = 0; i < totalResourcesToSeed; i++)
             {
-                _Map[Mathf.Clamp(coalMiner._X, 0, _Width - 1), Mathf.Clamp(coalMiner._Y, 0, _Height - 1)] = (int)BlockType.Coal;
-            } while (coalMiner.Work(_Width, _Height));
+                seeder.SetPos(rng.RandiRange(15, 130), rng.RandiRange(15, 130));
+                seeder.Energize();
+
+                do
+                {
+                    _Map[Mathf.Clamp(seeder._X, 0, _Width - 1), Mathf.Clamp(seeder._Y, 0, _Height - 1)] = (int)currentResource.resource;
+                } while (seeder.Work(_Width, _Height));
+            }
         }
     }
 

@@ -14,12 +14,12 @@ public class ResourceSeeder
 
     protected RandomNumberGenerator rng;
 
-    public ResourceSeeder(int x, int y, int endurance, int maxEndurance)
+    public ResourceSeeder(int x, int y, int endurance)
     {
         _X = x;
         _Y = y;
         _endurance = endurance;
-        _maxEndurance = maxEndurance;
+        _maxEndurance = endurance;
 
         rng = new RandomNumberGenerator();
     }
