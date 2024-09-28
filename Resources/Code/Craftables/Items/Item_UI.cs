@@ -55,6 +55,6 @@ public partial class Item_UI : Node2D
 
     public string GetName()
     {
-        return _name == null ? "" : Name;
+        return _name == null ? "Name Not Implemented" : Name;
     }
 }

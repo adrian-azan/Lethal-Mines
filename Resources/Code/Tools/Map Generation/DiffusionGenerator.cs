@@ -80,10 +80,10 @@ public partial class DiffusionGenerator : MapGenerator
     {
         foreach (ResourceDetails currentResource in _resources)
         {
-            int totalResourcesToSeed = (int)(_Width * _Height * currentResource.resourceRarity) / currentResource.veinSize;
+            int estimatedNumberOfSeedersRequired = (int)(_Width * _Height * currentResource.resourceRarity) / currentResource.veinSize;
             ResourceSeeder seeder = new ResourceSeeder(0, 0, currentResource.veinSize);
 
-            for (int i = 0; i < totalResourcesToSeed; i++)
+            for (int i = 0; i < estimatedNumberOfSeedersRequired; i++)
             {
                 seeder.SetPos(rng.RandiRange(15, 130), rng.RandiRange(15, 130));
                 seeder.Energize();
