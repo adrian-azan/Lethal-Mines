@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dasoba27ctisd"]
+
+[ext_resource type="PackedScene" uid="uid://oghw4nwa7o2" path="res://Resources/Scenes/Environment/Different Types of Maps/SmallMap.tscn" id="1_lsr0a"]
+[ext_resource type="PackedScene" uid="uid://c8s860fiw1i8h" path="res://Resources/Scenes/Environment/Floor.tscn" id="2_3d26q"]
+[ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="3_tlu8o"]
+
+[node name="Testing Eagle Eye" type="Node3D"]
+
+[node name="PlayerView" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1195, 78.9751, 0)
+
+[node name="InvisibleFloor" parent="PlayerView" instance=ExtResource("2_3d26q")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="PlayerView/InvisibleFloor/Static_Body" index="1"]
+visible = false
+
+[node name="Player" parent="PlayerView" instance=ExtResource("3_tlu8o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.535, 10, 0)
+
+[node name="StaminaBar" parent="PlayerView/Player/UI" index="0"]
+visible = false
+
+[node name="HotBar" parent="PlayerView/Player/UI" index="1"]
+visible = false
+
+[node name="PlayerMouse" parent="PlayerView/Player/UI" index="3"]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PlayerView"]
+transform = Transform3D(1, 0, 0, 0, -0.0104195, 0.999946, 0, -0.999946, -0.0104195, 0, 21.6902, 0)
+light_color = Color(0.92549, 0.686275, 0.313726, 1)
+
+[node name="SmallMap" parent="." instance=ExtResource("1_lsr0a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00694275, 0.259216, -0.443634)
+generationLimit = 1
+FlipY = false
+_CoreCenterX = 0
+_CoreCenterY = 0
+_CoreCenterRadius = 0
+
+[editable path="PlayerView/InvisibleFloor"]
+[editable path="PlayerView/InvisibleFloor/Static_Body"]
+[editable path="PlayerView/Player"]
+[editable path="PlayerView/Player/Rigid_Body"]
+[editable path="PlayerView/Player/Rigid_Body/Area3D"]
