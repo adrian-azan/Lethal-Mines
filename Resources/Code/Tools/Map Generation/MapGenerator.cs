@@ -11,6 +11,15 @@ public partial class MapGenerator : Node3D
     [Export]
     public int _Height;
 
+    [Export]
+    public int _CoreCenterX;
+
+    [Export]
+    public int _CoreCenterY;
+
+    [Export]
+    public int _CoreCenterRadius;
+
     private PackedScene _layerOne;
 
     private PackedScene _layerTwo;
@@ -39,7 +48,6 @@ public partial class MapGenerator : Node3D
     {
         rng = new RandomNumberGenerator();
         _Map = new int[_Width, _Height];
-        _Walls = new Node3D[_Width, _Height];
         floor = ResourceLoader.Load<PackedScene>(Paths.Environment.FLOOR);
 
         _layerOne = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.STONE);
@@ -51,6 +59,8 @@ public partial class MapGenerator : Node3D
 
     public void FinalizeWorld()
     {
+        _Walls = new Node3D[_Width, _Height];
+
         var centerX = _Width / 2 + Position.X;
         var centerY = _Height / 2 + Position.Z;
 
@@ -58,19 +68,22 @@ public partial class MapGenerator : Node3D
         {
             for (int j = 0; j < _Height; j++)
             {
-                if (_Map[i, j] != (int)BlockType.Air && _Map[i, j] != (int)BlockType.Coal)
+                if (_Map[i, j] != (int)BlockType.Coal)
                 {
                     Node3D piece = null;
                     if (_Map[i, j] == (int)BlockType.Stone)
                         piece = _layerOne.Instantiate<Node3D>();
                     else if (_Map[i, j] == (int)BlockType.Clay)
                         piece = _layerTwo.Instantiate<Node3D>();
-                    else
+                    else if (_Map[i, j] == (int)BlockType.Air)
                         piece = _layerThree.Instantiate<Node3D>();
 
-                    piece.Position = Position + new Vector3(i - centerX, 2, j - centerY);
-                    AddChild(piece);
-                    _Walls[i, j] = piece;
+                    if (piece != null)
+                    {
+                        piece.Position = Position + new Vector3(i - centerX, 2, j - centerY);
+                        AddChild(piece);
+                        _Walls[i, j] = piece;
+                    }
                 }
                 else if (_Map[i, j] == (int)BlockType.Coal)
                 {
@@ -86,47 +99,5 @@ public partial class MapGenerator : Node3D
         var mainFloor = floor.Instantiate<Node3D>();
         mainFloor.Scale = new Vector3(_Width, 1, _Height);
         AddChild(mainFloor);
-    }
-
-    public void FlipOnYAxis()
-    {
-        int[,] _Fliped = new int[_Width, _Height];
-
-        for (int i = 0; i < _Width; i++)
-        {
-            for (int j = 0; j < _Height; j++)
-            {
-                _Fliped[(_Width - 1) - i, j] = _Map[i, j];
-            }
-        }
-
-        for (int i = 0; i < _Width; i++)
-        {
-            for (int j = 0; j < _Height; j++)
-            {
-                _Map[i, j] = _Fliped[i, j];
-            }
-        }
-    }
-
-    public void FlipOnXAxis()
-    {
-        int[,] _Fliped = new int[_Width, _Height];
-
-        for (int i = 0; i < _Width; i++)
-        {
-            for (int j = 0; j < _Height; j++)
-            {
-                _Fliped[i, (_Height - 1) - j] = _Map[i, j];
-            }
-        }
-
-        for (int i = 0; i < _Width; i++)
-        {
-            for (int j = 0; j < _Height; j++)
-            {
-                _Map[i, j] = _Fliped[i, j];
-            }
-        }
     }
 }

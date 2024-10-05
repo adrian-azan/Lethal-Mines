@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Security.Cryptography.X509Certificates;
 
 public partial class Block : Item
 {
@@ -13,8 +11,6 @@ public partial class Block : Item
     {
         _mesh = GetNode<MeshInstance3D>("Static_Body/MeshInstance3D");
         _originalScale = _mesh.Scale;
-
-        _packedScene = GD.Load<PackedScene>(Paths.Items.Objects.COAL);
     }
 
     //TODO: Don't love that this still doesnt have any functionality. Wondering

@@ -18,10 +18,12 @@ public partial class DiffusionGenerator : MapGenerator
         }
     }
 
-    public int limit = 3;
-    public float noise;
+    [Export]
+    public int generationLimit;
 
     [Export]
+    public float noise;
+
     public int generation = 0;
 
     public bool building;
@@ -38,29 +40,29 @@ public partial class DiffusionGenerator : MapGenerator
     {
         base._Ready();
         building = true;
-        noise = .7f;
 
         _resources = new List<ResourceDetails>();
-        _resources.Add(new ResourceDetails(BlockType.Coal, .05f, 5));
+        _resources.Add(new ResourceDetails(BlockType.Coal, .02f, 6));
 
         SeedNoise();
         BuildWorld();
         SeedBlocks();
         SeedResources();
 
-        if (FlipY)
-            FlipOnYAxis();
         if (FlipX)
-            FlipOnXAxis();
+            _Map = MapStitcher.MirrorOnYAxis(_Map, _Height, ref _Width);
+
+        if (FlipY)
+            _Map = MapStitcher.MirrorOnXAxis(_Map, ref _Height, _Width);
 
         FinalizeWorld();
     }
 
     public void SeedNoise()
     {
-        for (int i = 1; i < _Height - 1; i++)
+        for (int i = 1; i < _Width - 1; i++)
         {
-            for (int j = 1; j < _Width - 1; j++)
+            for (int j = 1; j < _Height - 1; j++)
             {
                 float chance = (float)rng.RandfRange(0, 100) / 100;
 
@@ -76,52 +78,19 @@ public partial class DiffusionGenerator : MapGenerator
         }
     }
 
-    public void SeedResources()
-    {
-        foreach (ResourceDetails currentResource in _resources)
-        {
-            int estimatedNumberOfSeedersRequired = (int)(_Width * _Height * currentResource.resourceRarity) / currentResource.veinSize;
-            ResourceSeeder seeder = new ResourceSeeder(0, 0, currentResource.veinSize);
-
-            for (int i = 0; i < estimatedNumberOfSeedersRequired; i++)
-            {
-                seeder.SetPos(rng.RandiRange(15, 130), rng.RandiRange(15, 130));
-                seeder.Energize();
-
-                do
-                {
-                    _Map[Mathf.Clamp(seeder._X, 0, _Width - 1), Mathf.Clamp(seeder._Y, 0, _Height - 1)] = (int)currentResource.resource;
-                } while (seeder.Work(_Width, _Height));
-            }
-        }
-    }
-
-    public void SeedBlocks()
-    {
-        for (int i = 0; i < _Width; i++)
-        {
-            for (int j = 0; j < _Height; j++)
-            {
-                if (_Map[i, j] != (int)BlockType.Air)
-                {
-                    if (Tools.distanceFromCenter(i, j, _Width * 2, _Height * 2) < _Width * .4f)
-                        _Map[i, j] = (int)BlockType.Stone;
-                    else if (Tools.distanceFromCenter(i, j, _Width * 2, _Height * 2) < _Width * .7f)
-                        _Map[i, j] = (int)BlockType.Clay;
-                    else
-                        _Map[i, j] = (int)BlockType.Dirt;
-                }
-            }
-        }
-    }
-
     public void BuildWorld()
     {
+        building = generation < generationLimit;
+        if (!building)
+        {
+            return;
+        }
+
         int[,] next = new int[_Width, _Height];
 
-        for (int i = 1; i < _Height - 1; i++)
+        for (int i = 1; i < _Width - 1; i++)
         {
-            for (int j = 1; j < _Width - 1; j++)
+            for (int j = 1; j < _Height - 1; j++)
             {
                 var sumCell = 0;
                 sumCell += _Map[i + 1, j];
@@ -144,11 +113,46 @@ public partial class DiffusionGenerator : MapGenerator
         _Map = next;
         generation++;
 
-        building = generation < limit;
-        if (!building)
-        {
-            return;
-        }
         BuildWorld();
+    }
+
+    public void SeedBlocks()
+    {
+        for (int x = 0; x < _Width; x++)
+        {
+            for (int z = 0; z < _Height; z++)
+            {
+                if (_Map[x, z] != (int)BlockType.Air)
+                {
+                    float distanceFromCenter = Tools.distanceFromPoint(x, z, _Width - _CoreCenterY, _CoreCenterX);
+                    if (distanceFromCenter < (_CoreCenterRadius) * .4f)
+                        _Map[x, z] = (int)BlockType.Stone;
+                    else if (distanceFromCenter < (_CoreCenterRadius) * .8f)
+                        _Map[x, z] = (int)BlockType.Clay;
+                    else
+                        _Map[x, z] = (int)BlockType.Dirt;
+                }
+            }
+        }
+    }
+
+    public void SeedResources()
+    {
+        foreach (ResourceDetails currentResource in _resources)
+        {
+            int estimatedNumberOfSeedersRequired = (int)(_Width * _Height * currentResource.resourceRarity) / currentResource.veinSize;
+            ResourceSeeder seeder = new ResourceSeeder(0, 0, currentResource.veinSize);
+
+            for (int i = 0; i < estimatedNumberOfSeedersRequired; i++)
+            {
+                seeder.SetPos(rng.RandiRange((int)(_Width * .1f), (int)(_Width * .9f)), rng.RandiRange((int)(_Height * .1f), (int)(_Height * .9f)));
+                seeder.Energize();
+
+                do
+                {
+                    _Map[Mathf.Clamp(seeder._X, 0, _Width - 1), Mathf.Clamp(seeder._Y, 0, _Height - 1)] = (int)currentResource.resource;
+                } while (seeder.Work(_Width, _Height));
+            }
+        }
     }
 }
