@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjn7smkl2qxwq"]
+[gd_scene load_steps=13 format=3 uid="uid://bjn7smkl2qxwq"]
 
 [ext_resource type="Script" path="res://Resources/Code/Player/Player.cs" id="1_3k2b2"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_vh2ay"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chbsi2s83bree" path="res://Resources/Scenes/UI/HotBar.tscn" id="7_5xddh"]
 [ext_resource type="PackedScene" uid="uid://cxcdegy40i5b0" path="res://Resources/Scenes/UI/Inventory.tscn" id="9_qgwc6"]
 [ext_resource type="PackedScene" uid="uid://c1pbpgp2k2138" path="res://Resources/Scenes/Player/PlayerMouse.tscn" id="10_44mle"]
+[ext_resource type="PackedScene" uid="uid://dv5lnt4732uuu" path="res://Resources/Scenes/UI/Compass.tscn" id="10_n71il"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30kim"]
 
@@ -77,6 +78,10 @@ offset_bottom = 89.0
 scale = Vector2(1, 0.990013)
 
 [node name="PlayerMouse" parent="UI" instance=ExtResource("10_44mle")]
+
+[node name="Compass" parent="UI" instance=ExtResource("10_n71il")]
+position = Vector2(1032, 82)
+scale = Vector2(0.15, 0.15)
 
 [editable path="Rigid_Body"]
 [editable path="Rigid_Body/Area3D"]
