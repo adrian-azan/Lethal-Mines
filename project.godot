@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Lethal Mines"
-run/main_scene="res://Resources/Scenes/Environment/FullMap.tscn"
+run/main_scene="res://Resources/Scenes/Environment/Different Types of Maps/TESTING Eagle Eye.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

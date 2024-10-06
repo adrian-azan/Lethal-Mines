@@ -7,7 +7,7 @@
 material = ExtResource("2_fkv55")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epyhy"]
-albedo_color = Color(0.878431, 0.160784, 0.913725, 1)
+albedo_color = Color(1, 0, 0, 1)
 
 [node name="Stone" instance=ExtResource("1_pko75")]
 transform = Transform3D(0.995589, 0, 0, 0, 0.995589, 0, 0, 0, 0.995589, 0, 0, 0)

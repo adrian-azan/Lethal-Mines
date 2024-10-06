@@ -5,7 +5,6 @@
 
 [node name="Root" type="Node3D"]
 script = ExtResource("1_mol05")
-generation = 1
 _Width = 150
 _Height = 150
 

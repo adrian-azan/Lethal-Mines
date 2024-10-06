@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi0vlx285v23g"]
+
+[ext_resource type="Script" path="res://Resources/Code/Tools/Map Generation/DiffusionGenerator.cs" id="1_ubd3a"]
+[ext_resource type="PackedScene" uid="uid://vx4by0kbyj50" path="res://Resources/Scenes/Items/Objects/Blocks/Coal.tscn" id="2_4gx3f"]
+
+[node name="LargeMap" type="Node3D"]
+script = ExtResource("1_ubd3a")
+generationLimit = 5
+noise = 0.7
+_Width = 500
+_Height = 500
+_CoreCenterX = 250
+_CoreCenterY = 250
+_CoreCenterRadius = 150
+
+[node name="North" parent="." instance=ExtResource("2_4gx3f")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 500, 0, 0)

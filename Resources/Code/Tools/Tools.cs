@@ -58,4 +58,12 @@ public static class Tools
 
         return Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
     }
+
+    public static float distanceFromPoint(int x, int y, int pointX, int pointY)
+    {
+        var distanceX = Mathf.Abs(pointX - x);
+        var distanceY = Mathf.Abs(pointY - y);
+
+        return Mathf.Sqrt(Mathf.Pow(distanceX, 2) + Mathf.Pow(distanceY, 2));
+    }
 }
