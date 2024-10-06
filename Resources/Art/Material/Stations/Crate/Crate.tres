@@ -1,0 +1,15 @@
+[gd_resource type="ORMMaterial3D" load_steps=5 format=3 uid="uid://co2xq50t4rj20"]
+
+[ext_resource type="Texture2D" uid="uid://imodnnd8qttg" path="res://Resources/Art/Material/Stations/Crate/Crate_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dannuvsyefcj5" path="res://Resources/Art/Material/Stations/Crate/Crate_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dbc61njygo5l2" path="res://Resources/Art/Material/Stations/Crate/Crate_normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ddosmqpc8sysp" path="res://Resources/Art/Material/Stations/Crate/Crate_heightmap.png" id="4"]
+
+[resource]
+albedo_texture = ExtResource("1")
+orm_texture = ExtResource("2")
+normal_enabled = true
+normal_texture = ExtResource("3")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4")
+uv1_scale = Vector3(3, 2, 1)

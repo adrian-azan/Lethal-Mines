@@ -1,10 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyn5itqvtfsqp"]
+[gd_scene load_steps=4 format=3 uid="uid://cyn5itqvtfsqp"]
 
 [ext_resource type="Script" path="res://Resources/Code/Player/PlayerCamera.cs" id="1_wv6nu"]
-
-[sub_resource type="Environment" id="Environment_japvq"]
-background_mode = 1
-background_energy_multiplier = 4.5
 
 [sub_resource type="Animation" id="Animation_jyphd"]
 resource_name = "player_headBob"
@@ -33,7 +29,6 @@ _bobbingWeight = 0.35
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
-environment = SubResource("Environment_japvq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
 libraries = {

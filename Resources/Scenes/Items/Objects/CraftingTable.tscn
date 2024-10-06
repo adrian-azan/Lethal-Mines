@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Resources/Code/Craftables/Stations/CraftingTable.cs" id="1_68l84"]
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_2o6sh"]
-[ext_resource type="Material" path="res://Resources/Art/Material/CraftingTable/CraftingTable.tres" id="3_n1i8j"]
+[ext_resource type="Material" path="res://Resources/Art/Material/Stations/CraftingTable/CraftingTable.tres" id="3_n1i8j"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6hnxk"]
 material = ExtResource("3_n1i8j")

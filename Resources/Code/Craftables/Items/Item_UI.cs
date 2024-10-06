@@ -4,7 +4,6 @@ using System.Data.Common;
 
 public partial class Item_UI : Node2D
 {
-    public bool _stackable;
     public Sprite2D _sprite;
     public RichTextLabel _amount;
 
@@ -14,11 +13,19 @@ public partial class Item_UI : Node2D
     [Export]
     public string _description;
 
+    [Export]
+    public bool _stackable;
+
     public override void _Ready()
     {
-        _stackable = GetMeta("stackable").As<bool>();
         _sprite = GetNode<Sprite2D>("Icon");
         _amount = GetNode<RichTextLabel>("Amount");
+        _amount.SetMeta("amount", 1);
+
+        if (!_stackable)
+            _amount.Visible = false;
+
+        _name = GetName();
     }
 
     public override void _Process(double delta)
@@ -48,6 +55,6 @@ public partial class Item_UI : Node2D
 
     public string GetName()
     {
-        return _name == null ? "" : _name;
+        return _name == null ? "Name Not Implemented" : Name;
     }
 }

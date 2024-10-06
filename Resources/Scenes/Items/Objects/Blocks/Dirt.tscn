@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cts8peqtgp0ts"]
+
+[ext_resource type="PackedScene" uid="uid://dlobu3s0v0pwb" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_syts1"]
+[ext_resource type="Material" path="res://Resources/Art/Material/Blocks/Dirt/Dirt.tres" id="2_m3oqc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6uptp"]
+material = ExtResource("2_m3oqc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdodh"]
+albedo_color = Color(0.213084, 0.750072, 0.70112, 1)
+
+[node name="Dirt" instance=ExtResource("1_syts1")]
+
+[node name="MeshInstance3D" parent="Static_Body" index="1"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_6uptp")
+
+[node name="MeshInstance3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cdodh")
+
+[editable path="Static_Body"]

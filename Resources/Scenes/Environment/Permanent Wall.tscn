@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_autyl"]
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_vm3ea"]
-[ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Walls/Walls.tres" id="3_q4j6r"]
+[ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Blocks/Stone/Stone.tres" id="3_q4j6r"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tq2hi"]
 material = ExtResource("3_q4j6r")

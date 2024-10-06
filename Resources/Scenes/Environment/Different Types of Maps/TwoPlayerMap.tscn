@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccx8dh16cklqt"]
+
+[ext_resource type="Script" path="res://Resources/Code/Tools/Map Generation/DiffusionGenerator.cs" id="1_4jkn3"]
+[ext_resource type="PackedScene" uid="uid://vx4by0kbyj50" path="res://Resources/Scenes/Items/Objects/Blocks/Coal.tscn" id="2_7ifx5"]
+
+[node name="TwoPlayerMap" type="Node3D"]
+
+[node name="East" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+script = ExtResource("1_4jkn3")
+generationLimit = 5
+noise = 0.8
+_Width = 200
+_Height = 200
+
+[node name="West" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+script = ExtResource("1_4jkn3")
+generationLimit = 5
+noise = 0.8
+FlipY = true
+_Width = 200
+_Height = 200
+
+[node name="North" parent="." instance=ExtResource("2_7ifx5")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 145.85, 0, 0)
