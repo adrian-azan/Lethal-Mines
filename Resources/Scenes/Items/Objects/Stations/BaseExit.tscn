@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://hdc0qp0hajpb"]
+
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_dsr4b"]
+[ext_resource type="Script" path="res://Resources/Code/Craftables/Stations/BaseExit.cs" id="1_fp0qg"]
+
+[node name="BaseExit" type="Node3D"]
+script = ExtResource("1_fp0qg")
+
+[node name="Static_Body" parent="." instance=ExtResource("1_dsr4b")]
+transform = Transform3D(1, 0, 0, 0, 3.655, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+collision_layer = 256
+collision_mask = 0
+
+[editable path="Static_Body"]
