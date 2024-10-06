@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class Furnace : Item, IConsumable, IStation
+public partial class Furnace : Node3D, IConsumable, IStation
 {
     private FurnaceUI _UI;
 
@@ -11,7 +11,7 @@ public partial class Furnace : Item, IConsumable, IStation
         _UI = GetNode<FurnaceUI>("Furnace");
     }
 
-    public override void Use(Player player)
+    public void Use(Player player)
     {
         if (player._State != PlayerState.Normal)
             return;

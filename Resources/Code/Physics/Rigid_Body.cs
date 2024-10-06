@@ -172,6 +172,11 @@ public partial class Rigid_Body : Node3D
         _RigidBody.Position = newPos;
     }
 
+    public void SetGlobalPosition(Vector3 newPos)
+    {
+        _RigidBody.GlobalPosition = newPos;
+    }
+
     public Vector3 GetRotation()
     {
         return _RigidBody.Rotation;
