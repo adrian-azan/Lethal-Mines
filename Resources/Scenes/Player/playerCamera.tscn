@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyn5itqvtfsqp"]
+[gd_scene load_steps=5 format=3 uid="uid://cyn5itqvtfsqp"]
 
 [ext_resource type="Script" path="res://Resources/Code/Player/PlayerCamera.cs" id="1_wv6nu"]
 
@@ -23,6 +23,11 @@ _data = {
 "player_headBob": SubResource("Animation_jyphd")
 }
 
+[sub_resource type="Environment" id="Environment_1sar3"]
+fog_light_color = Color(0.12005, 0.134382, 0.156915, 1)
+fog_light_energy = 0.5
+fog_density = 0.05
+
 [node name="PlayerCamera" type="Node3D"]
 script = ExtResource("1_wv6nu")
 _bobbingWeight = 0.35
@@ -34,3 +39,6 @@ transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.0005163
 libraries = {
 "": SubResource("AnimationLibrary_xp2px")
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1sar3")

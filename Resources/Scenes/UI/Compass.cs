@@ -10,7 +10,7 @@ public partial class Compass : Node2D
     public override void _Ready()
     {
         _player = GetNode("../..") as Player;
-        _playerBase = GetNode("../../../BaseOutside") as Node3D;
+        _playerBase = _player.GetNode("Base/BaseHatch") as Node3D;
 
         _arrow = GetNode("Arrow") as Sprite2D;
     }
@@ -20,9 +20,7 @@ public partial class Compass : Node2D
         var playerBaseXZ = new Vector2(_playerBase.GlobalPosition.X, _playerBase.GlobalPosition.Z);
         var playerXZ = new Vector2(_player.GetGlobalPosition().X, _player.GetGlobalPosition().Z);
 
-        Vector2 fromPlayerToBase = playerBaseXZ - playerXZ;
-
-        float directionToBase = Mathf.RadToDeg(playerXZ.AngleToPoint(fromPlayerToBase)) + 90;
+        float directionToBase = Mathf.RadToDeg(playerXZ.AngleToPoint(playerBaseXZ)) + 90;
         float playerRotation = Mathf.RadToDeg(_player.GetRotation().Y);
 
         _arrow.RotationDegrees = directionToBase + playerRotation;

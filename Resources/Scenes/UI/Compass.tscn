@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv5lnt4732uuu"]
+[gd_scene load_steps=4 format=3 uid="uid://jj7vdbufnwu8"]
 
 [ext_resource type="Script" path="res://Resources/Scenes/UI/Compass.cs" id="1_riie3"]
 [ext_resource type="Texture2D" uid="uid://djge40ugr0w03" path="res://Resources/Art/UI/CompassBody.png" id="1_vvohn"]

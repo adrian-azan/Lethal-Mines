@@ -1,15 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjn7smkl2qxwq"]
+[gd_scene load_steps=16 format=3 uid="uid://bjn7smkl2qxwq"]
 
 [ext_resource type="Script" path="res://Resources/Code/Player/Player.cs" id="1_3k2b2"]
 [ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_vh2ay"]
 [ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Blocks/Stone/Stone.tres" id="3_ad2go"]
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="3_kgynb"]
 [ext_resource type="PackedScene" uid="uid://cyn5itqvtfsqp" path="res://Resources/Scenes/Player/playerCamera.tscn" id="5_tmc68"]
+[ext_resource type="PackedScene" uid="uid://q6gascgbfsdw" path="res://Resources/Scenes/Environment/SmallBase.tscn" id="6_c1rdg"]
+[ext_resource type="Script" path="res://Resources/Code/BaseManager.cs" id="6_i468y"]
 [ext_resource type="PackedScene" uid="uid://y31t5d75viyo" path="res://Resources/Scenes/UI/StaminaBar.tscn" id="6_meluy"]
 [ext_resource type="PackedScene" uid="uid://chbsi2s83bree" path="res://Resources/Scenes/UI/HotBar.tscn" id="7_5xddh"]
+[ext_resource type="PackedScene" uid="uid://vdxdooeauqvv" path="res://Resources/Scenes/Items/Objects/Stations/BaseHatch.tscn" id="8_y4n6b"]
 [ext_resource type="PackedScene" uid="uid://cxcdegy40i5b0" path="res://Resources/Scenes/UI/Inventory.tscn" id="9_qgwc6"]
 [ext_resource type="PackedScene" uid="uid://c1pbpgp2k2138" path="res://Resources/Scenes/Player/PlayerMouse.tscn" id="10_44mle"]
-[ext_resource type="PackedScene" uid="uid://dv5lnt4732uuu" path="res://Resources/Scenes/UI/Compass.tscn" id="10_n71il"]
+[ext_resource type="PackedScene" uid="uid://jj7vdbufnwu8" path="res://Resources/Scenes/UI/Compass.tscn" id="10_n71il"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30kim"]
 
@@ -26,7 +29,7 @@ _dashSpeed = 250.0
 [node name="RigidBody3D" parent="Rigid_Body" index="0"]
 transform = Transform3D(1, 1.25198e-05, -0.000253415, -1.22255e-05, 0.999999, 0.00117725, 0.00025343, -0.00117724, 0.999999, 0, 0, 0)
 visible = false
-collision_mask = 448
+collision_mask = 320
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -55,8 +58,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="RayCast3D" type="RayCast3D" parent="Rigid_Body/PlayerCamera"]
 transform = Transform3D(1, 1.25198e-05, -0.000253415, -1.22255e-05, 0.999999, 0.00117725, 0.00025343, -0.00117724, 0.999999, 0.000126707, -0.3, -0.499999)
 target_position = Vector3(0, 0, -3)
-collision_mask = 320
+collision_mask = 448
 debug_shape_custom_color = Color(0, 0.882353, 0, 1)
+
+[node name="Base" type="Node3D" parent="."]
+script = ExtResource("6_i468y")
+
+[node name="SmallBase" parent="Base" instance=ExtResource("6_c1rdg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
+
+[node name="BaseHatch" parent="Base" instance=ExtResource("8_y4n6b")]
 
 [node name="UI" type="Node" parent="."]
 
@@ -82,6 +93,8 @@ scale = Vector2(1, 0.990013)
 [node name="Compass" parent="UI" instance=ExtResource("10_n71il")]
 position = Vector2(1032, 82)
 scale = Vector2(0.15, 0.15)
+
+[node name="Managers" type="Node" parent="."]
 
 [editable path="Rigid_Body"]
 [editable path="Rigid_Body/Area3D"]
