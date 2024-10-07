@@ -5,7 +5,7 @@ public static class Paths
 {
     public static class Scenes
     {
-        public const string DROP = "res://Resources/Scenes/Drop.tscn";
+        public const string DROP = "res://Resources/Scenes/Items/Objects/Blocks/Drop.tscn";
     }
 
     public static class Items

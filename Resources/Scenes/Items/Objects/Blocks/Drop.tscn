@@ -1,17 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://deyjmvkrvo4t8"]
 
-[ext_resource type="Script" path="res://Resources/Code/Drop.cs" id="1_6fvbr"]
-[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_wrqjc"]
-[ext_resource type="Material" uid="uid://bkadd70b2ohks" path="res://Resources/Art/Material/Sparkle.tres" id="3_4hpla"]
+[ext_resource type="Script" path="res://Resources/Code/Drop.cs" id="1_val17"]
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_216u0"]
+[ext_resource type="Material" uid="uid://bkadd70b2ohks" path="res://Resources/Art/Material/Sparkle.tres" id="3_w665a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xi6ft"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6acl3"]
 
 [node name="Drop" type="Node3D"]
-script = ExtResource("1_6fvbr")
+script = ExtResource("1_val17")
 
-[node name="Static_Body" parent="." instance=ExtResource("2_wrqjc")]
+[node name="Static_Body" parent="." instance=ExtResource("2_216u0")]
+
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+visible = false
 
 [node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -28,7 +31,7 @@ visible = false
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body/StaticBody3D/Sparkle"]
 transform = Transform3D(0.27153, 0, 0, 0, 0.461598, 0, 0, 0, 0.448852, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_6acl3")
-surface_material_override/0 = ExtResource("3_4hpla")
+surface_material_override/0 = ExtResource("3_w665a")
 
 [node name="CoolDownTimer" type="Timer" parent="."]
 
