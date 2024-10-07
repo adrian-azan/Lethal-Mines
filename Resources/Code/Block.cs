@@ -1,22 +1,17 @@
 using Godot;
 
-public partial class Block : Item
+public partial class Block : Node3D
 {
-    private float _health = 100f;
-    private float _defense = 1f; //this shuld mabe be an enum
+    protected float _health = 100f;
+    protected float _defense = 1f; //this shuld mabe be an enum
 
-    private Vector3 _originalScale; //Allows the block to shrink but then go back to its original size when it heals
+    protected Vector3 _originalScale; //Allows the block to shrink but then go back to its original size when it heals
+    public MeshInstance3D _mesh;
 
     public override void _Ready()
     {
         _mesh = GetNode<MeshInstance3D>("Static_Body/MeshInstance3D");
         _originalScale = _mesh.Scale;
-    }
-
-    //TODO: Don't love that this still doesnt have any functionality. Wondering
-    // if block can just be a Node3D
-    public override void Use(Player player)
-    {
     }
 
     public void TakeDamage(float damage)
@@ -32,13 +27,7 @@ public partial class Block : Item
         }
         else
         {
-            var drop = GD.Load<PackedScene>(Paths.Scenes.DROP).Instantiate() as Drop;
-            GetTree().Root.AddChild(drop);  //Add drop to root scene
-
-            drop.SetObject(this);
-
-            //Blocks StaticBody3D is no longer needed
-            GetNode<StaticBody3D>("Static_Body/StaticBody3D").QueueFree();
+            QueueFree();
         }
     }
 }
