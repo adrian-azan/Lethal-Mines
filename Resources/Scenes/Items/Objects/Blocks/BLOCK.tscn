@@ -17,6 +17,7 @@ script = ExtResource("1_tqsle")
 [node name="Static_Body" parent="." instance=ExtResource("1_bgap5")]
 
 [node name="StaticBody3D" parent="Static_Body" index="0"]
+visible = false
 collision_layer = 64
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body"]

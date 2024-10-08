@@ -29,7 +29,6 @@ mesh = SubResource("BoxMesh_jx6io")
 
 [node name="Ceiling" type="Node3D" parent="."]
 transform = Transform3D(-1.5, 8.74228e-09, 0, -1.31134e-07, -0.1, 0, 0, 0, 1.5, 0, 3, 0)
-visible = false
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Ceiling"]
 
