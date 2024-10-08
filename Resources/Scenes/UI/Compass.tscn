@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://jj7vdbufnwu8"]
 
-[ext_resource type="Script" path="res://Resources/Scenes/UI/Compass.cs" id="1_riie3"]
+[ext_resource type="Script" path="res://Resources/Code/UI/Compass.cs" id="1_ig2a5"]
 [ext_resource type="Texture2D" uid="uid://djge40ugr0w03" path="res://Resources/Art/UI/CompassBody.png" id="1_vvohn"]
 [ext_resource type="Texture2D" uid="uid://dcn6iyf5pihqq" path="res://Resources/Art/UI/CompassArrow.png" id="2_c24vn"]
 
 [node name="Compass" type="Node2D"]
-script = ExtResource("1_riie3")
+script = ExtResource("1_ig2a5")
 
 [node name="Body" type="Sprite2D" parent="."]
 position = Vector2(-24, 43)
