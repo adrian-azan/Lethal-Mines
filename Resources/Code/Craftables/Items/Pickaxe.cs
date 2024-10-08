@@ -14,11 +14,20 @@ public partial class Pickaxe : Item
 
         if (frontRayCast.IsColliding())
         {
-            var other = Tools.GetRoot<Block>(frontRayCast.GetCollider() as Node3D) as Block;
+            Ore possibleOre = Tools.GetRoot<Ore>(frontRayCast.GetCollider() as Node3D) as Ore;
 
-            if (other is Block)
+            if (possibleOre is Ore)
             {
-                other.TakeDamage(50);
+                possibleOre.TakeDamage(50);
+                return;
+            }
+
+            Block possibleBlock = Tools.GetRoot<Block>(frontRayCast.GetCollider() as Node3D) as Block;
+
+            if (possibleBlock is Block)
+            {
+                possibleBlock.TakeDamage(50);
+                return;
             }
         }
     }
