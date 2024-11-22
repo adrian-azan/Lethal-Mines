@@ -97,6 +97,12 @@ public partial class Player : Node3D
         {
             _hotBar.Drop();
         }
+
+        if (Input.IsActionJustPressed("Flashlight"))
+        {
+            var flashlight = (GetNode("Rigid_Body/PlayerCamera/Lantern") as OmniLight3D);
+            flashlight.Visible = !flashlight.Visible;
+        }
     }
 
     public override void _PhysicsProcess(double delta)

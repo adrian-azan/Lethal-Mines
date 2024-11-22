@@ -24,9 +24,9 @@ _data = {
 }
 
 [sub_resource type="Environment" id="Environment_1sar3"]
-fog_light_color = Color(0.12005, 0.134382, 0.156915, 1)
-fog_light_energy = 0.5
-fog_density = 0.05
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.2
 
 [node name="PlayerCamera" type="Node3D"]
 script = ExtResource("1_wv6nu")
@@ -39,6 +39,12 @@ transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.0005163
 libraries = {
 "": SubResource("AnimationLibrary_xp2px")
 }
+
+[node name="Lantern" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0495175, 0, 0)
+light_color = Color(0.705882, 0.639216, 0.145098, 1)
+light_energy = 2.0
+light_size = 0.234
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1sar3")

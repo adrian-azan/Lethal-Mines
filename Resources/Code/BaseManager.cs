@@ -11,7 +11,7 @@ public partial class BaseManager : Node
     {
         _player = GetNode<Player>("../");
         _baseHatch = GetNode<Node3D>("BaseHatch");
-        _baseSpawn = GetNode<Node3D>("SmallBase/SPAWN");
+        _baseSpawn = GetNode<Node3D>("Inside/SPAWN");
     }
 
     public Vector3 GetInsideBaseLocation()

@@ -7,6 +7,9 @@ public partial class PlayerCamera : Node3D
     [Export(PropertyHint.Range, "0,1,0.05")]
     private float _bobbingWeight = 1.0f;
 
+    [Export]
+    private bool WorldEnvironment = false;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
