@@ -7,7 +7,7 @@
 material = ExtResource("2_0k1ia")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52m5i"]
-albedo_color = Color(0.054902, 0.462745, 0.960784, 1)
+albedo_color = Color(0.781194, 0.000659199, 0.815286, 1)
 
 [node name="Clay" instance=ExtResource("1_p7h32")]
 

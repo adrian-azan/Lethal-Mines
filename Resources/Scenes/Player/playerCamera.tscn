@@ -31,6 +31,7 @@ fog_density = 0.2
 [node name="PlayerCamera" type="Node3D"]
 script = ExtResource("1_wv6nu")
 _bobbingWeight = 0.35
+FullLight = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
@@ -48,3 +49,6 @@ light_size = 0.234
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1sar3")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.72393, 0)

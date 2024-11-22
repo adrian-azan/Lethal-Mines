@@ -64,6 +64,18 @@ public partial class MapGenerator : Node3D
         var centerX = _Width / 2 + Position.X;
         var centerY = _Height / 2 + Position.Z;
 
+        var file = FileAccess.Open("MAP DEBUG.txt", FileAccess.ModeFlags.Write);
+        String output = "";
+        for (int i = 0; i < _Width; i++)
+        {
+            for (int j = 0; j < _Height; j++)
+            {
+                output += _Map[i, j];
+            }
+            output += "\n";
+        }
+        file.StoreString(output);
+
         for (int i = 0; i < _Width; i++)
         {
             for (int j = 0; j < _Height; j++)
@@ -75,7 +87,7 @@ public partial class MapGenerator : Node3D
                         piece = _layerOne.Instantiate<Node3D>();
                     else if (_Map[i, j] == (int)BlockType.Clay)
                         piece = _layerTwo.Instantiate<Node3D>();
-                    else if (_Map[i, j] == (int)BlockType.Air)
+                    else if (_Map[i, j] == (int)BlockType.Dirt)
                         piece = _layerThree.Instantiate<Node3D>();
 
                     if (piece != null)
