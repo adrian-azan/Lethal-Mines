@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Resources/Code/BaseManager.cs" id="6_i468y"]
 [ext_resource type="PackedScene" uid="uid://y31t5d75viyo" path="res://Resources/Scenes/UI/StaminaBar.tscn" id="6_meluy"]
 [ext_resource type="PackedScene" uid="uid://chbsi2s83bree" path="res://Resources/Scenes/UI/HotBar.tscn" id="7_5xddh"]
-[ext_resource type="PackedScene" uid="uid://6pa0gmqdf4f8" path="res://Resources/Scenes/Environment/Bases/MediumBase.tscn" id="7_8mjsp"]
+[ext_resource type="PackedScene" uid="uid://q6gascgbfsdw" path="res://Resources/Scenes/Environment/Bases/SmallBase.tscn" id="7_pnt44"]
 [ext_resource type="PackedScene" uid="uid://vdxdooeauqvv" path="res://Resources/Scenes/Items/Objects/Stations/BaseHatch.tscn" id="8_y4n6b"]
 [ext_resource type="PackedScene" uid="uid://cxcdegy40i5b0" path="res://Resources/Scenes/UI/Inventory.tscn" id="9_qgwc6"]
 [ext_resource type="PackedScene" uid="uid://c1pbpgp2k2138" path="res://Resources/Scenes/Player/PlayerMouse.tscn" id="10_44mle"]
@@ -64,7 +64,7 @@ debug_shape_custom_color = Color(0, 0.882353, 0, 1)
 [node name="Base" type="Node3D" parent="."]
 script = ExtResource("6_i468y")
 
-[node name="Inside" parent="Base" instance=ExtResource("7_8mjsp")]
+[node name="Inside" parent="Base" instance=ExtResource("7_pnt44")]
 
 [node name="BaseHatch" parent="Base" instance=ExtResource("8_y4n6b")]
 

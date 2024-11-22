@@ -31,7 +31,6 @@ fog_density = 0.2
 [node name="PlayerCamera" type="Node3D"]
 script = ExtResource("1_wv6nu")
 _bobbingWeight = 0.35
-WorldEnvironmentActive = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
