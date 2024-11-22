@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class CraftingTable : Item, IConsumable, IStation
+public partial class CraftingTable : Node3D, IConsumable, IStation
 {
-    public override void Use(Player player)
+    public void Use(Player player)
     {
         player._inventory.AddItem(Paths.Items.UI_Data.PICKAXE);
     }

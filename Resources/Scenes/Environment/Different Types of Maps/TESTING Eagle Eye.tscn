@@ -34,10 +34,6 @@ light_color = Color(0.92549, 0.686275, 0.313726, 1)
 [node name="SmallMap" parent="." instance=ExtResource("1_lsr0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00694275, 0.259216, -0.443634)
 generationLimit = 1
-FlipY = false
-_CoreCenterX = 0
-_CoreCenterY = 0
-_CoreCenterRadius = 0
 
 [editable path="PlayerView/InvisibleFloor"]
 [editable path="PlayerView/InvisibleFloor/Static_Body"]

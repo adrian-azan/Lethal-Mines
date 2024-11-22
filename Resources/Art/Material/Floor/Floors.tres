@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://df1g1ranmvcgk" path="res://Resources/Art/Material/Floor/Floors_heightmap.png" id="4"]
 
 [resource]
+albedo_color = Color(0.328017, 0.122457, 0.12665, 1)
 albedo_texture = ExtResource("1")
 roughness_texture = ExtResource("2")
 roughness_texture_channel = 1

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://vx4by0kbyj50"]
+[gd_scene load_steps=6 format=3 uid="uid://vx4by0kbyj50"]
 
 [ext_resource type="PackedScene" uid="uid://dlobu3s0v0pwb" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_vdga7"]
 [ext_resource type="Material" uid="uid://b0ds62si3kqbq" path="res://Resources/Art/Material/Blocks/Coal/Coal.tres" id="2_6uicc"]
+[ext_resource type="Script" path="res://Resources/Code/Ore.cs" id="2_he5iy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_abklu"]
 material = ExtResource("2_6uicc")
@@ -10,6 +11,7 @@ material = ExtResource("2_6uicc")
 albedo_color = Color(0.800794, 0.781487, 0.0850019, 1)
 
 [node name="Coal" instance=ExtResource("1_vdga7")]
+script = ExtResource("2_he5iy")
 
 [node name="MeshInstance3D" parent="Static_Body" index="1"]
 transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0.01)

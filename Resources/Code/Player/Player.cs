@@ -5,6 +5,8 @@ public partial class Player : Node3D
     private PlayerCamera _camera;
     private PlayerMouse _mouse;
 
+    private BaseManager _baseManager;
+
     public PlayerState _State;
 
     private RigidBody3D _rigidBody;
@@ -50,13 +52,14 @@ public partial class Player : Node3D
 
         _mouse = GetNode<PlayerMouse>("UI/PlayerMouse");
 
+        _baseManager = GetNode<BaseManager>("Base");
+
         _rotation = new Vector2();
         Input.MouseMode = Input.MouseModeEnum.Captured;
 
         // _reachVisual = GetNode<DrawLine3D>("/root/DrawLine");
         _rayCast = GetNode<RayCast3D>("Rigid_Body/PlayerCamera/RayCast3D");
 
-        //  tempTest = GetParent().GetNode("ToBePlacedBlock") as Node3D;
         _gridMap = GetParent().GetNode("GridMap") as WorldGrid;
 
         _inventory.AddItem(Paths.Items.UI_Data.PICKAXE);
@@ -93,6 +96,12 @@ public partial class Player : Node3D
         if (Input.IsActionJustPressed("Throw"))
         {
             _hotBar.Drop();
+        }
+
+        if (Input.IsActionJustPressed("Flashlight"))
+        {
+            var flashlight = (GetNode("Rigid_Body/PlayerCamera/Lantern") as OmniLight3D);
+            flashlight.Visible = !flashlight.Visible;
         }
     }
 
@@ -225,6 +234,11 @@ public partial class Player : Node3D
         return _RigidBody.GetPosition();
     }
 
+    public Vector3 GetGlobalPosition()
+    {
+        return _RigidBody.GetGlobalPosition();
+    }
+
     public Vector3 GetRotation()
     {
         return _RigidBody.GetRotation();
@@ -238,5 +252,15 @@ public partial class Player : Node3D
         }
 
         return -Vector3.Inf;
+    }
+
+    public void EnterBase()
+    {
+        _RigidBody.SetGlobalPosition(_baseManager.GetInsideBaseLocation());
+    }
+
+    public void ExitBase()
+    {
+        _RigidBody.SetGlobalPosition(_baseManager.GetOutsideBaseLocation());
     }
 }

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://clpfsb58k5a5s"]
+
+[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_vx1i5"]
+[ext_resource type="Texture2D" uid="uid://qunsisjp2ipn" path="res://Resources/Art/Material/Blocks/Coal/Coal_UI.png" id="2_qll6k"]
+
+[node name="Coal" instance=ExtResource("1_vx1i5")]
+_name = "Coal"
+_description = "Sooty"
+_stackable = true
+
+[node name="Icon" parent="." index="0"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_qll6k")

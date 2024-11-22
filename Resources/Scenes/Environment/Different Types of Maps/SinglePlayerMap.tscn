@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0e2mcw67w68c"]
+
+[ext_resource type="PackedScene" uid="uid://oghw4nwa7o2" path="res://Resources/Scenes/Environment/Different Types of Maps/SmallMap.tscn" id="1_veeg7"]
+[ext_resource type="PackedScene" uid="uid://bjn7smkl2qxwq" path="res://Resources/Scenes/Player/player.tscn" id="2_mi6lr"]
+
+[node name="SinglePlayerMap" type="Node3D"]
+
+[node name="SmallMap" parent="." instance=ExtResource("1_veeg7")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0026354, 0.999997, 0, -0.999997, -0.0026354, 0, 117, 0)
+light_color = Color(0.627221, 0.331889, 0.275252, 1)
+light_energy = 0.1
+
+[node name="Player" parent="." instance=ExtResource("2_mi6lr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.3849, 0)

@@ -7,11 +7,17 @@ public partial class PlayerCamera : Node3D
     [Export(PropertyHint.Range, "0,1,0.05")]
     private float _bobbingWeight = 1.0f;
 
+    [Export]
+    private bool WorldEnvironmentActive = false;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _animationPlayer = GetNode<AnimationPlayer>("Camera3D/AnimationPlayer");
         _animationPlayer.Play("player_headBob");
+
+        if (WorldEnvironmentActive == false)
+            GetNode<WorldEnvironment>("WorldEnvironment").Environment.FogDensity = 0;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
