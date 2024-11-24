@@ -43,6 +43,7 @@ public partial class DiffusionGenerator : MapGenerator
 
         _resources = new List<ResourceDetails>();
         _resources.Add(new ResourceDetails(BlockType.Coal, .02f, 6));
+        _resources.Add(new ResourceDetails(BlockType.Iron, .01f, 3));
 
         SeedNoise();
         BuildWorld();

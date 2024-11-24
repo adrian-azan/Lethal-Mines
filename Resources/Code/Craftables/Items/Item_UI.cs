@@ -49,6 +49,11 @@ public partial class Item_UI : Node2D
     //TODO: Possibly override the comparison operator
     //
 
+    public int Amount()
+    {
+        return _amount.GetMeta("amount").AsInt32();
+    }
+
     public void Use(Player player)
     {
     }

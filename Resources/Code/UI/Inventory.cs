@@ -7,6 +7,7 @@ public partial class Inventory : Control
 {
     private Array<Slot> _backpack;
     private HotBar _hotBar;
+    private Lantern _lantern;
 
     private Dictionary<string, Item> _equipment;
 
@@ -15,6 +16,7 @@ public partial class Inventory : Control
         _backpack = Variant.From(GetNode("GridContainer").GetChildren()).AsGodotArray<Slot>();
         _hotBar = GetParent().GetNode("HotBar") as HotBar;
         _equipment = new Dictionary<string, Item>();
+        _lantern = GetNode<Lantern>("Lantern");
     }
 
     public bool AddItem(string newItem)
@@ -80,6 +82,11 @@ public partial class Inventory : Control
             }
         }
         return null;
+    }
+
+    public bool LanternFueled()
+    {
+        return _lantern.Fueled();
     }
 
     public void Use(Player player)

@@ -27,6 +27,7 @@ public static class Paths
             public const string STONE = "res://Resources/Scenes/Items/Objects/Blocks/Stone.tscn";
 
             public const string COAL = "res://Resources/Scenes/Items/Objects/Blocks/Coal.tscn";
+            public const string IRON = "res://Resources/Scenes/Items/Objects/Blocks/Iron.tscn";
             public const string CLAY = "res://Resources/Scenes/Items/Objects/Blocks/Clay.tscn";
             public const string DIRT = "res://Resources/Scenes/Items/Objects/Blocks/Dirt.tscn";
         }

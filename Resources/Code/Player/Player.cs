@@ -98,7 +98,7 @@ public partial class Player : Node3D
             _hotBar.Drop();
         }
 
-        if (Input.IsActionJustPressed("Flashlight"))
+        if (Input.IsActionJustPressed("Flashlight") && _inventory.LanternFueled())
         {
             var flashlight = (GetNode("Rigid_Body/PlayerCamera/Lantern") as OmniLight3D);
             flashlight.Visible = !flashlight.Visible;

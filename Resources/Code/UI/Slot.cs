@@ -37,6 +37,12 @@ public partial class Slot : Control
         }
     }
 
+    public int Amount()
+    {
+        if (_item == null) { return 0; }
+        return _item.Amount();
+    }
+
     public void AddItem(string newItem)
     {
         if (_item != null && _item._stackable)
