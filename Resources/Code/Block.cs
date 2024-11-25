@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class Block : Node3D
 {
@@ -14,11 +15,14 @@ public partial class Block : Node3D
         {
             //Meshes imported from crocotile are called default and mesh is called Name of the object
             //If I figure out how to change that this will change too
-            _mesh = GetNode<Node>("Static_Body/default")?.GetChild(0) as MeshInstance3D;
-            if (_mesh == null) { return; }
+            var blockModel = GetNode<Node>("Static_Body/default");
+            if (blockModel == null) { GD.PushError("No Model " + this.Name); return; }
+
+            _mesh = blockModel.GetChild(0) as MeshInstance3D;
+            if (_mesh == null) { GD.PushError("No Model " + this.Name); return; }
             _originalScale = _mesh.Scale;
         }
-        catch
+        catch (Exception e)
         {
             GD.PushError("FAILED: " + this.Name + " Ready()");
         }

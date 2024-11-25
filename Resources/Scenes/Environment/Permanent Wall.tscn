@@ -21,7 +21,10 @@ collision_mask = 0
 [node name="MeshInstance3D" parent="Static_Body/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body"]
+[node name="default" type="Node3D" parent="Static_Body"]
+
+[node name="Body" type="MeshInstance3D" parent="Static_Body/default"]
 mesh = SubResource("BoxMesh_tq2hi")
+skeleton = NodePath("../..")
 
 [editable path="Static_Body"]
