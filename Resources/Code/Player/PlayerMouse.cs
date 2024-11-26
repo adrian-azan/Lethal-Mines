@@ -28,6 +28,17 @@ public partial class PlayerMouse : Node2D
     //TODO: Should check if item is stackable and equal
     public void Swap(Slot incomingSlot)
     {
+        if (_item != null && incomingSlot._item != null)
+        {
+            if (incomingSlot._item.GetName() == _item.GetName() && _item._stackable)
+            {
+                incomingSlot.AddItem(_item.GetName(), _item.Amount());
+                _item.QueueFree();
+                _item = (ResourceLoader.Load("res://Resources/Scenes/Items/UI_Data/Item_UI.tscn") as PackedScene).Instantiate() as Item_UI;
+                return;
+            }
+        }
+
         //Reparent
         var incomingItem = incomingSlot._item;
         incomingItem?.Reparent(this);

@@ -49,14 +49,14 @@ public partial class Slot : Control
         return _item.Amount();
     }
 
-    public void AddItem(string newItem)
+    public void AddItem(string newItem, int quantity = 1)
     {
         if (WhiteListed(newItem) == false)
         { return; }
 
         if (_item != null && _item._stackable)
         {
-            _item++;
+            _item += quantity;
         }
         else
         {
