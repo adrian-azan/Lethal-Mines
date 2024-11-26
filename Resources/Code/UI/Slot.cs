@@ -8,6 +8,9 @@ public partial class Slot : Control
 
     private PlayerMouse _playerMouse;
 
+    [Export]
+    private String? _whiteList;
+
     public override void _Ready()
     {
         _item = null;
@@ -32,7 +35,10 @@ public partial class Slot : Control
         {
             if (eventMouseButton.ButtonMask == MouseButtonMask.Left)
             {
-                _playerMouse.Swap(this);
+                if (_playerMouse._item == null)
+                    _playerMouse.Swap(this);
+                else if (WhiteListed(_playerMouse.GetItemName()) == true)
+                    _playerMouse.Swap(this);
             }
         }
     }
@@ -45,6 +51,9 @@ public partial class Slot : Control
 
     public void AddItem(string newItem)
     {
+        if (WhiteListed(newItem) == false)
+        { return; }
+
         if (_item != null && _item._stackable)
         {
             _item++;
@@ -77,5 +86,15 @@ public partial class Slot : Control
     public bool IsEmpty()
     {
         return _item == null;
+    }
+
+    public bool WhiteListed(String itemName)
+    {
+        if (_whiteList == null)
+            return true;
+
+        if (itemName.Contains(_whiteList) == false)
+            return false;
+        return true;
     }
 }

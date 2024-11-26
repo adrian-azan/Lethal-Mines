@@ -63,6 +63,7 @@ public partial class Player : Node3D
         _gridMap = GetParent().GetNode("GridMap") as WorldGrid;
 
         _inventory.AddItem(Paths.Items.UI_Data.PICKAXE);
+        _inventory.AddItem(Paths.Items.UI_Data.COAL);
     }
 
     public void _ProcessInput()
@@ -102,6 +103,13 @@ public partial class Player : Node3D
         {
             var flashlight = (GetNode("Rigid_Body/PlayerCamera/Lantern") as OmniLight3D);
             flashlight.Visible = !flashlight.Visible;
+            GetNode<Lantern>("UI/Inventory/Lantern").LightsOn(flashlight.Visible);
+        }
+        else if (_inventory.LanternFueled() == false)
+        {
+            var flashlight = (GetNode("Rigid_Body/PlayerCamera/Lantern") as OmniLight3D);
+            flashlight.Visible = false;
+            GetNode<Lantern>("UI/Inventory/Lantern").LightsOn(flashlight.Visible);
         }
     }
 

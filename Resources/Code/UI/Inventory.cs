@@ -76,7 +76,7 @@ public partial class Inventory : Control
     {
         foreach (var slot in _backpack)
         {
-            if (slot.IsEmpty())
+            if (slot.IsEmpty() && slot.WhiteListed(itemName))
             {
                 return slot;
             }

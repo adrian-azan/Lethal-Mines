@@ -17,6 +17,8 @@ public static class Paths
             public const string STONE = "res://Resources/Scenes/Items/UI_Data/Stone.tscn";
 
             public const string BASE_HATCH = "res://Resources/Scenes/Items/UI_Data/BaseHatch.tscn";
+            public const string COAL = "res://Resources/Scenes/Items/UI_Data/Blocks/Coal.tscn";
+            public const string IRON = "res://Resources/Scenes/Items/UI_Data/Blocks/Iron.tscn";
         }
 
         public static class Objects

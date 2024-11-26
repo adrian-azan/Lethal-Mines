@@ -20,6 +20,11 @@ public partial class PlayerMouse : Node2D
         }
     }
 
+    public String GetItemName()
+    {
+        return _item.GetName();
+    }
+
     //TODO: Should check if item is stackable and equal
     public void Swap(Slot incomingSlot)
     {

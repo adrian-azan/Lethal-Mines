@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d1cr0obit7sta" path="res://Resources/Art/Material/Blocks/Clay/Clay_UI.png" id="2_60upv"]
 
 [node name="Clay" instance=ExtResource("1_wqejp")]
+_name = "Clay"
 _stackable = true
 
 [node name="Icon" parent="." index="0"]
