@@ -34,12 +34,42 @@ public partial class Item_UI : Node2D
         {
             _amount.Show();
         }
+        else
+            _amount.Hide();
+    }
+
+    public void Clear()
+    {
+        _sprite.Texture = null;
+        _amount.SetMeta("amount", 1);
+        _stackable = false;
+        _name = "";
     }
 
     public static Item_UI operator ++(Item_UI item)
     {
         int amount = item._amount.GetMeta("amount").AsInt32();
         item._amount.SetMeta("amount", amount + 1);
+
+        item._amount.Text = item._amount.GetMeta("amount").AsString();
+
+        return item;
+    }
+
+    public static Item_UI operator --(Item_UI item)
+    {
+        int amount = item._amount.GetMeta("amount").AsInt32();
+        item._amount.SetMeta("amount", amount - 1);
+
+        item._amount.Text = item._amount.GetMeta("amount").AsString();
+
+        return item;
+    }
+
+    public static Item_UI operator +(Item_UI item, int quantity)
+    {
+        int amount = item._amount.GetMeta("amount").AsInt32();
+        item._amount.SetMeta("amount", amount + quantity);
 
         item._amount.Text = item._amount.GetMeta("amount").AsString();
 

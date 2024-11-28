@@ -34,7 +34,7 @@ public partial class PlayerMouse : Node2D
             {
                 incomingSlot.AddItem(_item.GetName(), _item.Amount());
                 _item.QueueFree();
-                _item = (ResourceLoader.Load("res://Resources/Scenes/Items/UI_Data/Item_UI.tscn") as PackedScene).Instantiate() as Item_UI;
+                _item = null;
                 return;
             }
         }

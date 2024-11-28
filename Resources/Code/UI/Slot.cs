@@ -73,6 +73,21 @@ public partial class Slot : Control
         }
     }
 
+    public void RemoveItem(int quantity = 1)
+    {
+        if (_item == null) return;
+
+        if (_item._stackable && _item.Amount() > 1)
+        {
+            _item--;
+        }
+        else
+        {
+            _item.QueueFree();
+            _item = (ResourceLoader.Load("res://Resources/Scenes/Items/UI_Data/Item_UI.tscn") as PackedScene).Instantiate() as Item_UI;
+        }
+    }
+
     public void DeHighlight()
     {
         _border.Texture = ResourceLoader.Load("res://Resources/Art/UI/Slot.png") as Texture2D;
@@ -81,6 +96,11 @@ public partial class Slot : Control
     public void Highlight()
     {
         _border.Texture = ResourceLoader.Load("res://Resources/Art/UI/Slot-Highlighted.png") as Texture2D;
+    }
+
+    public string GetItemName()
+    {
+        return IsEmpty() ? "" : _item.GetName();
     }
 
     public bool IsEmpty()
