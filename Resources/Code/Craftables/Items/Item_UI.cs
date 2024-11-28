@@ -90,6 +90,6 @@ public partial class Item_UI : Node2D
 
     public string GetName()
     {
-        return _name == null ? "Name Not Implemented" : Name;
+        return _name == null || _name.Contains("Node") ? "Name Not Implemented" : Name;
     }
 }

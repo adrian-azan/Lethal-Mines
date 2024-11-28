@@ -3,6 +3,19 @@ using System;
 
 public static class Paths
 {
+    public static string MakeScenePath(string sceneName)
+    {
+        return string.Format("res://Resources/Scenes/Items/UI_Data/{0}.tscn", sceneName);
+    }
+
+    public static string GetNameFromScenePath(string scenePath)
+    {
+        int start = scenePath.RFind("/") + 1;
+        int end = scenePath.RFind(".");
+
+        return scenePath.Substr(start, end - start);
+    }
+
     public static class Scenes
     {
         public const string DROP = "res://Resources/Scenes/Items/Objects/Blocks/Drop.tscn";

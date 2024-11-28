@@ -41,6 +41,16 @@ public partial class Player : Node3D
 
     private IStation _inUseStation;
 
+    public void Debug_InventorySetup()
+    {
+        _inventory.AddItem(Paths.Items.UI_Data.PICKAXE);
+        for (int i = 0; i < 3; i++)
+        {
+            _inventory.AddItem(Paths.Items.UI_Data.COAL);
+            _inventory.AddItem(Paths.Items.UI_Data.IRON);
+        }
+    }
+
     public override void _Ready()
     {
         _rigidBody = GetNode<RigidBody3D>("Rigid_Body/RigidBody3D");
@@ -62,8 +72,7 @@ public partial class Player : Node3D
 
         _gridMap = GetParent().GetNode("GridMap") as WorldGrid;
 
-        _inventory.AddItem(Paths.Items.UI_Data.PICKAXE);
-        _inventory.AddItem(Paths.Items.UI_Data.COAL);
+        Debug_InventorySetup();
     }
 
     public void _ProcessInput()

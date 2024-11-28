@@ -62,6 +62,7 @@ public partial class Slot : Control
         {
             _item?.QueueFree();
             _item = (ResourceLoader.Load(newItem) as PackedScene).Instantiate() as Item_UI;
+            _item._name = Paths.GetNameFromScenePath(newItem);
 
             if (_item == null)
                 GD.PushError("Failed to Instantiate: " + newItem);

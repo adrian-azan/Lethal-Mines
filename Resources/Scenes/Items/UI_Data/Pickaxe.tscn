@@ -5,6 +5,7 @@
 
 [node name="Pickaxe" instance=ExtResource("1_hbrqm")]
 z_index = 100
+_stackable = true
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("2_rywed")
