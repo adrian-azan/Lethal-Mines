@@ -1,26 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://cts8peqtgp0ts"]
+[gd_scene load_steps=7 format=3 uid="uid://bsgmhpfuosr4f"]
 
-[ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_7st72"]
-[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_dsypi"]
-[ext_resource type="PackedScene" uid="uid://befy5v8wyjylo" path="res://Resources/Art/Models/Dirt.gltf" id="3_jf0fh"]
+[ext_resource type="Script" path="res://Resources/Code/Ore.cs" id="2_4g1g8"]
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_sn8hl"]
+[ext_resource type="PackedScene" uid="uid://bjh6gktr5csd7" path="res://Resources/Art/Models/Iron.gltf" id="3_koien"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_61dlv"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdodh"]
-albedo_color = Color(0.213084, 0.750072, 0.70112, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1bkr"]
+albedo_color = Color(0.054902, 0, 0.968627, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4pdq"]
 
-[node name="Dirt" type="Node3D"]
-script = ExtResource("1_7st72")
+[node name="Iron" type="Node3D"]
+script = ExtResource("2_4g1g8")
 
-[node name="Static_Body" parent="." instance=ExtResource("2_dsypi")]
+[node name="Static_Body" parent="." instance=ExtResource("2_sn8hl")]
 
 [node name="StaticBody3D" parent="Static_Body" index="0"]
 visible = false
 collision_layer = 64
 
-[node name="default" parent="Static_Body" instance=ExtResource("3_jf0fh")]
+[node name="default" parent="Static_Body" instance=ExtResource("3_koien")]
 transform = Transform3D(0.5, 0, 0, 0, 0.75, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="DEBUG_EAGLEVIEW" type="Node3D" parent="."]
@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 2, 0)
 transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
 mesh = SubResource("PlaneMesh_61dlv")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_cdodh")
+surface_material_override/0 = SubResource("StandardMaterial3D_u1bkr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2"]
 shape = SubResource("BoxShape3D_y4pdq")

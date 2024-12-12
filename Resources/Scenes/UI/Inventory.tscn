@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxcdegy40i5b0"]
+[gd_scene load_steps=6 format=3 uid="uid://cxcdegy40i5b0"]
 
 [ext_resource type="PackedScene" uid="uid://cmdush6yl7adw" path="res://Resources/Scenes/UI/Slot.tscn" id="1_1d8ay"]
 [ext_resource type="Script" path="res://Resources/Code/UI/Inventory.cs" id="1_mhl1e"]
+[ext_resource type="Script" path="res://Resources/Code/UI/Lantern.cs" id="3_g65lj"]
+[ext_resource type="PackedScene" uid="uid://ciac4gm32qwjg" path="res://Resources/Scenes/Items/UI_Data/viewPortIcon.tscn" id="4_w7e16"]
+[ext_resource type="PackedScene" uid="uid://dtb1al2aqk5ui" path="res://Resources/Art/Models/Lantern.gltf" id="5_vgofa"]
 
 [node name="Inventory" type="Control"]
 visible = false
@@ -30,9 +33,11 @@ columns = 3
 
 [node name="Slot" parent="GridContainer" instance=ExtResource("1_1d8ay")]
 layout_mode = 2
+_whiteList = "Iron"
 
 [node name="Slot2" parent="GridContainer" instance=ExtResource("1_1d8ay")]
 layout_mode = 2
+_whiteList = "Coal"
 
 [node name="Slot3" parent="GridContainer" instance=ExtResource("1_1d8ay")]
 layout_mode = 2
@@ -51,3 +56,48 @@ layout_mode = 2
 
 [node name="Slot8" parent="GridContainer" instance=ExtResource("1_1d8ay")]
 layout_mode = 2
+
+[node name="Lantern" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = 111.0
+offset_right = 32.0
+offset_bottom = 151.0
+script = ExtResource("3_g65lj")
+
+[node name="Fuel" parent="Lantern" instance=ExtResource("1_1d8ay")]
+offset_left = 350.0
+offset_top = 113.0
+offset_right = 450.0
+offset_bottom = 213.0
+_whiteList = "Coal"
+
+[node name="SubViewportContainer" parent="Lantern" instance=ExtResource("4_w7e16")]
+layout_mode = 0
+offset_left = 330.0
+offset_top = -6.0
+offset_right = 842.0
+offset_bottom = 506.0
+
+[node name="SubViewport" parent="Lantern/SubViewportContainer" index="0"]
+render_target_update_mode = 0
+
+[node name="Item" parent="Lantern/SubViewportContainer/SubViewport/Camera3D" index="1"]
+transform = Transform3D(0.939692, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="default" parent="Lantern/SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("5_vgofa")]
+
+[node name="OmniLight3D" parent="Lantern/SubViewportContainer/SubViewport/Camera3D/Lights" index="0"]
+transform = Transform3D(0.999043, 9.97348e-16, 0.0437364, -0.0437364, -4.37114e-08, 0.999043, 1.91178e-09, -1, -4.36696e-08, 0.266147, -0.0953186, -0.139151)
+light_color = Color(0.868168, 0.503348, 0.940819, 1)
+light_energy = 3.935
+omni_range = 12.897
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lantern/SubViewportContainer/SubViewport/Camera3D/Lights" index="1"]
+transform = Transform3D(0.999043, 9.97348e-16, 0.0437364, -0.0437364, -4.37114e-08, 0.999043, 1.91178e-09, -1, -4.36696e-08, 0.266147, -6.38354, 1.03462)
+light_color = Color(0.778322, 0.660061, 0.296397, 1)
+light_energy = 3.935
+light_size = 3.0
+omni_range = 12.897
+
+[editable path="Lantern/SubViewportContainer"]

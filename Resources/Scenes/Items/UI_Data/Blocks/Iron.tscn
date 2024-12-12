@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpksohvypk6ur"]
+
+[ext_resource type="Script" path="res://Resources/Code/Craftables/Items/Item_UI.cs" id="1_kcjkx"]
+[ext_resource type="Texture2D" uid="uid://dcn6iyf5pihqq" path="res://Resources/Art/UI/CompassArrow.png" id="2_jl5b4"]
+[ext_resource type="PackedScene" uid="uid://ciac4gm32qwjg" path="res://Resources/Scenes/Items/UI_Data/viewPortIcon.tscn" id="3_ajivm"]
+[ext_resource type="PackedScene" uid="uid://bkddpex2gvoun" path="res://Resources/Art/Models/IronIngot.gltf" id="4_wi336"]
+
+[node name="Iron" type="Node2D"]
+script = ExtResource("1_kcjkx")
+_name = "Iron"
+_description = "Hard"
+_stackable = true
+metadata/stackable = false
+
+[node name="Icon2" type="Sprite2D" parent="."]
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("2_jl5b4")
+
+[node name="Amount" type="RichTextLabel" parent="."]
+offset_left = 13.0
+offset_top = 7.0
+offset_right = 53.0
+offset_bottom = 34.0
+scale = Vector2(2, 2)
+theme_override_font_sizes/normal_font_size = 15
+scroll_active = false
+metadata/amount = 0
+
+[node name="SubViewportContainer" parent="." instance=ExtResource("3_ajivm")]
+offset_left = -66.0
+offset_top = -69.0
+offset_right = 446.0
+offset_bottom = 443.0
+
+[node name="Item" parent="SubViewportContainer/SubViewport/Camera3D" index="1"]
+transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="default" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("4_wi336")]
+transform = Transform3D(1, 0, 0, 0, 0.939692, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0)
+
+[editable path="SubViewportContainer"]

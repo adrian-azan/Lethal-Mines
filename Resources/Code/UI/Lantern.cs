@@ -13,7 +13,7 @@ public partial class Lantern : Control
     public override void _Ready()
     {
         _fuel = GetNode<Slot>("Fuel");
-        _lights = Variant.From(GetNode<Node>("SubViewportContainer/SubViewport/Camera3D/default/Lights").GetChildren()).AsGodotArray<OmniLight3D>();
+        _lights = Variant.From(GetNode<Node>("SubViewportContainer/SubViewport/Camera3D/Lights").GetChildren()).AsGodotArray<OmniLight3D>();
     }
 
     public override void _Process(double delta)

@@ -1,21 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://kwtyyxrysppm"]
+[gd_scene load_steps=7 format=3 uid="uid://kwtyyxrysppm"]
 
-[ext_resource type="PackedScene" uid="uid://dlobu3s0v0pwb" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_p7h32"]
-[ext_resource type="Material" path="res://Resources/Art/Material/Blocks/Clay/Clay.tres" id="2_0k1ia"]
+[ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_olh7h"]
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_jtw1j"]
+[ext_resource type="PackedScene" uid="uid://t8f166ggls06" path="res://Resources/Art/Models/Clay.gltf" id="3_dnkr3"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_naheu"]
-material = ExtResource("2_0k1ia")
+[sub_resource type="PlaneMesh" id="PlaneMesh_61dlv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52m5i"]
 albedo_color = Color(0.781194, 0.000659199, 0.815286, 1)
 
-[node name="Clay" instance=ExtResource("1_p7h32")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4pdq"]
 
-[node name="MeshInstance3D" parent="Static_Body" index="1"]
-transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, -0.00193083, 0.003438, -0.000649929)
-mesh = SubResource("BoxMesh_naheu")
+[node name="Clay" type="Node3D"]
+script = ExtResource("1_olh7h")
 
-[node name="MeshInstance3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2" index="0"]
+[node name="Static_Body" parent="." instance=ExtResource("2_jtw1j")]
+
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+visible = false
+collision_layer = 64
+
+[node name="default" parent="Static_Body" instance=ExtResource("3_dnkr3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.75, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="DEBUG_EAGLEVIEW" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="DEBUG_EAGLEVIEW"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2"]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("PlaneMesh_61dlv")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_52m5i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2"]
+shape = SubResource("BoxShape3D_y4pdq")
 
 [editable path="Static_Body"]

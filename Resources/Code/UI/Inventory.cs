@@ -55,8 +55,12 @@ public partial class Inventory : Control
         if (!_equipment.ContainsKey(newItem))
         {
             var physicalItem = (ResourceLoader.Load(physicalItemPath) as PackedScene).Instantiate() as Item;
-            AddChild(physicalItem);
-            _equipment.Add(newItem, physicalItem);
+            if (physicalItem != null)
+            {
+                AddChild(physicalItem);
+                physicalItem.GlobalPosition = new Vector3(0, -40, 0);
+                _equipment.Add(newItem, physicalItem);
+            }
         }
     }
 

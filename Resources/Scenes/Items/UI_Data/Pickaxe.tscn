@@ -1,11 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8046a2ho2vwa"]
+[gd_scene load_steps=5 format=3 uid="uid://c8046a2ho2vwa"]
 
-[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_hbrqm"]
-[ext_resource type="Texture2D" uid="uid://dlh3e13orayfi" path="res://Resources/Art/UI/pickaxe.png" id="2_rywed"]
+[ext_resource type="Script" path="res://Resources/Code/Craftables/Items/Item_UI.cs" id="1_5pafb"]
+[ext_resource type="Texture2D" uid="uid://dcn6iyf5pihqq" path="res://Resources/Art/UI/CompassArrow.png" id="2_2r5jq"]
+[ext_resource type="PackedScene" uid="uid://ciac4gm32qwjg" path="res://Resources/Scenes/Items/UI_Data/viewPortIcon.tscn" id="3_7o50c"]
+[ext_resource type="PackedScene" uid="uid://dyivemjy1foei" path="res://Resources/Art/Models/Pickaxe/pickaxe.gltf" id="4_yilgj"]
 
-[node name="Pickaxe" instance=ExtResource("1_hbrqm")]
+[node name="Pickaxe" type="Node2D"]
 z_index = 100
+script = ExtResource("1_5pafb")
 _stackable = true
+metadata/stackable = false
 
-[node name="Icon" parent="." index="0"]
-texture = ExtResource("2_rywed")
+[node name="Icon2" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_2r5jq")
+
+[node name="Amount" type="RichTextLabel" parent="."]
+offset_left = 13.0
+offset_top = 7.0
+offset_right = 53.0
+offset_bottom = 34.0
+scale = Vector2(2, 2)
+theme_override_font_sizes/normal_font_size = 15
+scroll_active = false
+metadata/amount = 0
+
+[node name="SubViewportContainer" parent="." instance=ExtResource("3_7o50c")]
+offset_left = -63.0
+offset_top = -43.0
+offset_right = 449.0
+offset_bottom = 469.0
+
+[node name="Item" parent="SubViewportContainer/SubViewport/Camera3D" index="1"]
+transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 0, 0, -1.375)
+
+[node name="pickaxe" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("4_yilgj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[editable path="SubViewportContainer"]
