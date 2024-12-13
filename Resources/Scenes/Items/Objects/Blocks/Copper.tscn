@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb0y2rs7udokk"]
+
+[ext_resource type="PackedScene" uid="uid://ckoajsee1ukog" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_40ui6"]
+[ext_resource type="PackedScene" uid="uid://o5mtkax51c1e" path="res://Resources/Art/Models/Copper.gltf" id="2_460ip"]
+[ext_resource type="Script" path="res://Resources/Code/Ore.cs" id="2_mw02d"]
+
+[node name="Copper" instance=ExtResource("1_40ui6")]
+script = ExtResource("2_mw02d")
+
+[node name="default" parent="Static_Body" index="1" instance=ExtResource("2_460ip")]
+transform = Transform3D(0.5, 0, 0, 0, 0.75, 0, 0, 0, 0.5, 0, 0, 0)
+
+[editable path="Static_Body"]

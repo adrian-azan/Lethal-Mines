@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5v71dwe1toih"]
+
+[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_hcr5i"]
+[ext_resource type="PackedScene" uid="uid://o5mtkax51c1e" path="res://Resources/Art/Models/Copper.gltf" id="2_05bgo"]
+
+[node name="Copper" instance=ExtResource("1_hcr5i")]
+_name = "Copper"
+_stackable = true
+
+[node name="Item" parent="SubViewportContainer/SubViewport/Camera3D" index="1"]
+transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="default" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("2_05bgo")]
+
+[editable path="SubViewportContainer"]
