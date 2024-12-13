@@ -1,6 +1,6 @@
 using Godot;
 using Godot.Collections;
-
+using System;
 using System.Linq;
 
 public partial class Inventory : Control
@@ -52,14 +52,22 @@ public partial class Inventory : Control
 
     private void AddToEquipment(string newItem, string physicalItemPath)
     {
-        if (!_equipment.ContainsKey(newItem))
+        if (!_equipment.ContainsKey(newItem) && ResourceLoader.Exists(physicalItemPath))
         {
-            var physicalItem = (ResourceLoader.Load(physicalItemPath) as PackedScene).Instantiate() as Item;
-            if (physicalItem != null)
+            try
             {
-                AddChild(physicalItem);
-                physicalItem.GlobalPosition = new Vector3(0, -40, 0);
-                _equipment.Add(newItem, physicalItem);
+                var physicalItem = (ResourceLoader.Load(physicalItemPath) as PackedScene).Instantiate() as Item;
+
+                if (physicalItem != null)
+                {
+                    AddChild(physicalItem);
+                    physicalItem.GlobalPosition = new Vector3(0, -40, 0);
+                    _equipment.Add(newItem, physicalItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                GD.PushError(String.Format("Failed to add {0} to equipment", Paths.GetNameFromScenePath(newItem)));
             }
         }
     }

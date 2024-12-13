@@ -18,8 +18,8 @@ public partial class Item_UI : Node2D
 
     public override void _Ready()
     {
-        _sprite = GetNode<Sprite2D>("Icon");
-        _amount = GetNode<RichTextLabel>("Amount");
+        _sprite = GetNodeOrNull<Sprite2D>("Icon");
+        _amount = GetNodeOrNull<RichTextLabel>("Amount");
         _amount.SetMeta("amount", 1);
 
         if (!_stackable)

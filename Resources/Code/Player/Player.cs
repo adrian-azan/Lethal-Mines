@@ -48,6 +48,7 @@ public partial class Player : Node3D
         {
             _inventory.AddItem(Paths.Items.UI_Data.COAL);
             _inventory.AddItem(Paths.Items.UI_Data.IRON);
+            _inventory.AddItem(Paths.Items.UI_Data.COPPER);
         }
     }
 
@@ -70,7 +71,7 @@ public partial class Player : Node3D
         // _reachVisual = GetNode<DrawLine3D>("/root/DrawLine");
         _rayCast = GetNode<RayCast3D>("Rigid_Body/PlayerCamera/RayCast3D");
 
-        _gridMap = GetParent().GetNode("GridMap") as WorldGrid;
+        //_gridMap = GetParent().GetNode("GridMap") as WorldGrid;
 
         Debug_InventorySetup();
     }

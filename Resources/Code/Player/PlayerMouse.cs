@@ -8,7 +8,7 @@ public partial class PlayerMouse : Node2D
 
     public override void _Ready()
     {
-        _item = GetNode<Item_UI>("Item-UI");
+        _item = GetNodeOrNull<Item_UI>("Item-UI");
     }
 
     public override void _Process(double delta)
