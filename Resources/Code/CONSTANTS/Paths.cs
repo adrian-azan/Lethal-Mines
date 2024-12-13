@@ -25,26 +25,39 @@ public static class Paths
     {
         public static class UI_Data
         {
+            //Tools
             public const string PICKAXE = "res://Resources/Scenes/Items/UI_Data/Pickaxe.tscn";
 
-            public const string STONE = "res://Resources/Scenes/Items/UI_Data/Stone.tscn";
-
-            public const string BASE_HATCH = "res://Resources/Scenes/Items/UI_Data/BaseHatch.tscn";
+            //Blocks
             public const string COAL = "res://Resources/Scenes/Items/UI_Data/Blocks/Coal.tscn";
+
             public const string IRON = "res://Resources/Scenes/Items/UI_Data/Blocks/Iron.tscn";
+            public const string COPPER = "res://Resources/Scenes/Items/UI_Data/Blocks/Copper.tscn";
+
+            public const string IRON_INGOT = "res://Resources/Scenes/Items/UI_Data/Blocks/IronIngot.tscn";
+            public const string COPPER_INGOT = "res://Resources/Scenes/Items/UI_Data/Blocks/CopperIngot.tscn";
+
+            //Stations
+            public const string BASE_HATCH = "res://Resources/Scenes/Items/UI_Data/BaseHatch.tscn";
         }
 
         public static class Objects
         {
+            //Tools
             public const string PICKAXE = "res://Resources/Scenes/Items/Objects/Pickaxe.tscn";
 
             //BLOCKS
             public const string STONE = "res://Resources/Scenes/Items/Objects/Blocks/Stone.tscn";
 
-            public const string COAL = "res://Resources/Scenes/Items/Objects/Blocks/Coal.tscn";
-            public const string IRON = "res://Resources/Scenes/Items/Objects/Blocks/Iron.tscn";
             public const string CLAY = "res://Resources/Scenes/Items/Objects/Blocks/Clay.tscn";
             public const string DIRT = "res://Resources/Scenes/Items/Objects/Blocks/Dirt.tscn";
+
+            public const string COAL = "res://Resources/Scenes/Items/Objects/Blocks/Coal.tscn";
+            public const string IRON = "res://Resources/Scenes/Items/Objects/Blocks/Iron.tscn";
+            public const string COPPER = "res://Resources/Scenes/Items/Objects/Blocks/Copper.tscn";
+
+            public const string IRON_INGOT = "res://Resources/Scenes/Items/Objects/Blocks/IronIngot.tscn";
+            public const string COPPER_INGOT = "res://Resources/Scenes/Items/Objects/Blocks/CopperIngot.tscn";
         }
     }
 
