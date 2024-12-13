@@ -24,9 +24,10 @@ public partial class FurnaceUI : Control
         _coolDown = GetNode<Timer>("CoolDown");
         _coolDown.OneShot = true;
 
-        _possibleInputs = new Godot.Collections.Array<String> { "Iron" };
+        _possibleInputs = new Godot.Collections.Array<String> { "Iron", "Copper" };
         _possibleFuels = new Godot.Collections.Array<String> { "Coal" };
-        _possibleOutputs = new Dictionary<string, string> { { "Iron", "Pickaxe" } };
+        _possibleOutputs = new Dictionary<string, string> { { "Iron", Paths.Items.UI_Data.IRON_INGOT },
+            {"Copper", Paths.Items.UI_Data.COPPER_INGOT } };
     }
 
     public override void _Process(double delta)
@@ -39,7 +40,7 @@ public partial class FurnaceUI : Control
          * Output must either be empty OR item currently in output is the item you'd get from smelting the input
          */
         if (_coolDown.IsStopped() && (_possibleInputs.Contains(_input.GetItemName()) && _possibleFuels.Contains(_fuel.GetItemName())
-            && (_output._item == null || _possibleOutputs[_input.GetItemName()] == _output.GetItemName())))
+            && (_output._item == null || _possibleOutputs[_input.GetItemName()].Contains(_output.GetItemName()))))
         {
             _coolDown.Start();
             string output = _possibleOutputs[_input.GetItemName()];
@@ -47,7 +48,7 @@ public partial class FurnaceUI : Control
             _input.RemoveItem();
             _fuel.RemoveItem();
 
-            _output.AddItem(Paths.MakeScenePath(output));
+            _output.AddItem(output);
         }
     }
 }

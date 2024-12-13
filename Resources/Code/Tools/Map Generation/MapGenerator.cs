@@ -44,6 +44,7 @@ public partial class MapGenerator : Node3D
         Stone,
         Coal,
         Iron,
+        Copper,
         Dirt,
         Clay
     }
@@ -59,6 +60,7 @@ public partial class MapGenerator : Node3D
         PackedScenes.Add(BlockType.Stone, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.STONE));
         PackedScenes.Add(BlockType.Coal, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COAL));
         PackedScenes.Add(BlockType.Iron, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.IRON));
+        PackedScenes.Add(BlockType.Copper, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COPPER));
         PackedScenes.Add(BlockType.Dirt, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.DIRT));
         PackedScenes.Add(BlockType.Clay, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.CLAY));
     }
