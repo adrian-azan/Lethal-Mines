@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Resources/Code/Craftables/Items/Item_UI.cs" id="1_5pafb"]
 [ext_resource type="Texture2D" uid="uid://dcn6iyf5pihqq" path="res://Resources/Art/UI/CompassArrow.png" id="2_2r5jq"]
 [ext_resource type="PackedScene" uid="uid://ciac4gm32qwjg" path="res://Resources/Scenes/Items/UI_Data/viewPortIcon.tscn" id="3_7o50c"]
-[ext_resource type="PackedScene" uid="uid://dyivemjy1foei" path="res://Resources/Art/Models/Pickaxe/pickaxe.gltf" id="4_yilgj"]
+[ext_resource type="PackedScene" uid="uid://dyivemjy1foei" path="res://Resources/Art/Models/pickaxe.gltf" id="4_yilgj"]
 
 [node name="Pickaxe" type="Node2D"]
 z_index = 100

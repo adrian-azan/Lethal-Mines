@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://clpfsb58k5a5s"]
 
 [ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_vx1i5"]
-[ext_resource type="PackedScene" uid="uid://cvyvnuswehi6h" path="res://Resources/Art/Models/CoalPiece.gltf" id="2_menq8"]
+[ext_resource type="PackedScene" uid="uid://34774nxn4kce" path="res://Resources/Art/Models/CoalPiece.gltf" id="2_menq8"]
 
 [node name="Coal" instance=ExtResource("1_vx1i5")]
 _name = "Coal"

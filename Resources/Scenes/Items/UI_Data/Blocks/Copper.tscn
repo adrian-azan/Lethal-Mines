@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5v71dwe1toih"]
 
 [ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_hcr5i"]
-[ext_resource type="PackedScene" uid="uid://o5mtkax51c1e" path="res://Resources/Art/Models/Copper.gltf" id="2_05bgo"]
+[ext_resource type="PackedScene" uid="uid://qt8eqff3w2c2" path="res://Resources/Art/Models/Copper.gltf" id="2_05bgo"]
 
 [node name="Copper" instance=ExtResource("1_hcr5i")]
 _name = "Copper"

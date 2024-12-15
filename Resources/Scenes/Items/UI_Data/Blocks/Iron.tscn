@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvcue281hhkve"]
 
 [ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_8jbo1"]
-[ext_resource type="PackedScene" uid="uid://bjh6gktr5csd7" path="res://Resources/Art/Models/Iron.gltf" id="2_togj8"]
+[ext_resource type="PackedScene" uid="uid://lqnei71rg6j0" path="res://Resources/Art/Models/Iron.gltf" id="2_togj8"]
 
 [node name="Iron" instance=ExtResource("1_8jbo1")]
 _name = "Iron"

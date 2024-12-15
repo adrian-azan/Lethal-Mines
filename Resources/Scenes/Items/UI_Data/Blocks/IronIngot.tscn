@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Resources/Code/Craftables/Items/Item_UI.cs" id="1_4j1jx"]
 [ext_resource type="Texture2D" uid="uid://dcn6iyf5pihqq" path="res://Resources/Art/UI/CompassArrow.png" id="2_2kdav"]
 [ext_resource type="PackedScene" uid="uid://ciac4gm32qwjg" path="res://Resources/Scenes/Items/UI_Data/viewPortIcon.tscn" id="3_2wb0q"]
-[ext_resource type="PackedScene" uid="uid://bkddpex2gvoun" path="res://Resources/Art/Models/IronIngot.gltf" id="4_wx4eq"]
+[ext_resource type="PackedScene" uid="uid://dhih42cfhgjb6" path="res://Resources/Art/Models/IronIngot.gltf" id="4_wx4eq"]
 
 [node name="IronIngot" type="Node2D"]
 script = ExtResource("1_4j1jx")
