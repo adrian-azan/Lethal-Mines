@@ -7,8 +7,11 @@
 _name = "Iron"
 _stackable = true
 
+[node name="Amount" parent="." index="1"]
+text = "2"
+
 [node name="Item" parent="SubViewportContainer/SubViewport/Camera3D" index="1"]
-transform = Transform3D(0.563816, 0.205212, 0, -0.205212, 0.563816, 0, 0, 0, 0.6, 0, 0, -4)
+transform = Transform3D(0.563816, 0.205212, 0, -0.205212, 0.563816, 0, 0, 0, 0.6, -0.198154, 0.257681, -4.25)
 
 [node name="default" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("2_togj8")]
 

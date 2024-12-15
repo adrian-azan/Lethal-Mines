@@ -3,11 +3,6 @@ using System;
 
 public static class Paths
 {
-    public static string MakeScenePath(string sceneName)
-    {
-        return string.Format("res://Resources/Scenes/Items/UI_Data/{0}.tscn", sceneName);
-    }
-
     public static string GetNameFromScenePath(string scenePath)
     {
         int start = scenePath.RFind("/") + 1;

@@ -38,14 +38,6 @@ public partial class Item_UI : Node2D
             _amount.Hide();
     }
 
-    public void Clear()
-    {
-        _sprite.Texture = null;
-        _amount.SetMeta("amount", 1);
-        _stackable = false;
-        _name = "";
-    }
-
     public static Item_UI operator ++(Item_UI item)
     {
         int amount = item._amount.GetMeta("amount").AsInt32();

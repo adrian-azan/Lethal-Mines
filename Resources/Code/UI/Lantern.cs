@@ -16,10 +16,6 @@ public partial class Lantern : Control
         _lights = Variant.From(GetNode<Node>("SubViewportContainer/SubViewport/Camera3D/Lights").GetChildren()).AsGodotArray<OmniLight3D>();
     }
 
-    public override void _Process(double delta)
-    {
-    }
-
     public void LightsOn(bool on = false)
     {
         foreach (var light in _lights)

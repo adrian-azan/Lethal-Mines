@@ -25,18 +25,20 @@ public partial class PlayerMouse : Node2D
         return _item.GetName();
     }
 
-    //TODO: Should check if item is stackable and equal
     public void Swap(Slot incomingSlot)
     {
-        if (_item != null && incomingSlot._item != null)
+        /*
+         * Both Mouse and Selected Slot have an item
+         * AND
+         * Items are identical and stackable
+         *      Item will be added from mouse to selected slot
+         */
+        if (_item != null && incomingSlot._item != null && incomingSlot._item.GetName() == _item.GetName() && _item._stackable)
         {
-            if (incomingSlot._item.GetName() == _item.GetName() && _item._stackable)
-            {
-                incomingSlot.AddItem(_item.GetName(), _item.Amount());
-                _item.QueueFree();
-                _item = null;
-                return;
-            }
+            incomingSlot.AddItem(_item.GetName(), _item.Amount());
+            _item.QueueFree();
+            _item = null;
+            return;
         }
 
         //Reparent

@@ -64,6 +64,7 @@ public partial class Player : Node3D
         _mouse = GetNode<PlayerMouse>("UI/PlayerMouse");
 
         _baseManager = GetNode<BaseManager>("Base");
+        _baseManager.Init(this);
 
         _rotation = new Vector2();
         Input.MouseMode = Input.MouseModeEnum.Captured;

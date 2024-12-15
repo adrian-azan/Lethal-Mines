@@ -16,16 +16,6 @@ transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 visible = false
 
 [node name="Player" parent="PlayerView" instance=ExtResource("3_tlu8o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.535, 10, 0)
-
-[node name="StaminaBar" parent="PlayerView/Player/UI" index="0"]
-visible = false
-
-[node name="HotBar" parent="PlayerView/Player/UI" index="1"]
-visible = false
-
-[node name="PlayerMouse" parent="PlayerView/Player/UI" index="3"]
-visible = false
 
 [node name="SmallMap" parent="." instance=ExtResource("1_lsr0a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00694275, 0.259216, -0.443634)
@@ -34,6 +24,3 @@ noise = 0.0
 
 [editable path="PlayerView/InvisibleFloor"]
 [editable path="PlayerView/InvisibleFloor/Static_Body"]
-[editable path="PlayerView/Player"]
-[editable path="PlayerView/Player/Rigid_Body"]
-[editable path="PlayerView/Player/Rigid_Body/Area3D"]
