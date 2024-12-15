@@ -7,10 +7,10 @@
 
 [node name="SmallMap" parent="." instance=ExtResource("1_veeg7")]
 noise = 0.7
-_Width = 25
+_Width = 100
 _Height = 100
-_CoreCenterX = 30
-_CoreCenterY = 30
+_CoreCenterX = 50
+_CoreCenterY = 50
 _CoreCenterRadius = 25
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

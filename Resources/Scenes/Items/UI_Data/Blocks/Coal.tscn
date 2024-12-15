@@ -14,4 +14,10 @@ transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 0,
 [node name="default" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("2_menq8")]
 transform = Transform3D(0.12, 0, 0, 0, 0.108757, -0.0507142, 0, 0.0507142, 0.108757, 0, 0, 0)
 
+[node name="Lights" parent="SubViewportContainer/SubViewport/Camera3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.977846, 4.2743e-08)
+
+[node name="OmniLight3D" parent="SubViewportContainer/SubViewport/Camera3D/Lights" index="0"]
+light_energy = 6.0
+
 [editable path="SubViewportContainer"]
