@@ -62,6 +62,7 @@ collision_mask = 448
 debug_shape_custom_color = Color(0, 0.882353, 0, 1)
 
 [node name="Base" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.045, 0)
 script = ExtResource("6_i468y")
 
 [node name="Inside" parent="Base" instance=ExtResource("7_pnt44")]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvcue281hhkve"]
+
+[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_8jbo1"]
+[ext_resource type="PackedScene" uid="uid://bjh6gktr5csd7" path="res://Resources/Art/Models/Iron.gltf" id="2_togj8"]
+
+[node name="Iron" instance=ExtResource("1_8jbo1")]
+_name = "Iron"
+_stackable = true
+
+[node name="Amount" parent="." index="1"]
+text = "2"
+
+[node name="Item" parent="SubViewportContainer/SubViewport/Camera3D" index="1"]
+transform = Transform3D(0.563816, 0.205212, 0, -0.205212, 0.563816, 0, 0, 0, 0.6, -0.198154, 0.257681, -4.25)
+
+[node name="default" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("2_togj8")]
+
+[node name="OmniLight3D" parent="SubViewportContainer/SubViewport/Camera3D/Lights" index="0"]
+light_energy = 6.0
+
+[editable path="SubViewportContainer"]

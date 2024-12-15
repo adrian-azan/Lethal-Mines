@@ -1,6 +1,6 @@
 using Godot;
+using Godot.Collections;
 using System;
-using System.Linq;
 
 public partial class MapGenerator : Node3D
 {
@@ -20,6 +20,8 @@ public partial class MapGenerator : Node3D
     [Export]
     public int _CoreCenterRadius;
 
+    private Dictionary<BlockType, PackedScene> PackedScenes;
+
     private PackedScene _layerOne;
 
     private PackedScene _layerTwo;
@@ -27,6 +29,7 @@ public partial class MapGenerator : Node3D
     private PackedScene _layerThree;
 
     private PackedScene _coal;
+    private PackedScene _iron;
 
     private PackedScene floor;
 
@@ -40,6 +43,8 @@ public partial class MapGenerator : Node3D
         Air,
         Stone,
         Coal,
+        Iron,
+        Copper,
         Dirt,
         Clay
     }
@@ -50,11 +55,14 @@ public partial class MapGenerator : Node3D
         _Map = new int[_Width, _Height];
         floor = ResourceLoader.Load<PackedScene>(Paths.Environment.FLOOR);
 
-        _layerOne = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.STONE);
-        _layerTwo = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.CLAY);
-        _layerThree = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.DIRT);
+        PackedScenes = new Dictionary<BlockType, PackedScene>();
 
-        _coal = ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COAL);
+        PackedScenes.Add(BlockType.Stone, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.STONE));
+        PackedScenes.Add(BlockType.Coal, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COAL));
+        PackedScenes.Add(BlockType.Iron, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.IRON));
+        PackedScenes.Add(BlockType.Copper, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.COPPER));
+        PackedScenes.Add(BlockType.Dirt, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.DIRT));
+        PackedScenes.Add(BlockType.Clay, ResourceLoader.Load<PackedScene>(Paths.Items.Objects.CLAY));
     }
 
     public void FinalizeWorld()
@@ -68,27 +76,15 @@ public partial class MapGenerator : Node3D
         {
             for (int j = 0; j < _Height; j++)
             {
-                if (_Map[i, j] != (int)BlockType.Coal)
-                {
-                    Node3D piece = null;
-                    if (_Map[i, j] == (int)BlockType.Stone)
-                        piece = _layerOne.Instantiate<Node3D>();
-                    else if (_Map[i, j] == (int)BlockType.Clay)
-                        piece = _layerTwo.Instantiate<Node3D>();
-                    else if (_Map[i, j] == (int)BlockType.Air)
-                        piece = _layerThree.Instantiate<Node3D>();
+                PackedScene packedScene = null;
+                Node3D piece = null;
 
-                    if (piece != null)
-                    {
-                        piece.Position = Position + new Vector3(i - centerX, 2, j - centerY);
-                        AddChild(piece);
-                        _Walls[i, j] = piece;
-                    }
-                }
-                else if (_Map[i, j] == (int)BlockType.Coal)
-                {
-                    Node3D piece = _coal.Instantiate<Node3D>();
+                PackedScenes.TryGetValue((BlockType)_Map[i, j], out packedScene);
 
+                piece = packedScene?.Instantiate() as Node3D;
+
+                if (piece != null)
+                {
                     piece.Position = Position + new Vector3(i - centerX, 2, j - centerY);
                     AddChild(piece);
                     _Walls[i, j] = piece;

@@ -6,6 +6,12 @@
 [node name="SinglePlayerMap" type="Node3D"]
 
 [node name="SmallMap" parent="." instance=ExtResource("1_veeg7")]
+noise = 0.7
+_Width = 100
+_Height = 100
+_CoreCenterX = 50
+_CoreCenterY = 50
+_CoreCenterRadius = 25
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0026354, 0.999997, 0, -0.999997, -0.0026354, 0, 117, 0)
@@ -13,4 +19,4 @@ light_color = Color(0.627221, 0.331889, 0.275252, 1)
 light_energy = 0.1
 
 [node name="Player" parent="." instance=ExtResource("2_mi6lr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.3849, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.1038, 0)

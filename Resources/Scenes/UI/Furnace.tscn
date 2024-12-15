@@ -41,5 +41,8 @@ offset_top = 94.0
 offset_right = 287.0
 offset_bottom = 194.0
 
+[node name="CoolDown" type="Timer" parent="."]
+wait_time = 2.0
+
 [editable path="Input"]
 [editable path="Fuel"]

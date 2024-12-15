@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlobu3s0v0pwb"]
+[gd_scene load_steps=5 format=3 uid="uid://ckoajsee1ukog"]
 
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="1_bgap5"]
 [ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_tqsle"]
-[ext_resource type="Material" uid="uid://df4v8p1ebrlw" path="res://Resources/Art/Material/Unknown.tres" id="2_m3jsu"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_673pm"]
-material = ExtResource("2_m3jsu")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_61dlv"]
 
@@ -19,10 +15,6 @@ script = ExtResource("1_tqsle")
 [node name="StaticBody3D" parent="Static_Body" index="0"]
 visible = false
 collision_layer = 64
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Static_Body"]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
-mesh = SubResource("BoxMesh_673pm")
 
 [node name="DEBUG_EAGLEVIEW" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 2, 0)

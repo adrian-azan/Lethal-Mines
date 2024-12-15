@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyn5itqvtfsqp"]
 
 [ext_resource type="Script" path="res://Resources/Code/Player/PlayerCamera.cs" id="1_wv6nu"]
+[ext_resource type="Environment" uid="uid://bvqebf3888q03" path="res://Resources/Scenes/Player/WorldEnvironment.tres" id="2_2jm11"]
 
 [sub_resource type="Animation" id="Animation_jyphd"]
 resource_name = "player_headBob"
@@ -23,17 +24,14 @@ _data = {
 "player_headBob": SubResource("Animation_jyphd")
 }
 
-[sub_resource type="Environment" id="Environment_1sar3"]
-fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.2
-
 [node name="PlayerCamera" type="Node3D"]
 script = ExtResource("1_wv6nu")
 _bobbingWeight = 0.35
+WorldEnvironmentActive = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -6.66015e-05, 5.60942e-05, 6.66305e-05, 1, -0.000516305, -5.60598e-05, 0.000516309, 1, 0, 0, 0)
+environment = ExtResource("2_2jm11")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
 libraries = {
@@ -41,10 +39,17 @@ libraries = {
 }
 
 [node name="Lantern" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0495175, 0, 0)
-light_color = Color(0.705882, 0.639216, 0.145098, 1)
-light_energy = 2.0
-light_size = 0.234
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.521488, 0, 0.0156814)
+light_color = Color(0.745098, 0.427451, 0.145098, 1)
+light_energy = 5.0
+light_size = 10.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1sar3")
+environment = ExtResource("2_2jm11")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.72393, 0)
+visible = false

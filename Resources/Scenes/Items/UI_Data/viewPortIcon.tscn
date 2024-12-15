@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://ciac4gm32qwjg"]
+
+[ext_resource type="Script" path="res://Resources/Code/UI/ViewPortIcon.cs" id="1_7thmi"]
+[ext_resource type="Environment" uid="uid://dhi3xi6o508x8" path="res://Resources/Scenes/Player/ClearEnvironment.tres" id="2_ksqrc"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m8x7o"]
+animation = &"Swivel"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ndecm"]
+animation = &"Swivel"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dimbr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vqt3n"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_18adm"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xt8na"]
+states/Start/position = Vector2(235, 122)
+states/Swivel/node = SubResource("AnimationNodeAnimation_ndecm")
+states/Swivel/position = Vector2(427, 63)
+"states/Swivel 2/node" = SubResource("AnimationNodeAnimation_m8x7o")
+"states/Swivel 2/position" = Vector2(717, 63)
+transitions = ["Start", "Swivel", SubResource("AnimationNodeStateMachineTransition_dimbr"), "Swivel", "Swivel 2", SubResource("AnimationNodeStateMachineTransition_vqt3n"), "Swivel 2", "Swivel", SubResource("AnimationNodeStateMachineTransition_18adm")]
+
+[sub_resource type="Animation" id="Animation_6p4h0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.349066)]
+}
+
+[sub_resource type="Animation" id="Animation_0pxbu"]
+resource_name = "Swivel"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.349066, 0), Vector3(0, 0.349066, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_swexa"]
+_data = {
+"RESET": SubResource("Animation_6p4h0"),
+"Swivel": SubResource("Animation_0pxbu")
+}
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_left = -60.0
+offset_top = -59.0
+offset_right = 452.0
+offset_bottom = 453.0
+scale = Vector2(0.25, 0.25)
+mouse_filter = 2
+script = ExtResource("1_7thmi")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+environment = ExtResource("2_ksqrc")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/Camera3D"]
+environment = ExtResource("2_ksqrc")
+
+[node name="Item" type="Node3D" parent="SubViewport/Camera3D"]
+transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="AnimationTree" type="AnimationTree" parent="SubViewport/Camera3D"]
+root_node = NodePath("../Item")
+tree_root = SubResource("AnimationNodeStateMachine_xt8na")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Camera3D/AnimationTree"]
+root_node = NodePath("../../Item")
+libraries = {
+"": SubResource("AnimationLibrary_swexa")
+}
+
+[node name="Lights" type="Node3D" parent="SubViewport/Camera3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Camera3D/Lights"]
+transform = Transform3D(0.999043, 9.97348e-16, 0.0437364, -0.0437364, -4.37114e-08, 0.999043, 1.91178e-09, -1, -4.36696e-08, 0.266147, -0.0953186, -0.139151)
+light_color = Color(0.945098, 0.666667, 0.384314, 1)
+light_energy = 0.25
+light_size = 3.0

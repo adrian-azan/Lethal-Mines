@@ -1,23 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://vx4by0kbyj50"]
+[gd_scene load_steps=7 format=3 uid="uid://vx4by0kbyj50"]
 
-[ext_resource type="PackedScene" uid="uid://dlobu3s0v0pwb" path="res://Resources/Scenes/Items/Objects/Blocks/BLOCK.tscn" id="1_vdga7"]
-[ext_resource type="Material" uid="uid://b0ds62si3kqbq" path="res://Resources/Art/Material/Blocks/Coal/Coal.tres" id="2_6uicc"]
 [ext_resource type="Script" path="res://Resources/Code/Ore.cs" id="2_he5iy"]
+[ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_rfpxy"]
+[ext_resource type="PackedScene" uid="uid://bqynjvs3ieuta" path="res://Resources/Art/Models/Coal.gltf" id="3_amnif"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_abklu"]
-material = ExtResource("2_6uicc")
+[sub_resource type="PlaneMesh" id="PlaneMesh_61dlv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1bkr"]
 albedo_color = Color(0.800794, 0.781487, 0.0850019, 1)
 
-[node name="Coal" instance=ExtResource("1_vdga7")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4pdq"]
+
+[node name="Coal" type="Node3D"]
 script = ExtResource("2_he5iy")
 
-[node name="MeshInstance3D" parent="Static_Body" index="1"]
-transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0.01)
-mesh = SubResource("BoxMesh_abklu")
+[node name="Static_Body" parent="." instance=ExtResource("2_rfpxy")]
 
-[node name="MeshInstance3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2" index="0"]
+[node name="StaticBody3D" parent="Static_Body" index="0"]
+visible = false
+collision_layer = 64
+
+[node name="default" parent="Static_Body" instance=ExtResource("3_amnif")]
+transform = Transform3D(0.5, 0, 0, 0, 0.75, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="DEBUG_EAGLEVIEW" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="DEBUG_EAGLEVIEW"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2"]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("PlaneMesh_61dlv")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_u1bkr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DEBUG_EAGLEVIEW/StaticBody3D2"]
+shape = SubResource("BoxShape3D_y4pdq")
 
 [editable path="Static_Body"]

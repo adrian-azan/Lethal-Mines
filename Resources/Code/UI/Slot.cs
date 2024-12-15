@@ -8,6 +8,9 @@ public partial class Slot : Control
 
     private PlayerMouse _playerMouse;
 
+    [Export]
+    private String? _whiteList;
+
     public override void _Ready()
     {
         _item = null;
@@ -32,21 +35,34 @@ public partial class Slot : Control
         {
             if (eventMouseButton.ButtonMask == MouseButtonMask.Left)
             {
-                _playerMouse.Swap(this);
+                if (_playerMouse._item == null)
+                    _playerMouse.Swap(this);
+                else if (WhiteListed(_playerMouse.GetItemName()) == true)
+                    _playerMouse.Swap(this);
             }
         }
     }
 
-    public void AddItem(string newItem)
+    public int Amount()
     {
+        if (_item == null) { return 0; }
+        return _item.Amount();
+    }
+
+    public void AddItem(string newItem, int quantity = 1)
+    {
+        if (WhiteListed(newItem) == false)
+        { return; }
+
         if (_item != null && _item._stackable)
         {
-            _item++;
+            _item += quantity;
         }
         else
         {
             _item?.QueueFree();
             _item = (ResourceLoader.Load(newItem) as PackedScene).Instantiate() as Item_UI;
+            _item._name = Paths.GetNameFromScenePath(newItem);
 
             if (_item == null)
                 GD.PushError("Failed to Instantiate: " + newItem);
@@ -55,6 +71,21 @@ public partial class Slot : Control
                 _item.Position = new Vector2(50, 50);
                 AddChild(_item);
             }
+        }
+    }
+
+    public void RemoveItem(int quantity = 1)
+    {
+        if (_item == null) return;
+
+        if (_item._stackable && _item.Amount() > 1)
+        {
+            _item--;
+        }
+        else
+        {
+            _item.QueueFree();
+            _item = null;
         }
     }
 
@@ -68,8 +99,23 @@ public partial class Slot : Control
         _border.Texture = ResourceLoader.Load("res://Resources/Art/UI/Slot-Highlighted.png") as Texture2D;
     }
 
+    public string GetItemName()
+    {
+        return IsEmpty() ? "" : _item.GetName();
+    }
+
     public bool IsEmpty()
     {
         return _item == null;
+    }
+
+    public bool WhiteListed(String itemName)
+    {
+        if (_whiteList == null)
+            return true;
+
+        if (itemName.Contains(_whiteList) == false)
+            return false;
+        return true;
     }
 }

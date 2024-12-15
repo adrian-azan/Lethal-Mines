@@ -7,8 +7,11 @@
 script = ExtResource("1_cdmux")
 generationLimit = 2
 noise = 0.8
-_Width = 30
-_Height = 30
+_Width = 50
+_Height = 50
+_CoreCenterX = 25
+_CoreCenterY = 25
+_CoreCenterRadius = 10
 
 [node name="North" parent="." instance=ExtResource("2_ew72k")]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 80, 0, 0)

@@ -1,0 +1,4 @@
+[gd_resource type="Environment" format=3 uid="uid://dhi3xi6o508x8"]
+
+[resource]
+ambient_light_color = Color(0, 0, 0, 0)
