@@ -21,10 +21,9 @@ public partial class Inventory : Control
 
     public bool AddItem(string newItem)
     {
-        var parts = newItem.Split();
-        string itemName = parts[parts.Length - 1];
+        var itemName = Paths.GetNameFromScenePath(newItem);
 
-        var physicalItemPath = newItem.Replace("UI_Data", "Objects");
+        var physicalItemPath = Paths.Items.Objects.FindByName[itemName.ToUpper()];
 
         Slot potentialSlot;
 

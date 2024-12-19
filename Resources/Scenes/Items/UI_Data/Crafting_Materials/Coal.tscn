@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://clpfsb58k5a5s"]
 
-[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_vx1i5"]
-[ext_resource type="PackedScene" uid="uid://34774nxn4kce" path="res://Resources/Art/Models/CoalPiece.gltf" id="2_menq8"]
+[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_e1iyb"]
+[ext_resource type="PackedScene" uid="uid://34774nxn4kce" path="res://Resources/Art/Models/CoalPiece.gltf" id="2_hmtyt"]
 
-[node name="Coal" instance=ExtResource("1_vx1i5")]
+[node name="Coal" instance=ExtResource("1_e1iyb")]
 _name = "Coal"
 _description = "Sooty"
 _stackable = true
@@ -11,7 +11,7 @@ _stackable = true
 [node name="Item" parent="SubViewportContainer/SubViewport/Camera3D" index="1"]
 transform = Transform3D(0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0, 1, 0, 0.495, -1.935)
 
-[node name="default" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("2_menq8")]
+[node name="default" parent="SubViewportContainer/SubViewport/Camera3D/Item" index="0" instance=ExtResource("2_hmtyt")]
 transform = Transform3D(0.12, 0, 0, 0, 0.108757, -0.0507142, 0, 0.0507142, 0.108757, 0, 0, 0)
 
 [node name="Lights" parent="SubViewportContainer/SubViewport/Camera3D" index="3"]

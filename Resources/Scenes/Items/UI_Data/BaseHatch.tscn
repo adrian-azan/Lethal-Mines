@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxxxytbu2mukg"]
-
-[ext_resource type="PackedScene" uid="uid://dkeoq3yxq4rhv" path="res://Resources/Scenes/Items/UI_Data/Item_UI.tscn" id="1_r86dm"]
-
-[node name="BaseHatch" instance=ExtResource("1_r86dm")]

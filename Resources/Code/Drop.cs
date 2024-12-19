@@ -41,7 +41,8 @@ public partial class Drop : Node3D
         Player test = Tools.GetRoot<Player>(other) as Player;
         if (test is Player)
         {
-            if (test._inventory.AddItem(_theDrop.SceneFilePath.Replace("Objects", "UI_Data")))
+            string dropName = Paths.GetNameFromScenePath(_theDrop.SceneFilePath).ToUpper();
+            if (test._inventory.AddItem(Paths.Items.UI_Data.FindByName[dropName]))
                 QueueFree();
         }
     }

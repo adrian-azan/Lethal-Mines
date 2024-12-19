@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bjn7smkl2qxwq"]
 
 [ext_resource type="Script" path="res://Resources/Code/Player/Player.cs" id="1_3k2b2"]
-[ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/collision_body.tscn" id="2_vh2ay"]
+[ext_resource type="PackedScene" uid="uid://bq730q2f7vhto" path="res://Resources/Scenes/Fundamentals/Collision_Body.tscn" id="2_vh2ay"]
 [ext_resource type="Material" uid="uid://cnfe2hu7o5pib" path="res://Resources/Art/Material/Blocks/Stone/Stone.tres" id="3_ad2go"]
 [ext_resource type="PackedScene" uid="uid://cpo5is4364vux" path="res://Resources/Scenes/Fundamentals/Rigid_Body.tscn" id="3_kgynb"]
 [ext_resource type="PackedScene" uid="uid://cyn5itqvtfsqp" path="res://Resources/Scenes/Player/playerCamera.tscn" id="5_tmc68"]

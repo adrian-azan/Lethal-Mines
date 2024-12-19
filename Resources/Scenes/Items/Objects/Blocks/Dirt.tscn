@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Resources/Code/Block.cs" id="1_7st72"]
 [ext_resource type="PackedScene" uid="uid://b1ctqfv8kafn8" path="res://Resources/Scenes/Fundamentals/Static_Body.tscn" id="2_dsypi"]
-[ext_resource type="PackedScene" uid="uid://befy5v8wyjylo" path="res://Resources/Art/Models/Dirt.gltf" id="3_jf0fh"]
+[ext_resource type="PackedScene" uid="uid://b7ts7315u6fu1" path="res://Resources/Art/Models/Dirt.gltf" id="3_jf0fh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_61dlv"]
 
